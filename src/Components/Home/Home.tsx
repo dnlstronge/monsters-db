@@ -20,14 +20,16 @@ const fetchMonster = async() => {
   const response = await fetch("https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/A/Agromole.json")
   const data = await response.json()
   setTestMonsterOK(true)
-  console.log(data)
-  console.log(response)
+  //console.log(data)
+  //console.log(response)
+  
   settestMonster({
         id: data.id,
         name: data.name,
         description: data.desc,
         hp: data.hp
        })
+  console.log(testMonster)
 }
 
   return (
@@ -39,11 +41,11 @@ const fetchMonster = async() => {
         <section className={classes.testsection}>
           <button onClick={fetchMonster} className={classes.btn}>Get Monster... </button>
         </section>
-        {testMonsterOK && 
+        
         <section className={classes.testresponse}>
           <h5>Name: {testMonster.name}</h5>
           <h6>Description: {testMonster.description}</h6>
-        </section>}
+        </section>
     </div>
   )
 }
