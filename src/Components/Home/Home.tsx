@@ -43,8 +43,9 @@ const fetchMonster = async() => {
         </section>
         
         <section className={classes.testresponse}>
-          <h5>Name: {testMonster.name}</h5>
-          <h6>Description: {testMonster.description}</h6>
+          <h5 className={classes.testinfo}>Name: {testMonster.name}</h5>
+          <h6 className={classes.testinfo}>Description: {testMonster.description}</h6>
+          <h6 className={classes.testinfo}>Hit Points: {testMonster.hp}</h6>
         </section>
     </div>
   )
