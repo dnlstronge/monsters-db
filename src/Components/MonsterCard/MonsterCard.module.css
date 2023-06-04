@@ -1,7 +1,24 @@
 .container {
     width: 70%;
-    height: 10rem;
+    height: 15rem;
     background: rgb(44, 43, 43);
     border: 2px solid white;
     margin: 0 auto;
+    color: white;
+    padding: 2rem;
+}
+.heading {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.image {
+    border: 2px solid whitesmoke;
+}
+
+.imageanddesc {
+  display: flex;
+  flex-direction: row;
+}
+.aside {
+    margin-left: 2rem;
 }

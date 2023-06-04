@@ -60,7 +60,7 @@ const fetchMonster = async() => {
           <button onClick={fetchMonster} className={classes.btn}>Get Monster... </button>
         </section>
         
-       <MonsterCard name={testMonster.name} imageURL={testMonster.imageURL}/>
+       <MonsterCard name={testMonster.name} imageURL={testMonster.imageURL} description={testMonster.description}/>
     </div>
   )
 }

@@ -5,6 +5,7 @@ import useImage from '../Hooks/useImage'
 type monsterProps = {
     name: string,
     imageURL: string
+    description: string
 }
 
 const MonsterCard: React.FC<monsterProps> = (props) => {
@@ -13,9 +14,12 @@ const MonsterCard: React.FC<monsterProps> = (props) => {
 
   return (
     <div className={classes.container}>
-        <p>{props.name}</p>
-        <img src={props.imageURL} alt={props.name}/>
-
+        <h5 className={classes.heading}>{props.name}</h5>
+        <section className={classes.imageanddesc}>
+            <img className={classes.image} height="150px" width="150px" src={props.imageURL} alt={props.name}/>
+            <aside className={classes.aside}>{props.description}</aside>
+        </section>
+       
     </div>
   )
 }
