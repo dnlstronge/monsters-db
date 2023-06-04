@@ -1,4 +1,5 @@
 .container {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     background: rgb(57, 57, 57);
     position: fixed;
     height: 50rem;
@@ -6,13 +7,20 @@
     color: whitesmoke;
 
 }
+.codex {
+    margin: 0.5rem;
+}
+.tools {
+    margin: 0.5rem;
+}
 .sectionNotActive {
     margin-left: 1rem;
-    background: black;
-    border-bottom: 1px solid white;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: rgb(21, 21, 21);
+    padding: 0.2rem;
+    
 }
 .sectionActive {
-    margin-left: 1rem;
-    background: rgb(35, 35, 35);
-    border-bottom: 1px solid white;
+  color: grey;
 }

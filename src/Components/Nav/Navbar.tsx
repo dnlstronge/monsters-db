@@ -21,7 +21,7 @@ const Navbar: React.FC<navBarProps> = (props) => {
     /* handlers */
 
     const handleExpandCodex = () => {
-        setExpand(!expand)
+        setExpand(true)
     }
     const handleShowCreaturesAZ = () => {
         setShowCreatures(!showCreaturesAZ)
@@ -37,13 +37,15 @@ const Navbar: React.FC<navBarProps> = (props) => {
     return (
         <nav className={classes.container}>
 
-            <div onClick={handleExpandCodex } className={classes.codex}>Codex
+            <div onClick={handleExpandCodex} className={classes.codex}>Codex
+            {expand && 
                 <section className={classes.expandcodex} >
                     <div onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</div>
                     <div onClick={handleShowPlaces}className={placeStyle}>Places A-Z</div>
                     <div onClick={handleShowMisc} className={miscStyle}>Misc A-Z</div>
-                </section>
+                </section>}
             </div>
+            <div className={classes.tools}>Tools</div>
 
 
         </nav>
