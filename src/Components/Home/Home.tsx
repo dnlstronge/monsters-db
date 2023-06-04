@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import classes from "./Home.module.css"
-import { getStorage, ref } from "firebase/storage"
+import { projectStorage } from '../../firebase/config'
+import { ref, getDownloadURL } from "firebase/storage"
+
 
 
 
@@ -13,11 +15,14 @@ const Home = () => {
 
 */ 
 
+const getIMAGE = async() => {
+  const storageRef = await ref(projectStorage, `/monsters/MonsterTest.png`)
+  const imageDLurl = await getDownloadURL(storageRef)
+  setTestImage(imageDLurl);
+}
 
 
-
-
-
+const [testImage, setTestImage] = useState("")
 const [testMonsterOK, setTestMonsterOK] = useState(false)
 const [testMonster, settestMonster] = useState({
   id: "",
@@ -41,6 +46,9 @@ const fetchMonster = async() => {
         hp: data.hp
        })
   console.log(testMonster)
+  getIMAGE()
+  
+ 
 }
 
   return (
@@ -52,7 +60,7 @@ const fetchMonster = async() => {
         <section className={classes.testsection}>
           <button onClick={fetchMonster} className={classes.btn}>Get Monster... </button>
         </section>
-        
+        <img src={testImage} alt="ima"/>
         <section className={classes.testresponse}>
           <h5 className={classes.testinfo}>Name: {testMonster.name}</h5>
           <h6 className={classes.testinfo}>Description: {testMonster.description}</h6>
