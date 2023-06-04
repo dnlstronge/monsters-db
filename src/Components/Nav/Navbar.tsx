@@ -27,14 +27,21 @@ const Navbar: React.FC<navBarProps> = (props) => {
         setShowCreatures(!showCreaturesAZ)
         props.creaturesAZ()
     }
+
+    const handleShowPlaces = () => {
+        setShowPlaceAZ(!showPlaceAZ)
+    }
+    const handleShowMisc = () => {
+        setShowMiscAZ(!showMiscAZ)
+    }
     return (
         <nav className={classes.container}>
 
             <div onClick={handleExpandCodex } className={classes.codex}>Codex
                 <section className={classes.expandcodex} >
-                    <div onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</div>
-                    <div className={classes.section}>Places A-Z</div>
-                    <div className={classes.section}>Misc A-Z</div>
+                    <p onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</p>
+                    <p className={placeStyle}>Places A-Z</p>
+                    <p className={miscStyle}>Misc A-Z</p>
                 </section>
             </div>
 
