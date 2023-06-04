@@ -19,7 +19,6 @@ const MonsterCard: React.FC<monsterProps> = (props) => {
             <img className={classes.image} height="150px" width="150px" src={props.imageURL} alt={props.name}/>
             <aside className={classes.aside}>{props.description}</aside>
         </section>
-       
     </div>
   )
 }
