@@ -43,6 +43,8 @@ const CreaturesAZ = () => {
   }, [showResults])
 
 
+  /* Handlers */
+
   const handleClick = (a: any) => {
     setLetterSearch(a)
   }
@@ -53,6 +55,7 @@ const CreaturesAZ = () => {
         <h5 className={classes.heading}>Creatures A - Z</h5>
       </div>
       <div className={classes.letters}>
+        
         {lettersAZ.map((letter) => {
 
           return (
@@ -60,9 +63,10 @@ const CreaturesAZ = () => {
           )
         })}
       </div>
+      <h5 className={classes.lettertitle}>{letterSearch}</h5>
       <div className={classes.results}>
         {showResults.length > 0 && showResults.map((result) => {
-          return <button key={result}>{result}</button>
+          return <button className={classes.result} key={result}>{result}</button>
         })}
       </div>
 
