@@ -21,30 +21,38 @@ const Navbar: React.FC<navBarProps> = (props) => {
     /* handlers */
 
     const handleExpandCodex = () => {
-        setExpand(true)
+        setExpand(!expand)
     }
     const handleShowCreaturesAZ = () => {
-        setShowCreatures(!showCreaturesAZ)
+        setExpand(true)
+        setShowCreatures(true)
+        setShowMiscAZ(false)
+        setShowPlaceAZ(false)
         props.creaturesAZ()
     }
 
     const handleShowPlaces = () => {
-        setShowPlaceAZ(!showPlaceAZ)
+        setExpand(true)
+        setShowPlaceAZ(true)
+        setShowCreatures(false)
+        setShowMiscAZ(false)
     }
     const handleShowMisc = () => {
-        setShowMiscAZ(!showMiscAZ)
+        setExpand(true)
+        setShowMiscAZ(true)
+        setShowCreatures(false)
+        setShowPlaceAZ(false)
     }
     return (
         <nav className={classes.container}>
 
-            <div onClick={handleExpandCodex} className={classes.codex}>Codex
+            <div onClick={handleExpandCodex} className={classes.codex}>Codex </div>
             {expand && 
-                <section className={classes.expandcodex} >
-                    <div onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</div>
-                    <div onClick={handleShowPlaces}className={placeStyle}>Places A-Z</div>
-                    <div onClick={handleShowMisc} className={miscStyle}>Misc A-Z</div>
-                </section>}
-            </div>
+                    <div onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</div>}
+            {expand && 
+                    <div onClick={handleShowPlaces}className={placeStyle}>Places A-Z</div>}
+            {expand && 
+                    <div onClick={handleShowMisc} className={miscStyle}>Misc A-Z</div>}
             <div className={classes.tools}>Tools</div>
 
 
