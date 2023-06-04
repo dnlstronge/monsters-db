@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import classes from "./Home.module.css"
 import { projectStorage } from '../../firebase/config'
 import { ref, getDownloadURL } from "firebase/storage"
+import MonsterCard from '../MonsterCard/MonsterCard'
 
 
 
@@ -60,12 +61,8 @@ const fetchMonster = async() => {
         <section className={classes.testsection}>
           <button onClick={fetchMonster} className={classes.btn}>Get Monster... </button>
         </section>
-        <img src={testImage} alt="ima"/>
-        <section className={classes.testresponse}>
-          <h5 className={classes.testinfo}>Name: {testMonster.name}</h5>
-          <h6 className={classes.testinfo}>Description: {testMonster.description}</h6>
-          <h6 className={classes.testinfo}>Hit Points: {testMonster.hp}</h6>
-        </section>
+        <img height="100px" width="100px" src={testImage} alt="ima"/>
+       <MonsterCard />
     </div>
   )
 }

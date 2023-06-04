@@ -1,0 +1,7 @@
+.container {
+    width: 70%;
+    height: 10rem;
+    background: rgb(44, 43, 43);
+    border: 2px solid white;
+    margin: 0 auto;
+}
