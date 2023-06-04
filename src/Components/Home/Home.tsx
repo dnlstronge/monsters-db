@@ -52,15 +52,15 @@ const fetchMonster = async() => {
 
   return (
     <div  className={classes.container}>
-        <h3 className={classes.title}>Welcome to monsters database</h3>
+        {/* <h3 className={classes.title}>Welcome to monsters database</h3>
         <p className={classes.intro}>
             This app allows users to search for fictional monsters. Selecting a monster allows the viewer
             to view it's atrributes and other information about the creature....</p>
         <section className={classes.testsection}>
           <button onClick={fetchMonster} className={classes.btn}>Get Monster... </button>
         </section>
-        
-       <MonsterCard name={testMonster.name} imageURL={testMonster.imageURL} description={testMonster.description}/>
+         */}
+       {/* <MonsterCard name={testMonster.name} imageURL={testMonster.imageURL} description={testMonster.description}/> */}
     </div>
   )
 }
