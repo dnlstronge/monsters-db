@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useFetchCreaturesAZ } from '../../Hooks/useFetchCreaturesAZ'
 import classes from "./CreaturesAz.module.css"
+import CreatureCard from './CreatureCard'
 
 /** get results and filter ???  */
 
@@ -11,6 +12,18 @@ const lettersAZ = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "
 const CreaturesAZ = () => {
   const [letterSearch, setLetterSearch] = useState(null)
   const [showResults, setShowResults] = useState([])
+  const [dataByLetter, setDataByLetter] = useState(null)
+
+  // when expanded: 
+  const [showInDetail, setShowInDetail] = useState({
+    attack: "",
+    defence: "",
+    desc: "",
+    hp: "",
+    id: "",
+    imageURL: "",
+    name: ""
+  })
 
 
 
@@ -23,9 +36,9 @@ const CreaturesAZ = () => {
       console.log(letterSearch)
       const response = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/${term}/.json`)
       const data = await response.json()
-      const manageData: any = Object.keys(data)
-      setShowResults(manageData)
-     
+      const nameData: any = Object.keys(data)
+      setShowResults(nameData)
+      setDataByLetter(data)
 
     }
     if (letterSearch !== null) {
@@ -48,6 +61,13 @@ const CreaturesAZ = () => {
   const handleClick = (a: any) => {
     setLetterSearch(a)
   }
+  const handleShowInDetail = (a: string) => {
+    if (dataByLetter !== null) {
+      setShowInDetail(dataByLetter[a])
+    }
+
+  }
+
 
   return (
     <>
@@ -55,7 +75,7 @@ const CreaturesAZ = () => {
         <h5 className={classes.heading}>Creatures A - Z</h5>
       </div>
       <div className={classes.letters}>
-        
+
         {lettersAZ.map((letter) => {
 
           return (
@@ -64,11 +84,32 @@ const CreaturesAZ = () => {
         })}
       </div>
       <h5 className={classes.lettertitle}>{letterSearch}</h5>
+      {/* shows expanded creature */}
+      {showInDetail !== null &&
+      <CreatureCard 
+          attack={showInDetail.attack}
+          defence={showInDetail.defence}
+          desc={showInDetail.desc}
+          hp={showInDetail.hp}
+          id={showInDetail.id}
+          imageURL={showInDetail.imageURL}
+          name={showInDetail.name} />}
+
+
       <div className={classes.results}>
         {showResults.length > 0 && showResults.map((result) => {
-          return <button className={classes.result} key={result}>{result}</button>
+          return (
+            <>
+              <button
+                onClick={() => { handleShowInDetail(result) }}
+                className={classes.result}
+                key={result}>{result}
+              </button>
+            </>
+          )
         })}
       </div>
+     
 
     </>
   )

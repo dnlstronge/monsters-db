@@ -6,6 +6,9 @@
     font-size: 16px;
     text-align: center;
 }
+.letters {
+    padding: 2rem;
+}
 
 .lettertitle {
     margin-top: 1rem;
@@ -14,8 +17,12 @@
 }
 
 .results {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
 
 }
 .result {
-    
+    width: 70%;
+    margin: 0.5rem;
 }

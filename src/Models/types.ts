@@ -2,4 +2,14 @@ type navBarProps = {
     creaturesAZ: () => void
 }
 
-export type { navBarProps }; 
+type creatureCardProps = {
+    attack: string,
+    defence: string,
+    desc: string,
+    hp: string,
+    id: string,
+    imageURL: string,
+    name: string
+}
+
+export type { navBarProps, creatureCardProps }; 
