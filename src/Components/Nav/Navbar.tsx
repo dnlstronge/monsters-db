@@ -14,7 +14,9 @@ const Navbar: React.FC<navBarProps> = (props) => {
 
     /* conditional styles */
 
-
+    const creaturesStyle = showCreaturesAZ ? classes.sectionActive : classes.sectionNotActive 
+    const placeStyle = showPlaceAZ ? classes.sectionActive : classes.sectionNotActive 
+    const miscStyle = showMiscAZ ? classes.sectionActive : classes.sectionNotActive 
 
     /* handlers */
 
@@ -22,7 +24,7 @@ const Navbar: React.FC<navBarProps> = (props) => {
         setExpand(!expand)
     }
     const handleShowCreaturesAZ = () => {
-        setShowCreatures(true)
+        setShowCreatures(!showCreaturesAZ)
         props.creaturesAZ()
     }
     return (
@@ -30,7 +32,7 @@ const Navbar: React.FC<navBarProps> = (props) => {
 
             <div onClick={handleExpandCodex } className={classes.codex}>Codex
                 <section className={classes.expandcodex} >
-                    <div onClick={handleShowCreaturesAZ} className={classes.section}>Creatures A-Z</div>
+                    <div onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</div>
                     <div className={classes.section}>Places A-Z</div>
                     <div className={classes.section}>Misc A-Z</div>
                 </section>

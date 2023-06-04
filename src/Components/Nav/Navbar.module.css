@@ -1,6 +1,18 @@
 .container {
-    background: grey;
+    background: rgb(57, 57, 57);
     position: fixed;
     height: 50rem;
     width: 10rem;
+    color: whitesmoke;
+
+}
+.sectionNotActive {
+    margin-left: 1rem;
+    background: black;
+    border-bottom: 1px solid white;
+}
+.sectionActive {
+    margin-left: 1rem;
+    background: rgb(35, 35, 35);
+    border-bottom: 1px solid white;
 }
