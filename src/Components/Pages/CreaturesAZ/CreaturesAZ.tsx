@@ -11,35 +11,37 @@ const CreaturesAZ = () => {
   const [letterSearch, setLetterSearch] = useState("")
   const [ showResults, setShowResults ] = useState([])
 
-  const handleButtonClick = (term: string) => {
-    setLetterSearch(term)
-  }
 
  
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const fetchData = async() => {
+      console.log(letterSearch)
       const response = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/${letterSearch}.json`)
       const data = await response.json()
-      
-      //setShowResults(array)
-      console.log("fetch successfull")
-      console.log(Object.keys(data.A))
+      console.log(data)
+      // //setShowResults(array)
+      // console.log("fetch successfull")
+      // console.log(Object.keys(data.A))
       
     }
     fetchData()
 
   }, [letterSearch])
-
-
+  const handleClick = (a: any) => {
+    setLetterSearch(a)
+  }
+ 
   return (
     <>
     <div>Creatures AZ</div>
     <div>
         {lettersAZ.map((letter) => {
+         
           return (
-            <button onClick={() => {handleButtonClick(letter)}} key={letter}>{letter}</button>
+            
+            <div onClick={() => {handleClick(letter)}} key={letter}>{letter}</div>
           )
         })}
     </div>
