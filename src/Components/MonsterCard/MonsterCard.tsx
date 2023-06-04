@@ -1,12 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import classes from "./MonsterCard.module.css"
+import useImage from '../Hooks/useImage'
 
-const MonsterCard = () => {
+type monsterProps = {
+    name: string,
+    imageURL: string
+}
 
-  const [ image, setImage ] = useState("")
+const MonsterCard: React.FC<monsterProps> = (props) => {
+ 
+   
+
   return (
     <div className={classes.container}>
         <p>{props.name}</p>
+        <img src={props.imageURL} alt={props.name}/>
 
     </div>
   )

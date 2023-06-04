@@ -3,6 +3,7 @@ import classes from "./Home.module.css"
 import { projectStorage } from '../../firebase/config'
 import { ref, getDownloadURL } from "firebase/storage"
 import MonsterCard from '../MonsterCard/MonsterCard'
+import useImage from '../Hooks/useImage'
 
 
 
@@ -16,26 +17,22 @@ const Home = () => {
 
 */ 
 
-const getIMAGE = async() => {
-  const storageRef = await ref(projectStorage, `/monsters/MonsterTest.png`)
-  const imageDLurl = await getDownloadURL(storageRef)
-  setTestImage(imageDLurl);
-}
 
-
-const [testImage, setTestImage] = useState("")
 const [testMonsterOK, setTestMonsterOK] = useState(false)
 const [testMonster, settestMonster] = useState({
   id: "",
   name: "",
   description: "",
-  hp: ""
+  hp: "",
+  imageURL: ""
 })
   
 const fetchMonster = async() => {
   setTestMonsterOK(false)
   const response = await fetch("https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/A/Agromole.json")
   const data = await response.json()
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const imageURL = await useImage(data.imageURL)
   setTestMonsterOK(true)
   //console.log(data)
   //console.log(response)
@@ -44,10 +41,11 @@ const fetchMonster = async() => {
         id: data.id,
         name: data.name,
         description: data.desc,
-        hp: data.hp
+        hp: data.hp,
+        imageURL: imageURL
        })
   console.log(testMonster)
-  getIMAGE()
+ 
   
  
 }
@@ -61,8 +59,8 @@ const fetchMonster = async() => {
         <section className={classes.testsection}>
           <button onClick={fetchMonster} className={classes.btn}>Get Monster... </button>
         </section>
-        <img height="100px" width="100px" src={testImage} alt="ima"/>
-       <MonsterCard />
+        
+       <MonsterCard name={testMonster.name} imageURL={testMonster.imageURL}/>
     </div>
   )
 }
