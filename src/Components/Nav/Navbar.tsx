@@ -39,9 +39,9 @@ const Navbar: React.FC<navBarProps> = (props) => {
 
             <div onClick={handleExpandCodex } className={classes.codex}>Codex
                 <section className={classes.expandcodex} >
-                    <p onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</p>
-                    <p className={placeStyle}>Places A-Z</p>
-                    <p className={miscStyle}>Misc A-Z</p>
+                    <div onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</div>
+                    <div onClick={handleShowPlaces}className={placeStyle}>Places A-Z</div>
+                    <div onClick={handleShowMisc} className={miscStyle}>Misc A-Z</div>
                 </section>
             </div>
 
