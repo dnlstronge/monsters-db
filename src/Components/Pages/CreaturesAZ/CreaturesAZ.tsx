@@ -97,7 +97,7 @@ const CreaturesAZ = () => {
           hp={showInDetail.hp}
           id={showInDetail.id}
           // eslint-disable-next-line react-hooks/rules-of-hooks
-          imageURL="https://firebasestorage.googleapis.com/v0/b/monste…=media&token=2a771fb4-e12a-46e7-bed7-b85c7176d13c"
+          imageURL={showInDetail.imageURL}
           name={showInDetail.name} />}
 
 
