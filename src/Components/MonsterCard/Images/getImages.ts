@@ -6,7 +6,7 @@ export const getImages = async() => {
     const getImage = await useImage(`gs://monsterdb-30be5.appspot.com/monsters/MonsterTest.png`)
     images.push(getImage)
     console.log(getImage)
-    return images;
+    return getImage;
 }
 
 

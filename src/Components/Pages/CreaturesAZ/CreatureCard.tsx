@@ -4,13 +4,19 @@ import classes from "./CreatureCard.module.css"
 import { getImages } from '../../MonsterCard/Images/getImages'
 
 const CreatureCard: React.FC<creatureCardProps> = (props) => {
+    
     const [imageURLstate, setImageURLstate] = useState("")
-
+    const findImage = async() => {
+        let imageURL = await getImages()
+        setImageURLstate(imageURL)
+    }
+    findImage()
+    
 
   return (
     <div className={classes.container}>
         <h5>{props.name}</h5>
-        <img src={props.imageURL} alt=" monster"/>
+        <img src={imageURLstate} alt=" monster"/>
     </div>
   )
 }
