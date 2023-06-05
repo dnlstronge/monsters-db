@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { useFetchCreaturesAZ } from '../../Hooks/useFetchCreaturesAZ'
 import classes from "./CreaturesAz.module.css"
 import CreatureCard from './CreatureCard'
+import useImage from '../../Hooks/useImage'
+
+import { projectStorage } from "../../../firebase/config"
+import { ref, getDownloadURL } from "firebase/storage"
 
 /** get results and filter ???  */
 
@@ -13,6 +17,7 @@ const CreaturesAZ = () => {
   const [letterSearch, setLetterSearch] = useState(null)
   const [showResults, setShowResults] = useState([])
   const [dataByLetter, setDataByLetter] = useState(null)
+  const [urlForProps, setUrlForProps] = useState("")
 
   // when expanded: 
   const [showInDetail, setShowInDetail] = useState({
@@ -31,8 +36,7 @@ const CreaturesAZ = () => {
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const fetchData = async (term: string) => {
-
+      const fetchData = async (term: string) => {
       console.log(letterSearch)
       const response = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/${term}/.json`)
       const data = await response.json()
@@ -61,7 +65,7 @@ const CreaturesAZ = () => {
   const handleClick = (a: any) => {
     setLetterSearch(a)
   }
-  const handleShowInDetail = (a: string) => {
+  const handleShowInDetail = async(a: string) => {
     if (dataByLetter !== null) {
       setShowInDetail(dataByLetter[a])
     }
@@ -92,7 +96,8 @@ const CreaturesAZ = () => {
           desc={showInDetail.desc}
           hp={showInDetail.hp}
           id={showInDetail.id}
-          imageURL={showInDetail.imageURL}
+          // eslint-disable-next-line react-hooks/rules-of-hooks
+          imageURL="https://firebasestorage.googleapis.com/v0/b/monste…=media&token=2a771fb4-e12a-46e7-bed7-b85c7176d13c"
           name={showInDetail.name} />}
 
 

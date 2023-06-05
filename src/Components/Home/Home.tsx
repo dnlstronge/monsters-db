@@ -36,7 +36,7 @@ const fetchMonster = async() => {
   setTestMonsterOK(true)
   //console.log(data)
   //console.log(response)
-  
+  console.log(imageURL)
   settestMonster({
         id: data.id,
         name: data.name,
@@ -59,8 +59,8 @@ const fetchMonster = async() => {
         <section className={classes.testsection}>
           <button onClick={fetchMonster} className={classes.btn}>Get Monster... </button>
         </section>
-         */}
-       {/* <MonsterCard name={testMonster.name} imageURL={testMonster.imageURL} description={testMonster.description}/> */}
+        
+       <MonsterCard name={testMonster.name} imageURL={testMonster.imageURL} description={testMonster.description}/> */}
     </div>
   )
 }
