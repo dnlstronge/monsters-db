@@ -9,9 +9,16 @@ const CreatureCard: React.FC<creatureCardProps> = (props) => {
     
     const [imageURLstate, setImageURLstate] = useState("")
     const findImage = async() => {
-        let imageProp = props.imageURL
-        let imageURL = await getImages(`gs://monsterdb-30be5.appspot.com/monsters/${props.imageURL}.png`)
-        setImageURLstate(imageURL)
+        try {
+            let imageProp = props.imageURL.toString()
+            let name = "agromole"
+            console.log(imageProp)
+            let imageURL = await getImages(`gs://monsterdb-30be5.appspot.com/monsters/${name}.png`)
+            setImageURLstate(imageURL)
+        } catch (error) {
+            console.log(error)
+        }
+       
     }
     findImage()
     
