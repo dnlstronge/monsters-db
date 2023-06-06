@@ -15,7 +15,7 @@ const lettersAZ = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "
 
 
 const CreaturesAZ = () => {
-  const [letterSearch, setLetterSearch] = useState(null)
+  const [letterSearch, setLetterSearch] = useState("")
   const [showResults, setShowResults] = useState([])
   const [dataByLetter, setDataByLetter] = useState(null)
   const [urlForProps, setUrlForProps] = useState("")
@@ -55,7 +55,7 @@ const CreaturesAZ = () => {
       setDataByLetter(data)
 
     }
-    if (letterSearch !== null && !isError.showError) {
+    if (letterSearch !== "" && !isError.showError) {
       try {
         fetchData(letterSearch)
         
@@ -81,7 +81,8 @@ const CreaturesAZ = () => {
 
   /* Handlers */
 
-  const handleClick = (a: SetStateAction<null>) => {
+  const handleClick = (a: string) => {
+    
     setLetterSearch(a)
     setIsLoading(true)
   }
