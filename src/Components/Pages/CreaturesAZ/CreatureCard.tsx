@@ -14,9 +14,9 @@ const CreatureCard: React.FC<creatureCardProps> = (props) => {
         try {
             let imageURL = await getImages(`gs://monsterdb-30be5.appspot.com/monsters/${props.imageURL}.png`)
             setImageURLstate(imageURL)
-            // setLoadImage(false)
+            
         } catch (error) {
-            // setLoadImage(false)
+            
             return //console.log(error)
         }
        
@@ -30,6 +30,7 @@ const CreatureCard: React.FC<creatureCardProps> = (props) => {
     <div className={classes.container}>
         <h5>{props.name}</h5>
         <img className={classes.image}src={imageURLstate} alt={props.name}/>
+        <p>{props.desc}</p>
     </div>
   )
 }
