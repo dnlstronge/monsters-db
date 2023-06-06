@@ -43,7 +43,7 @@ const CreaturesAZ = () => {
 
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+   
     const fetchData = async (term: string) => {
       console.log(letterSearch)
       const response = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/${term}/.json`)
@@ -75,10 +75,10 @@ const CreaturesAZ = () => {
 
   }, [letterSearch])
 
-  /* To test fetch */
-  useEffect(() => {
-    console.log(showResults)
-  }, [showResults])
+  // /* To test fetch */
+  // useEffect(() => {
+  //   console.log(showResults)
+  // }, [showResults])
 
 
   /* Handlers */
