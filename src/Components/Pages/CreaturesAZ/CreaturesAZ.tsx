@@ -40,7 +40,7 @@ const CreaturesAZ = () => {
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-      const fetchData = async (term: string) => {
+    const fetchData = async (term: string) => {
       console.log(letterSearch)
       const response = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/${term}/.json`)
       const data = await response.json()
@@ -49,16 +49,16 @@ const CreaturesAZ = () => {
       setDataByLetter(data)
 
     }
-    if (letterSearch !== null) {
+    if (letterSearch !== null && !isError.showError) {
       try {
         fetchData(letterSearch)
       } catch (error) {
         setIsError({
           showError: true,
-          message: error
+          message: "No data found..."
         })
       }
-      
+
     } else {
       return
     }
@@ -77,7 +77,7 @@ const CreaturesAZ = () => {
   const handleClick = (a: any) => {
     setLetterSearch(a)
   }
-  const handleShowInDetail = async(a: string) => {
+  const handleShowInDetail = async (a: string) => {
     if (dataByLetter !== null) {
       setShowInDetail(dataByLetter[a])
     }
@@ -101,8 +101,8 @@ const CreaturesAZ = () => {
       </div>
       <h5 className={classes.lettertitle}>{letterSearch}</h5>
       {/* shows expanded creature */}
-      {showInDetail !== null &&
-      <CreatureCard 
+      {showInDetail !== null && !isError.showError &&
+        <CreatureCard
           attack={showInDetail.attack}
           defence={showInDetail.defence}
           desc={showInDetail.desc}
@@ -126,7 +126,7 @@ const CreaturesAZ = () => {
           )
         })}
       </div>
-     
+
 
     </>
   )
