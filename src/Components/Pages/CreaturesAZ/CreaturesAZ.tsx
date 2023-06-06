@@ -55,11 +55,13 @@ const CreaturesAZ = () => {
       setDataByLetter(data)
 
     }
-    if (letterSearch !== "" && !isError.showError) {
+    if (letterSearch !== "" ) {
+      console.log("made as far as if check")
       try {
         fetchData(letterSearch)
         
       } catch (error) {
+        setIsLoading(false)
         setIsError({
           showError: true,
           message: "No data found..."
@@ -87,6 +89,9 @@ const CreaturesAZ = () => {
     setIsLoading(true)
   }
   const handleShowInDetail = async (a: string) => {
+    console.log("on click for show in detail fires")
+    console.log(isError)
+    console.log(showInDetail)
     if (dataByLetter !== null) {
       setShowInDetail(dataByLetter[a])
     }
@@ -110,28 +115,28 @@ const CreaturesAZ = () => {
       </div>
       <h5 className={classes.lettertitle}>{letterSearch}</h5>
       {/* shows expanded creature */}
-      {showInDetail !== null && !isError.showError &&
+      {showInDetail.name !== "" && !isError.showError &&
         <CreatureCard
           attack={showInDetail.attack}
           defence={showInDetail.defence}
           desc={showInDetail.desc}
           hp={showInDetail.hp}
           id={showInDetail.id}
-          // eslint-disable-next-line react-hooks/rules-of-hooks
           imageURL={showInDetail.imageURL}
-          name={showInDetail.name} />}
+          name={showInDetail.name}
+           />}
 
 
       <div className={classes.results}>
         {showResults.length > 0 && showResults.map((result) => {
           return (
-            <>
+           
               <button
                 onClick={() => { handleShowInDetail(result) }}
                 className={classes.result}
                 key={result}>{result}
               </button>
-            </>
+          
           )
         })}
       </div>
