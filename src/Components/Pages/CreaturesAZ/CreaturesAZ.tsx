@@ -3,6 +3,7 @@ import { useFetchCreaturesAZ } from '../../Hooks/useFetchCreaturesAZ'
 import classes from "./CreaturesAz.module.css"
 import CreatureCard from './CreatureCard'
 import useImage from '../../Hooks/useImage'
+import { SetStateAction } from 'react'
 
 import { projectStorage } from "../../../firebase/config"
 import { ref, getDownloadURL } from "firebase/storage"
@@ -48,6 +49,8 @@ const CreaturesAZ = () => {
       const response = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/${term}/.json`)
       const data = await response.json()
       const nameData: any = Object.keys(data)
+      setIsLoading(false)
+      setIsError({showError: false, message: ""})
       setShowResults(nameData)
       setDataByLetter(data)
 
@@ -55,6 +58,7 @@ const CreaturesAZ = () => {
     if (letterSearch !== null && !isError.showError) {
       try {
         fetchData(letterSearch)
+        
       } catch (error) {
         setIsError({
           showError: true,
@@ -77,8 +81,9 @@ const CreaturesAZ = () => {
 
   /* Handlers */
 
-  const handleClick = (a: any) => {
+  const handleClick = (a: SetStateAction<null>) => {
     setLetterSearch(a)
+    setIsLoading(true)
   }
   const handleShowInDetail = async (a: string) => {
     if (dataByLetter !== null) {
