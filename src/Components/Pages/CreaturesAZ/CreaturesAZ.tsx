@@ -18,6 +18,9 @@ const CreaturesAZ = () => {
   const [showResults, setShowResults] = useState([])
   const [dataByLetter, setDataByLetter] = useState(null)
   const [urlForProps, setUrlForProps] = useState("")
+
+  /* Loading and Error state */
+  const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState({
     showError: false,
     message: ""
