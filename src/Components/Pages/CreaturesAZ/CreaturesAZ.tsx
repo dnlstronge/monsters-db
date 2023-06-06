@@ -19,7 +19,7 @@ const CreaturesAZ = () => {
   const [dataByLetter, setDataByLetter] = useState(null)
   const [urlForProps, setUrlForProps] = useState("")
   const [isError, setIsError] = useState({
-    error: false,
+    showError: false,
     message: ""
   })
 
@@ -51,11 +51,14 @@ const CreaturesAZ = () => {
     }
     if (letterSearch !== null) {
       try {
-        
+        fetchData(letterSearch)
       } catch (error) {
-        
+        setIsError({
+          showError: true,
+          message: error
+        })
       }
-      fetchData(letterSearch)
+      
     } else {
       return
     }
