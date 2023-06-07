@@ -32,7 +32,6 @@ const AddCreature = () => {
     /* state handlers */
 
     const handleName = (e: React.FormEvent<HTMLInputElement> ) => {
-        
         const regex = /^[A-Za-z]+$/
         const nameToValidate = e.currentTarget.value.trim()
         setPostCreatureState({...postCreatureState, name:nameToValidate })
@@ -67,17 +66,22 @@ const AddCreature = () => {
                 <label className={classes.label} htmlFor="name"></label>
                 <input className={classes.input} type="text" onChange={handleName}></input>
                  {postCreatureState.name && !nameIsValid &&
-                <p className={classes.nameInvalid}>Error - name should 16 chars or less, and contain only letters</p>}
+                <p className={classes.nameInvalid}>Name should 16 chars or less, and contain only letters</p>}
             </section>
             {/* description */}
             <section className={classes.formSection}>
-                <label className={classes.label}htmlFor="desc"></label>
+                <label className={classes.label} htmlFor="desc"></label>
                 <input onChange={handleDesc} className={classes.inputDesc} type="text"></input>
                 {postCreatureState.desc && !descIsValid && 
-                <p className={classes.nameInvalid}>Error - description should not be empty</p>}
+                <p className={classes.nameInvalid}>Description should not be empty</p>}
+            </section>
+            {/* Hit points */}
+            <section className={classes.formSection}>
+                <label className={classes.label} htmlFor="hp"></label>
+                <input type="number" id="hp"></input>
+                <p>Enter number, 1 or greater </p>
             </section>
             
-            <label htmlFor="hp"></label>
             <label htmlFor="attack"></label>
             <label htmlFor="defence"></label>
             <button type="submit">Submit</button>
