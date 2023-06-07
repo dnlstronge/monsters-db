@@ -12,4 +12,10 @@ type creatureCardProps = {
     name: string
 }
 
-export type { navBarProps, creatureCardProps }; 
+type statBarProps = {
+    attack: string,
+    defence: string,
+    hp: string;
+}
+
+export type { navBarProps, creatureCardProps, statBarProps }; 

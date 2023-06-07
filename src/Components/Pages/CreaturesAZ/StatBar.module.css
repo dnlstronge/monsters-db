@@ -1,0 +1,11 @@
+.container {
+    position: relative;
+    display: flex;
+    background: black;
+    height: 1rem;
+    width: 10rem;
+    border: 4px solid white;
+    border-radius: 3px;
+    
+}
+

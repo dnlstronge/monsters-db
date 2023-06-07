@@ -3,6 +3,7 @@ import { creatureCardProps } from '../../../Models/types'
 import classes from "./CreatureCard.module.css"
 import { getImages } from '../../MonsterCard/Images/getImages'
 import { isPending } from '@reduxjs/toolkit'
+import StatBar from './StatBar'
 
 const CreatureCard: React.FC<creatureCardProps> = (props) => {
 
@@ -37,9 +38,10 @@ const CreatureCard: React.FC<creatureCardProps> = (props) => {
         const imageLoad = imageURLstate !== "" ? classes.image : classes.imageHIDE
 
   return (
+    <>
+    
     <div className={classes.container}>
         <h5 className={classes.heading}>{props.name}</h5>
-
         {/* Image Logic */}
        {imageURLstate === "" && !imageError.showError &&
         <p className={classes.pending}>loading image...</p>}
@@ -47,8 +49,14 @@ const CreatureCard: React.FC<creatureCardProps> = (props) => {
         <p className={classes.error}>{imageError.message}</p>}
         {!imageError.showError && !imagePending &&
         <img className={imageLoad} src={imageURLstate} alt={props.name}/>}
+        <section className={classes.statbar}>
+            <StatBar attack={props.attack} defence={props.defence} hp={props.hp}/>
+        </section>
         <p>{props.desc}</p>
+        
     </div>
+    
+    </>
   )
 }
 
