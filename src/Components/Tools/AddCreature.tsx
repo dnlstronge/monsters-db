@@ -4,6 +4,8 @@ import classes from "./AddCreature.module.css"
 
 const AddCreature = () => {
 
+
+
     const [postCreatureState, setPostCreatureState] = useState(
         {
         magic: "",
@@ -16,9 +18,14 @@ const AddCreature = () => {
         name: ""
         }
     )
+
+    /* Submit handler */
+
+    const HandleSubmit = () => {}
+
     return (
         <>
-        <form>
+        <form onSubmit={}>
             <label htmlFor="name"></label>
         </form>
             </>
