@@ -91,7 +91,7 @@ const AddCreature = () => {
             {/* Hit points */}
             <section className={classes.formSection}>
                 <label className={classes.label} htmlFor="hp">Hit Points</label>
-                <input type="number" id="hp"></input>
+                <input onChange={handleHp} type="number" id="hp"></input>
                 {postCreatureState.hp && !hpIsValid && 
                 <p>Enter number, 1 or greater </p>}
             </section>
