@@ -60,14 +60,19 @@ const AddCreature = () => {
         <>
         <form onSubmit={handleSubmit}>
              {/* Name */}
-            <section>
-            <label className={classes.label} htmlFor="name"></label>
-            <input className={classes.input} type="text" onChange={handleName}></input>
-            {postCreatureState.name && !nameIsValid &&
-            <p className={classes.nameInvalid}>Error - name should 16 chars or less, and contain only letters</p>}
+            <section className={classes.formSection}>
+                <label className={classes.label} htmlFor="name"></label>
+                <input className={classes.input} type="text" onChange={handleName}></input>
+                 {postCreatureState.name && !nameIsValid &&
+                <p className={classes.nameInvalid}>Error - name should 16 chars or less, and contain only letters</p>}
             </section>
             {/* description */}
-            <label htmlFor="desc"></label>
+            <section className={classes.formSection}>
+                <label className={classes.label}htmlFor="desc"></label>
+                <input className={classes.inputDesc} type="text"></input>
+                <p className={classes.nameInvalid}>Error - description should not be empty</p>
+            </section>
+            
             <label htmlFor="hp"></label>
             <label htmlFor="attack"></label>
             <label htmlFor="defence"></label>
