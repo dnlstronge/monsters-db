@@ -22,7 +22,7 @@ function App() {
   return (
     <div className={classes.container}>
       <title>Monsters DB </title>
-      <Navbar showCreat={showCreaturesAZ} showAddCreat={showCreatureTool} creaturesAZ={handleShowCreatures} tools={handleShowTools} />
+      <Navbar creaturesAZ={handleShowCreatures} tools={handleShowTools} />
       <div className={classes.panel}>
         {showCreaturesAZ && 
         <CreaturesAZ />}
