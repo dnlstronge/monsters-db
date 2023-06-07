@@ -29,6 +29,7 @@ const AddCreature = () => {
     const [descIsValid, setDescIsValid] = useState(false)
     const [hpIsValid, setHpIsValid] = useState(false)
     const [attackIsValid, setAttackIsValid] = useState(false)
+    const [defenceIsValid, setDefenceIsValid] = useState(false)
 
     /* Submit handler */
 
@@ -74,18 +75,28 @@ const AddCreature = () => {
     }
     const handleAttack = (e: eventObject ) => {
         setPostCreatureState({...postCreatureState, attack: e.currentTarget.value})
-        const hpToValidate = Number(e.currentTarget.value)
-        const regex = /^[0-9]/
-        if(hpToValidate > 0 && e.currentTarget.value.match(regex)) {
+        const attackToValidate = Number(e.currentTarget.value)
+        if(attackToValidate > 0 && attackToValidate <= 100) {
             setAttackIsValid(true)
         } else {
             setAttackIsValid(false)
         }
 
     }
+    const handleDefence = (e: eventObject ) => {
+        setPostCreatureState({...postCreatureState, defence: e.currentTarget.value})
+        const defenceToValidate = Number(e.currentTarget.value)
+        if(defenceToValidate > 0 && defenceToValidate <= 100) {
+            setDefenceIsValid(true)
+        } else {
+            setDefenceIsValid(false)
+        }
+
+    }
 
     return (
         <>
+        <h3 className={classes.heading}>Add a new creature to the database...</h3>
         <form onSubmit={handleSubmit}>
              {/* Name */}
             <section className={classes.formSection}>
@@ -111,12 +122,18 @@ const AddCreature = () => {
             {/* attack */}
             <section className={classes.formSection}>
                 <label className={classes.label} htmlFor="attack">Attack</label>
-                <input onChange={handleAttack} type="number" id="hp"></input>
-                {postCreatureState.hp && !hpIsValid && 
-                <p className={classes.invalid}>Enter a whole number 1 or greater </p>}
+                <input onChange={handleAttack} type="number" id="attack"></input>
+                {postCreatureState.attack && !attackIsValid && 
+                <p className={classes.invalid}>Enter number between 1-100 </p>}
             </section>
-            <label htmlFor="attack"></label>
-            <label htmlFor="defence"></label>
+            {/* defence */}
+            <section className={classes.formSection}>
+                <label className={classes.label} htmlFor="defence">Attack</label>
+                <input onChange={handleDefence} type="number" id="defence"></input>
+                {postCreatureState.defence && !defenceIsValid && 
+                <p className={classes.invalid}>Enter number between 1-100 </p>}
+            </section>
+            
             <button type="submit">Submit</button>
         </form>
             </>
