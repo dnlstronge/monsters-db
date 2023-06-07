@@ -1,13 +1,14 @@
 .container {
     height: auto;
     width: 70%;
-    background-color: aliceblue;
+    background-color: black;
     border: 5px solid grey;
     margin-left: 2rem;
+    padding: 1rem;
 }
 
 .heading {
-    color: black;
+    color: white;
     margin: 1rem;
 }
 .image {

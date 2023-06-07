@@ -1,5 +1,6 @@
 type navBarProps = {
     creaturesAZ: () => void
+    tools: () => void
 }
 
 type creatureCardProps = {

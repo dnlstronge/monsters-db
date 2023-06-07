@@ -6,21 +6,29 @@ import { navBarProps } from "../../Models/types"
 
 
 const Navbar: React.FC<navBarProps> = (props) => {
+    /* CODEX */
     const [expand, setExpand] = useState(false)
-    const [expandTools, setExpandTools] = useState(false)
     const [showCreaturesAZ, setShowCreatures] = useState(false)
     const [showPlaceAZ, setShowPlaceAZ] = useState(false)
     const [showMiscAZ, setShowMiscAZ] = useState(false)
-
+    
+    /* TOOLS  */
+    const [expandTools, setExpandTools] = useState(false)
+    const [showAddCreature, setShowAddCreatures] = useState(false)
+    const [showAddPlaces, setShowAddPlaces] = useState(false)
+    const [showAddMisc, setShowAddMisc] = useState(false)
 
     /* conditional styles */
 
     const creaturesStyle = showCreaturesAZ ? classes.sectionActive : classes.sectionNotActive 
     const placeStyle = showPlaceAZ ? classes.sectionActive : classes.sectionNotActive 
     const miscStyle = showMiscAZ ? classes.sectionActive : classes.sectionNotActive 
+    const addCreaturesStyle = showAddCreature ? classes.sectionActive: classes.sectionNotActive
+    const addPlacesStyle = showAddPlaces ? classes.sectionActive: classes.sectionNotActive
+    const addMiscStyle = showAddMisc ? classes.sectionActive: classes.sectionNotActive
 
-    /* handlers */
-
+    /* handlers  - section one */
+    
     const handleExpandCodex = () => {
         setExpand(!expand)
     }
@@ -45,8 +53,29 @@ const Navbar: React.FC<navBarProps> = (props) => {
         setShowPlaceAZ(false)
     }
 
+
+ /* handlers  - section two */
     const handleExpandTools = () => {
         setExpandTools(!expandTools)
+    }
+
+    const handleShowAddCreature = () => {
+        setExpandTools(true)
+        setShowAddCreatures(true)
+        setShowAddPlaces(false)
+        setShowAddMisc(false)
+    }
+    const handleShowAddPlaces = () => {
+        setExpandTools(true)
+        setShowAddCreatures(false)
+        setShowAddPlaces(true)
+        setShowAddMisc(false)
+    }
+    const handleShowAddMisc = () => {
+        setExpandTools(true)
+        setShowAddCreatures(false)
+        setShowAddPlaces(false)
+        setShowAddMisc(true)
     }
 
     return (
@@ -59,14 +88,15 @@ const Navbar: React.FC<navBarProps> = (props) => {
                     <div onClick={handleShowPlaces}className={placeStyle}>Places A-Z</div>}
             {expand && 
                     <div onClick={handleShowMisc} className={miscStyle}>Misc A-Z</div>}
+
             {/* tools and drop */}
             <div onClick={handleExpandTools} className={classes.codex}>Tools </div>
-            {expand && 
-                    <div onClick={handleShowAddCreature} className={creaturesStyle}>Add Creature </div>}
-            {expand && 
-                    <div onClick={handleShowPlaces}className={placeStyle}>Add Places</div>}
-            {expand && 
-                    <div onClick={handleShowMisc} className={miscStyle}>Add Misc</div>}
+            {expandTools && 
+                    <div onClick={handleShowAddCreature} className={addCreaturesStyle}>Add Creature </div>}
+            {expandTools&& 
+                    <div onClick={handleShowAddPlaces}className={addPlacesStyle}>Add Places</div>}
+            {expandTools && 
+                    <div onClick={handleShowAddMisc} className={addMiscStyle}>Add Misc</div>}
 
 
         </nav>
