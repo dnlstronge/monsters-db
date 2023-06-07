@@ -23,6 +23,7 @@ const AddCreature = () => {
 
     const [formIsValid, setFormIsValid] = useState(false)
     const [nameIsValid, setNameIsValid] = useState(false)
+    const [descIsValid, setDescIsValid] = useState(false)
 
     /* Submit handler */
 
@@ -43,6 +44,16 @@ const AddCreature = () => {
               } else {
                 setNameIsValid(false)
               }
+    }
+    const handleDesc = (e: React.FormEvent<HTMLInputElement> ) => {
+        const descToValidate = e.currentTarget.value.trim()
+        setPostCreatureState({...postCreatureState, desc: descToValidate})
+        if(descToValidate.length > 0) {
+            setDescIsValid(true)
+        } else {
+          setDescIsValid(false)
+        }
+        
     }
 
     return (
