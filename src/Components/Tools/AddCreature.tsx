@@ -21,12 +21,17 @@ const AddCreature = () => {
 
     /* Submit handler */
 
-    const HandleSubmit = () => {}
+    const handleSubmit = () => {}
 
     return (
         <>
-        <form onSubmit={}>
+        <form onSubmit={handleSubmit}>
             <label htmlFor="name"></label>
+            <label htmlFor="desc"></label>
+            <label htmlFor="hp"></label>
+            <label htmlFor="attack"></label>
+            <label htmlFor="defence"></label>
+            
         </form>
             </>
     )
