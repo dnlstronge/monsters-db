@@ -9,3 +9,12 @@
     
 }
 
+.barSection {
+    display: flex;
+    flex-direction: row;
+}
+.label {
+    width: 8rem;
+    height: 2rem;
+}
+

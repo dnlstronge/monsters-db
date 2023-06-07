@@ -50,7 +50,7 @@ const CreatureCard: React.FC<creatureCardProps> = (props) => {
         {!imageError.showError && !imagePending &&
         <img className={imageLoad} src={imageURLstate} alt={props.name}/>}
         <section className={classes.statbar}>
-            <StatBar attack={props.attack} defence={props.defence} hp={props.hp}/>
+            <StatBar attack={props.attack} defence={props.defence} hp={props.hp} magic={props.magic}/>
         </section>
         <p>{props.desc}</p>
         

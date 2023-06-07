@@ -11,13 +11,17 @@ const StatBar: React.FC <statBarProps> = (props) => {
 
     const attackStyleLeft = {
         width: `${props.attack}%`,
-        background: "green",
-        height: "0.9rem",
+        background: "lightgreen",
+       
     }
     const defenceStyleLeft = {
         width: `${props.defence}%`,
-        background: "green",
-        height: "0.9rem",
+        background: "lightgreen",
+        
+    }
+    const magicStyleLeft = {
+        width: `${props.magic}%`,
+        background: "lightblue",
     }
 
   
@@ -25,16 +29,27 @@ const StatBar: React.FC <statBarProps> = (props) => {
         return (
             <>
             <section className={classes.barSection}>
-                <label htmlFor="attack"> Attack: </label>
+                <label  className={classes.label} htmlFor="attack">Hit Points</label>
+                <p>{props.hp}</p>
+            </section>
+            <section className={classes.barSection}>
+                <label className={classes.label} htmlFor="attack"> Attack: </label>
                  <div id="attack" className={classes.container}>
                     <p style={attackStyleLeft}></p>
                     
                 </div>
             </section>
             <section className={classes.barSection}>
-                <label htmlFor="defence"> Defence: {props.defence} </label>
+                <label className={classes.label}  htmlFor="defence"> Defence: </label>
                  <div id="defence" className={classes.container}>
                     <p style={defenceStyleLeft}></p>
+                   
+                </div>
+            </section>
+            <section className={classes.barSection}>
+                <label className={classes.label}  htmlFor="magic"> Magic:  </label>
+                 <div id="magic" className={classes.container}>
+                    <p style={magicStyleLeft}></p>
                    
                 </div>
             </section>

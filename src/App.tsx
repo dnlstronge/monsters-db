@@ -11,6 +11,7 @@ function App() {
   const handleShowCreatures = () => {
     setShowCreaturesAZ(!showCreaturesAZ)
   }
+  const [showTools, setShowTools] = useState(false)
   
   return (
     <div className={classes.container}>

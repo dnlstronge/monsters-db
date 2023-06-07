@@ -1,8 +1,9 @@
 .container {
-    height: 20rem;
+    height: auto;
     width: 70%;
     background-color: aliceblue;
     border: 5px solid grey;
+    margin-left: 2rem;
 }
 
 .heading {

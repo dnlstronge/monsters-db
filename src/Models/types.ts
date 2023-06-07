@@ -3,6 +3,7 @@ type navBarProps = {
 }
 
 type creatureCardProps = {
+    magic: string
     attack: string,
     defence: string,
     desc: string,
@@ -15,7 +16,8 @@ type creatureCardProps = {
 type statBarProps = {
     attack: string,
     defence: string,
-    hp: string;
+    hp: string,
+    magic: string
 }
 
 export type { navBarProps, creatureCardProps, statBarProps }; 

@@ -35,7 +35,8 @@ const CreaturesAZ = () => {
     hp: "",
     id: "",
     imageURL: "",
-    name: ""
+    name: "",
+    magic: ""
   })
 
 
@@ -124,6 +125,7 @@ const CreaturesAZ = () => {
           id={showInDetail.id}
           imageURL={showInDetail.imageURL}
           name={showInDetail.name}
+          magic={showInDetail.magic}
            />}
 
 
