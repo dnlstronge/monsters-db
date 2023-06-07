@@ -1,13 +1,30 @@
 .formSection {
-    
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: 2rem;
+}
+.label {
+    margin: 0.5rem;
 }
 
-.nameInvalid {
-    color: rgb(238, 176, 176);
+.invalid {
+    color: rgb(241, 131, 131);
+    margin: 0.2rem;
 }
 
-.input {}
+.input {
+    margin-top: 0.5rem;
+}
 
 .inputDesc {
-
+    margin-top: 1rem;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
 }

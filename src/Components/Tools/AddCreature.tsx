@@ -28,6 +28,7 @@ const AddCreature = () => {
     const [nameIsValid, setNameIsValid] = useState(false)
     const [descIsValid, setDescIsValid] = useState(false)
     const [hpIsValid, setHpIsValid] = useState(false)
+    const [attackIsValid, setAttackIsValid] = useState(false)
 
     /* Submit handler */
 
@@ -48,7 +49,7 @@ const AddCreature = () => {
                 setNameIsValid(false)
               }
     }
-    const handleDesc = (e: eventObject) => {
+    const handleDesc = (e: React.FormEvent<HTMLTextAreaElement>) => {
         const descToValidate = e.currentTarget.value
         setPostCreatureState({...postCreatureState, desc: descToValidate})
         if(descToValidate.trim().length > 0) {
@@ -63,10 +64,22 @@ const AddCreature = () => {
     const handleHp = (e: eventObject ) => {
         setPostCreatureState({...postCreatureState, hp: e.currentTarget.value})
         const hpToValidate = Number(e.currentTarget.value)
-        if(hpToValidate > 0) {
+        const regex = /^[0-9]/
+        if(hpToValidate > 0 && e.currentTarget.value.match(regex)) {
             setHpIsValid(true)
         } else {
             setHpIsValid(false)
+        }
+
+    }
+    const handleAttack = (e: eventObject ) => {
+        setPostCreatureState({...postCreatureState, attack: e.currentTarget.value})
+        const hpToValidate = Number(e.currentTarget.value)
+        const regex = /^[0-9]/
+        if(hpToValidate > 0 && e.currentTarget.value.match(regex)) {
+            setAttackIsValid(true)
+        } else {
+            setAttackIsValid(false)
         }
 
     }
@@ -79,23 +92,29 @@ const AddCreature = () => {
                 <label className={classes.label} htmlFor="name">Name</label>
                 <input className={classes.input} type="text" onChange={handleName}></input>
                  {postCreatureState.name && !nameIsValid &&
-                <p className={classes.nameInvalid}>Name should 16 chars or less, and contain only letters</p>}
+                <p className={classes.invalid}>Name should 16 chars or less, and contain only letters</p>}
             </section>
             {/* description */}
             <section className={classes.formSection}>
                 <label className={classes.label} htmlFor="desc">Description</label>
-                <input onChange={handleDesc} className={classes.inputDesc} type="text"></input>
+                <textarea onChange={handleDesc} className={classes.inputDesc}></textarea>
                 {postCreatureState.desc && !descIsValid && 
-                <p className={classes.nameInvalid}>Description should not be empty</p>}
+                <p className={classes.invalid}>Description should not be empty</p>}
             </section>
             {/* Hit points */}
             <section className={classes.formSection}>
                 <label className={classes.label} htmlFor="hp">Hit Points</label>
                 <input onChange={handleHp} type="number" id="hp"></input>
                 {postCreatureState.hp && !hpIsValid && 
-                <p>Enter number, 1 or greater </p>}
+                <p className={classes.invalid}>Enter a whole number 1 or greater </p>}
             </section>
-            
+            {/* attack */}
+            <section className={classes.formSection}>
+                <label className={classes.label} htmlFor="attack">Attack</label>
+                <input onChange={handleAttack} type="number" id="hp"></input>
+                {postCreatureState.hp && !hpIsValid && 
+                <p className={classes.invalid}>Enter a whole number 1 or greater </p>}
+            </section>
             <label htmlFor="attack"></label>
             <label htmlFor="defence"></label>
             <button type="submit">Submit</button>
