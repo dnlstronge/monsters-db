@@ -4,6 +4,10 @@ import classes from "./AddCreature.module.css"
 import { FormEventHandler } from "react"
 
 
+/* [x] - todo - all handlers validate state indepently - need to write custom post hook which 
+    will only deploy if all state values validate
+*/
+
 type eventObject = React.FormEvent<HTMLInputElement>
 
 const AddCreature = () => {
@@ -30,6 +34,7 @@ const AddCreature = () => {
     const [hpIsValid, setHpIsValid] = useState(false)
     const [attackIsValid, setAttackIsValid] = useState(false)
     const [defenceIsValid, setDefenceIsValid] = useState(false)
+    const [magicIsValid, setMagicIsValid] = useState(false)
 
     /* Submit handler */
 
@@ -93,6 +98,16 @@ const AddCreature = () => {
         }
 
     }
+    const handleMagic= (e: eventObject ) => {
+        setPostCreatureState({...postCreatureState, magic: e.currentTarget.value})
+        const magicToValidate = Number(e.currentTarget.value)
+        if(magicToValidate > 0 && magicToValidate <= 100) {
+            setMagicIsValid(true)
+        } else {
+            setMagicIsValid(false)
+        }
+
+    }
 
     return (
         <>
@@ -128,9 +143,16 @@ const AddCreature = () => {
             </section>
             {/* defence */}
             <section className={classes.formSection}>
-                <label className={classes.label} htmlFor="defence">Attack</label>
+                <label className={classes.label} htmlFor="defence">Defence</label>
                 <input onChange={handleDefence} type="number" id="defence"></input>
                 {postCreatureState.defence && !defenceIsValid && 
+                <p className={classes.invalid}>Enter number between 1-100 </p>}
+            </section>
+            {/* magic */}
+            <section className={classes.formSection}>
+                <label className={classes.label} htmlFor="magic">Magic</label>
+                <input onChange={handleMagic} type="number" id="magic"></input>
+                {postCreatureState.magic && !magicIsValid && 
                 <p className={classes.invalid}>Enter number between 1-100 </p>}
             </section>
             
