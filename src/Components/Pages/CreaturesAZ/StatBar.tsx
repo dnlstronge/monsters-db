@@ -20,16 +20,25 @@ const StatBar: React.FC <statBarProps> = (props) => {
         height: "0.9rem",
     }
 
-   
-    const attackper = `${props.attack}%`
+  
+
         return (
-            <section>
-                 <div className={classes.container}>
-                    <p style={attackstyleLeft}></p>
-                     <p className={classes.barRight} style={{width: "30%"}}></p>
+            <>
+            <section className={classes.barSection}>
+                <label htmlFor="attack"> Attack: </label>
+                 <div id="attack" className={classes.container}>
+                    <p style={attackStyleLeft}></p>
+                    
                 </div>
             </section>
-           
+            <section className={classes.barSection}>
+                <label htmlFor="defence"> Defence: {props.defence} </label>
+                 <div id="defence" className={classes.container}>
+                    <p style={defenceStyleLeft}></p>
+                   
+                </div>
+            </section>
+           </>
         )
 }
 
