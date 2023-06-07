@@ -46,11 +46,14 @@ const AddCreature = () => {
               }
     }
     const handleDesc = (e: React.FormEvent<HTMLInputElement> ) => {
-        const descToValidate = e.currentTarget.value.trim()
+        const descToValidate = e.currentTarget.value
+        console.log(descToValidate.length)
         setPostCreatureState({...postCreatureState, desc: descToValidate})
-        if(descToValidate.length > 0) {
-            setDescIsValid(true)
+        if(descToValidate.trim().length > 0) {
+          setDescIsValid(true)
+          console.log("Set to true fired")
         } else {
+          console.log("set to false")
           setDescIsValid(false)
         }
         
@@ -69,8 +72,9 @@ const AddCreature = () => {
             {/* description */}
             <section className={classes.formSection}>
                 <label className={classes.label}htmlFor="desc"></label>
-                <input className={classes.inputDesc} type="text"></input>
-                <p className={classes.nameInvalid}>Error - description should not be empty</p>
+                <input onChange={handleDesc} className={classes.inputDesc} type="text"></input>
+                {postCreatureState.desc && !descIsValid && 
+                <p className={classes.nameInvalid}>Error - description should not be empty</p>}
             </section>
             
             <label htmlFor="hp"></label>
