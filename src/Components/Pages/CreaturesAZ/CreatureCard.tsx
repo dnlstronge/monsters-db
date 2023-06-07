@@ -33,7 +33,7 @@ const CreatureCard: React.FC<creatureCardProps> = (props) => {
     }
   
         // /* condtional style */
-        // const imageLoad = loadImage ? classes.imageLoading : classes.image
+        const imageLoad = imageURLstate !== "" ? classes.image : classes.image
 
   return (
     <div className={classes.container}>
@@ -46,7 +46,6 @@ const CreatureCard: React.FC<creatureCardProps> = (props) => {
         <p className={classes.error}>{imageError.message}</p>}
         {!imageError.showError && !imagePending &&
         <img className={classes.image}src={imageURLstate} alt={props.name}/>}
-
         <p>{props.desc}</p>
     </div>
   )
