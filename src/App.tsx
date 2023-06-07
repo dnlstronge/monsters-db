@@ -12,11 +12,14 @@ function App() {
     setShowCreaturesAZ(!showCreaturesAZ)
   }
   const [showTools, setShowTools] = useState(false)
+  const handleShowTools = () => {
+    setShowTools(!showTools)
+  }
   
   return (
     <div className={classes.container}>
       <title>Monsters DB </title>
-      <Navbar creaturesAZ={handleShowCreatures} />
+      <Navbar creaturesAZ={handleShowCreatures} tools={handleShowTools} />
       <div className={classes.panel}>
         {showCreaturesAZ && 
         <CreaturesAZ />}

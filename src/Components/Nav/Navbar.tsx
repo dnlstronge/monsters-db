@@ -7,6 +7,7 @@ import { navBarProps } from "../../Models/types"
 
 const Navbar: React.FC<navBarProps> = (props) => {
     const [expand, setExpand] = useState(false)
+    const [expandTools, setExpandTools] = useState(false)
     const [showCreaturesAZ, setShowCreatures] = useState(false)
     const [showPlaceAZ, setShowPlaceAZ] = useState(false)
     const [showMiscAZ, setShowMiscAZ] = useState(false)
@@ -43,9 +44,14 @@ const Navbar: React.FC<navBarProps> = (props) => {
         setShowCreatures(false)
         setShowPlaceAZ(false)
     }
+
+    const handleExpandTools = () => {
+        setExpandTools(!expandTools)
+    }
+
     return (
         <nav className={classes.container}>
-
+            {/* Codex and drop */}
             <div onClick={handleExpandCodex} className={classes.codex}>Codex </div>
             {expand && 
                     <div onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</div>}
@@ -53,7 +59,14 @@ const Navbar: React.FC<navBarProps> = (props) => {
                     <div onClick={handleShowPlaces}className={placeStyle}>Places A-Z</div>}
             {expand && 
                     <div onClick={handleShowMisc} className={miscStyle}>Misc A-Z</div>}
-            <div className={classes.tools}>Tools</div>
+            {/* tools and drop */}
+            <div onClick={handleExpandTools} className={classes.codex}>Tools </div>
+            {expand && 
+                    <div onClick={handleShowAddCreature} className={creaturesStyle}>Add Creature </div>}
+            {expand && 
+                    <div onClick={handleShowPlaces}className={placeStyle}>Add Places</div>}
+            {expand && 
+                    <div onClick={handleShowMisc} className={miscStyle}>Add Misc</div>}
 
 
         </nav>
