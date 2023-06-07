@@ -1,13 +1,11 @@
 import React from "react"
 import classes from "./Tools.module.css"
 
-const Tools = () => {
+const CreatureTool = () => {
     return (
         <div className={classes.container}>
-            <button>Add Creature</button>
-            <button>Add Place</button>
-            <button>Add Misc</button>
+           RUBY RED ROSE
         </div>
     )
 }
-export default Tools;
+export default CreatureTool;

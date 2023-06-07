@@ -5,24 +5,29 @@ import Navbar from './Components/Nav/Navbar';
 
 /* page imports */
 import CreaturesAZ from './Components/Pages/CreaturesAZ/CreaturesAZ';
+import Tools from './Components/Tools/Tools';
 
 function App() {
   const [showCreaturesAZ, setShowCreaturesAZ] = useState(false)
   const handleShowCreatures = () => {
-    setShowCreaturesAZ(!showCreaturesAZ)
+    setShowCreaturesAZ(true)
+    setShowCreatureTool(false)
   }
-  const [showTools, setShowTools] = useState(false)
+  const [showCreatureTool, setShowCreatureTool] = useState(false)
   const handleShowTools = () => {
-    setShowTools(!showTools)
+    setShowCreaturesAZ(false)
+    setShowCreatureTool(true)
   }
   
   return (
     <div className={classes.container}>
       <title>Monsters DB </title>
-      <Navbar creaturesAZ={handleShowCreatures} tools={handleShowTools} />
+      <Navbar showCreat={showCreaturesAZ} showAddCreat={showCreatureTool} creaturesAZ={handleShowCreatures} tools={handleShowTools} />
       <div className={classes.panel}>
         {showCreaturesAZ && 
         <CreaturesAZ />}
+        {showCreatureTool && 
+        <Tools />}
       </div>
       <Home />
     </div>

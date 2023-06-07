@@ -11,7 +11,7 @@ const Navbar: React.FC<navBarProps> = (props) => {
     const [showCreaturesAZ, setShowCreatures] = useState(false)
     const [showPlaceAZ, setShowPlaceAZ] = useState(false)
     const [showMiscAZ, setShowMiscAZ] = useState(false)
-    
+
     /* TOOLS  */
     const [expandTools, setExpandTools] = useState(false)
     const [showAddCreature, setShowAddCreatures] = useState(false)
@@ -31,6 +31,10 @@ const Navbar: React.FC<navBarProps> = (props) => {
     
     const handleExpandCodex = () => {
         setExpand(!expand)
+        setExpandTools(false)
+        setShowCreatures(false)
+        setShowMiscAZ(false)
+        setShowPlaceAZ(false)
     }
     const handleShowCreaturesAZ = () => {
         setExpand(true)
@@ -56,7 +60,11 @@ const Navbar: React.FC<navBarProps> = (props) => {
 
  /* handlers  - section two */
     const handleExpandTools = () => {
+        setExpand(false)
         setExpandTools(!expandTools)
+        setShowAddCreatures(false)
+        setShowAddPlaces(false)
+        setShowAddMisc(false)
     }
 
     const handleShowAddCreature = () => {
@@ -64,6 +72,7 @@ const Navbar: React.FC<navBarProps> = (props) => {
         setShowAddCreatures(true)
         setShowAddPlaces(false)
         setShowAddMisc(false)
+        props.tools()
     }
     const handleShowAddPlaces = () => {
         setExpandTools(true)
@@ -80,17 +89,25 @@ const Navbar: React.FC<navBarProps> = (props) => {
 
     return (
         <nav className={classes.container}>
+            
+        
             {/* Codex and drop */}
             <div onClick={handleExpandCodex} className={classes.codex}>Codex </div>
+            
+        
             {expand && 
                     <div onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</div>}
             {expand && 
                     <div onClick={handleShowPlaces}className={placeStyle}>Places A-Z</div>}
             {expand && 
                     <div onClick={handleShowMisc} className={miscStyle}>Misc A-Z</div>}
+           
 
             {/* tools and drop */}
+            
             <div onClick={handleExpandTools} className={classes.codex}>Tools </div>
+           
+        
             {expandTools && 
                     <div onClick={handleShowAddCreature} className={addCreaturesStyle}>Add Creature </div>}
             {expandTools&& 
@@ -98,7 +115,7 @@ const Navbar: React.FC<navBarProps> = (props) => {
             {expandTools && 
                     <div onClick={handleShowAddMisc} className={addMiscStyle}>Add Misc</div>}
 
-
+            
         </nav>
     )
 }

@@ -1,4 +1,6 @@
 type navBarProps = {
+    showCreat: boolean
+    showAddCreat: boolean
     creaturesAZ: () => void
     tools: () => void
 }
