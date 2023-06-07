@@ -16,10 +16,11 @@ const CreatureCard: React.FC<creatureCardProps> = (props) => {
     const [imagePending, setImagePending] = useState(false)
    
     const findImage = async() => {
-        
+       
         try {
-            let imageURL = await getImages(`gs://monsterdb-30be5.appspot.com/monsters/${props.imageURL}.png`)
+            let imageURL = await getImages(`gs://monsterdb-30be5.appspot.com/onsters/${props.imageURL}.png`)
             if(imageURL.length > 0) {
+          
             setImageURLstate(imageURL)
             } else {
               setImageError({showError: true, message: "No has been image uploaded"})
@@ -31,21 +32,22 @@ const CreatureCard: React.FC<creatureCardProps> = (props) => {
         }
        
     }
+    findImage()
   
         // /* condtional style */
-        const imageLoad = imageURLstate !== "" ? classes.image : classes.image
+        const imageLoad = imageURLstate !== "" ? classes.image : classes.imageHIDE
 
   return (
     <div className={classes.container}>
         <h5>{props.name}</h5>
 
         {/* Image Logic */}
-       {imageURLstate === "" && 
+       {imageURLstate === "" && !imageError.showError &&
         <p className={classes.pending}>loading image...</p>}
         {imageError.showError && 
         <p className={classes.error}>{imageError.message}</p>}
         {!imageError.showError && !imagePending &&
-        <img className={classes.image}src={imageURLstate} alt={props.name}/>}
+        <img className={imageLoad} src={imageURLstate} alt={props.name}/>}
         <p>{props.desc}</p>
     </div>
   )

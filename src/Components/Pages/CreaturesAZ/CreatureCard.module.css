@@ -3,3 +3,18 @@
     width: 100px;
     border: 2px solid whitesmoke;
 }
+.imageHIDE {
+    display: none;
+    height: 100px;
+    width: 100px;
+    border: 2px solid whitesmoke;
+}
+.pending {
+    padding: 0.5rem;
+    margin-left: 3rem;
+}
+.error {
+    color: pink;
+    padding: 0.5rem;
+    margin-left: 3rem;
+}
