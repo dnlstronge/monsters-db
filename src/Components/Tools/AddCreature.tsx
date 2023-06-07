@@ -52,7 +52,8 @@ const AddCreature = () => {
             <section>
             <label className={classes.label} htmlFor="name"></label>
             <input className={classes.input} type="text" onChange={handleName}></input>
-            <p className={classes.nameInvalid}>Error - name should 16 chars or less, and contain only letters</p>
+            {postCreatureState.name && !nameIsValid &&
+            <p className={classes.nameInvalid}>Error - name should 16 chars or less, and contain only letters</p>}
             </section>
             {/* description */}
             <label htmlFor="desc"></label>
