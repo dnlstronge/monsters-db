@@ -100,7 +100,7 @@ const CreaturesAZ = () => {
 
 
   return (
-    <>
+    <div className={classes.container}>
       <div className={classes.head}>
         <h5 className={classes.heading}>Creatures A - Z</h5>
       </div>
@@ -142,7 +142,7 @@ const CreaturesAZ = () => {
       </div>
 
 
-    </>
+    </div>
   )
 }
 

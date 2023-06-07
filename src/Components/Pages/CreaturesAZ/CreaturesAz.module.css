@@ -1,3 +1,7 @@
+.container {
+    height: auto;
+}
+
 .head {
     background: black;
     height: 4rem;

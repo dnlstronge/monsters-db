@@ -1,7 +1,19 @@
+.container {
+    height: 20rem;
+    width: 70%;
+    background-color: aliceblue;
+    border: 5px solid grey;
+}
+
+.heading {
+    color: black;
+    margin: 1rem;
+}
 .image {
     height: 100px;
     width: 100px;
     border: 2px solid whitesmoke;
+    margin-left: 3rem;
 }
 .imageHIDE {
     display: none;

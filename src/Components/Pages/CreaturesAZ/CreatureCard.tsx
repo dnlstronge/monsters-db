@@ -18,9 +18,8 @@ const CreatureCard: React.FC<creatureCardProps> = (props) => {
     const findImage = async() => {
        
         try {
-            let imageURL = await getImages(`gs://monsterdb-30be5.appspot.com/onsters/${props.imageURL}.png`)
+            let imageURL = await getImages(`gs://monsterdb-30be5.appspot.com/monsters/${props.imageURL}.png`)
             if(imageURL.length > 0) {
-          
             setImageURLstate(imageURL)
             } else {
               setImageError({showError: true, message: "No has been image uploaded"})
@@ -39,7 +38,7 @@ const CreatureCard: React.FC<creatureCardProps> = (props) => {
 
   return (
     <div className={classes.container}>
-        <h5>{props.name}</h5>
+        <h5 className={classes.heading}>{props.name}</h5>
 
         {/* Image Logic */}
        {imageURLstate === "" && !imageError.showError &&
