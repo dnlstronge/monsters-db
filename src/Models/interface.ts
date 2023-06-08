@@ -1,5 +1,5 @@
 export interface fileUpload {
     name: string,
-    file: File | null
+    data: File | null
 }
 

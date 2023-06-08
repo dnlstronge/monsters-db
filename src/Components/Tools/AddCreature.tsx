@@ -55,7 +55,8 @@ const AddCreature = () => {
                  postCreatureState.hp, 
                  postCreatureState.attack, 
                  postCreatureState.defence, 
-                 postCreatureState.magic )
+                 postCreatureState.magic, 
+                 fileToUpload )
             // issue post to db
             // issue post file to storage
         }
@@ -128,6 +129,7 @@ const AddCreature = () => {
 
     }
     const handleFileToUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        
         const file = e.currentTarget.files![0]
         try {
             setFileToUpload({ name: postCreatureState.name, file: file })

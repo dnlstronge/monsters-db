@@ -1,14 +1,15 @@
 import { creaturePostDBparams } from "../../../Models/types"
 import { database } from "../../../firebase/config"
-
+import { fileUpload } from "../../../Models/interface";
 import { onValue, ref, set } from "firebase/database";
+import usePostCreatureImage from "./usePostCreatureImage";
 
 
-
-const usePostCreature: (name: string, desc: string, hp: string, attack: string, defence: string, magic: string) => void= (name, desc, hp, attack, defence, magic ) => {
+const usePostCreature: (name: string, desc: string, hp: string, attack: string, defence: string, magic: string, image:fileUpload) => void= (name, desc, hp, attack, defence, magic, image ) => {
     const getCharAT = name.charAt(0).toUpperCase()
+    //const imageFile = image
     const dataToPost = {
-        attack, defence, desc, hp, id: `${name.toLowerCase()}ID`, imageURL: `${name.toLowerCase()}`, magic, name 
+        attack, defence, desc, hp, id: `${name.toLowerCase()}ID`, imageURL: `${name.toLowerCase()}`, magic, name,  
     }
     /* POST new data to DB  */
     const postData = () => {
@@ -16,8 +17,12 @@ const usePostCreature: (name: string, desc: string, hp: string, attack: string, 
             name
           });
         set(ref(database, `/monsters/${getCharAT}/${name}`), {
-            dataToPost
+            ...dataToPost
           });
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        usePostCreatureImage(name, image)
+        // upload image code
+        // returns a response object?
     }
    
     /* Fetch array to check matches */
