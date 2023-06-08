@@ -21,5 +21,12 @@ type statBarProps = {
     hp: string,
     magic: string
 }
-
-export type { navBarProps, creatureCardProps, statBarProps }; 
+type creaturePostDBparams = {
+    name: string
+    desc: string
+    attack: string
+    defence: string
+    hp: string
+    magic: string
+}
+export type { navBarProps, creatureCardProps, statBarProps, creaturePostDBparams }; 

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"
 import classes from "./AddCreature.module.css"
 import { FormEventHandler } from "react"
 import { fileUpload } from "../../Models/interface"
+import usePostCreature  from "./Hooks/usePostCreature"
 
 
 
@@ -44,7 +45,21 @@ const AddCreature = () => {
 
     /* Submit handler */
 
-    const handleSubmit = () => { }
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => { 
+        e.preventDefault()
+        if(formIsValid) {
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            usePostCreature(
+                 postCreatureState.name, 
+                 postCreatureState.desc , 
+                 postCreatureState.hp, 
+                 postCreatureState.attack, 
+                 postCreatureState.defence, 
+                 postCreatureState.magic )
+            // issue post to db
+            // issue post file to storage
+        }
+    }
 
     /* state handlers */
 
