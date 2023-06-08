@@ -1,5 +1,5 @@
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import classes from "./AddCreature.module.css"
 import { FormEventHandler } from "react"
 import { fileUpload } from "../../Models/interface"
@@ -66,9 +66,7 @@ const AddCreature = () => {
         setPostCreatureState({ ...postCreatureState, desc: descToValidate })
         if (descToValidate.trim().length > 0) {
             setDescIsValid(true)
-            console.log("Set to true fired")
         } else {
-            console.log("set to false")
             setDescIsValid(false)
         }
 
@@ -130,6 +128,26 @@ const AddCreature = () => {
 
     }
 
+
+
+    /* Form Validator side effect */
+
+    useEffect(() => {
+        if(
+            nameIsValid &&
+            descIsValid &&
+            defenceIsValid && 
+            attackIsValid && 
+            magicIsValid && 
+            hpIsValid && 
+            UploadValid
+            ) {
+                setFormIsValid(true)
+            } else {
+                setFormIsValid(false)
+            }
+    }, [nameIsValid, descIsValid, defenceIsValid, attackIsValid, magicIsValid, hpIsValid, UploadValid])
+
     return (
         <>
             {fileToUpload!.name.length > 0 &&
@@ -147,7 +165,7 @@ const AddCreature = () => {
                 <section className={classes.formSection}>
                     <label className={classes.label}>Upload an Image</label>
                     <input className={classes.input} onChange={handleFileToUpload} type="file"></input>
-                    {fileToUpload.name.length === 0 && postCreatureState.name.length === 0 &&
+                    {UploadValid && postCreatureState.name.length === 0 &&
                         <p className={classes.invalid}>An image and name is required</p>}
                     {uploadError.isError && 
                     <p className={classes.error}>{uploadError.message}</p>}
