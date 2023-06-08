@@ -44,23 +44,23 @@ const CreaturesAZ = () => {
 
 
   useEffect(() => {
-   
+
     const fetchData = async (term: string) => {
-      console.log(letterSearch)
+
       const response = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/${term}/.json`)
       const data = await response.json()
       const nameData: any = Object.keys(data)
       setIsLoading(false)
-      setIsError({showError: false, message: ""})
+      setIsError({ showError: false, message: "" })
       setShowResults(nameData)
       setDataByLetter(data)
 
     }
-    if (letterSearch !== "" ) {
-      console.log("made as far as if check")
+    if (letterSearch !== "") {
+
       try {
         fetchData(letterSearch)
-        
+
       } catch (error) {
         setIsLoading(false)
         setIsError({
@@ -85,14 +85,11 @@ const CreaturesAZ = () => {
   /* Handlers */
 
   const handleClick = (a: string) => {
-    
+
     setLetterSearch(a)
     setIsLoading(true)
   }
   const handleShowInDetail = async (a: string) => {
-    console.log("on click for show in detail fires")
-    console.log(isError)
-    console.log(showInDetail)
     if (dataByLetter !== null) {
       setShowInDetail(dataByLetter[a])
     }
@@ -126,19 +123,19 @@ const CreaturesAZ = () => {
           imageURL={showInDetail.imageURL}
           name={showInDetail.name}
           magic={showInDetail.magic}
-           />}
+        />}
 
 
       <div className={classes.results}>
         {showResults.length > 0 && showResults.map((result) => {
           return (
-           
-              <button
-                onClick={() => { handleShowInDetail(result) }}
-                className={classes.result}
-                key={result}>{result}
-              </button>
-          
+
+            <button
+              onClick={() => { handleShowInDetail(result) }}
+              className={classes.result}
+              key={result}>{result}
+            </button>
+
           )
         })}
       </div>
