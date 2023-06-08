@@ -57,7 +57,6 @@ const CreaturesAZ = () => {
 
     }
     if (letterSearch !== "") {
-
       try {
         fetchData(letterSearch)
 
