@@ -15,6 +15,9 @@ const usePostCreature: (name: string, desc: string, hp: string, attack: string, 
         set(ref(database, `/monsters/names/${name}`), {
             name
           });
+        set(ref(database, `/monsters/${getCharAT}/${name}`), {
+            dataToPost
+          });
     }
    
     /* Fetch array to check matches */
