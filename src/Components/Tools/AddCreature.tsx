@@ -35,7 +35,8 @@ const AddCreature = () => {
     const [attackIsValid, setAttackIsValid] = useState(false)
     const [defenceIsValid, setDefenceIsValid] = useState(false)
     const [magicIsValid, setMagicIsValid] = useState(false)
-    const [fileToUpload, setFileToUpload] = useState<fileUpload>()
+    const [fileToUpload, setFileToUpload] = useState<fileUpload>({name: "", file: null})
+    const [UploadValid, setUploadValid] = useState(false)
 
     /* Submit handler */
 
@@ -109,13 +110,24 @@ const AddCreature = () => {
         }
 
     }
-    const handleFileToUpload = (e: React.ChangeEvent<HTMLInputElement> ) => {
+    const handleFileToUpload = async(e: React.ChangeEvent<HTMLInputElement> ) => {
       const file = e.currentTarget.files![0]
+      try {
         setFileToUpload({name: postCreatureState.name, file: file})
+        if(postCreatureState.name && nameIsValid ) {
+            setUploadValid
+        }
+      } catch (error) {
+        
+      }
+       
+        
     }
 
     return (
         <>
+        {fileToUpload!.name.length > 0 &&
+        <h4>{fileToUpload!.name}</h4>}
         <h3 className={classes.heading}>Add a new creature to the database...</h3>
         <form onSubmit={handleSubmit}>
              {/* Name */}
@@ -126,10 +138,10 @@ const AddCreature = () => {
                 <p className={classes.invalid}>Name should 16 chars or less, and contain only letters</p>}
             </section>
             {/* Image Upload */}
-            <section>
-                <label>Upload an Image</label>
-                <input onChange={handleFileToUpload} type="file"></input>
-                <p>An image is required</p>
+            <section className={classes.formSection}>
+                <label className={classes.label}>Upload an Image</label>
+                <input className={classes.input} onChange={handleFileToUpload} type="file"></input>
+                <p className={classes.invalid}>An image and name is required</p>
             </section>
             {/* description */}
             <section className={classes.formSection}>
