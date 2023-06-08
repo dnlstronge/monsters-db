@@ -2,13 +2,13 @@
 import React, { useState } from "react"
 import classes from "./AddCreature.module.css"
 import { FormEventHandler } from "react"
+import { fileUpload } from "../../Models/interface"
 
 
-/* [x] - todo - all handlers validate state indepently - need to write custom post hook which 
-    will only deploy if all state values validate
-*/
 
+/* Local Types */
 type eventObject = React.FormEvent<HTMLInputElement>
+
 
 const AddCreature = () => {
 
@@ -35,7 +35,7 @@ const AddCreature = () => {
     const [attackIsValid, setAttackIsValid] = useState(false)
     const [defenceIsValid, setDefenceIsValid] = useState(false)
     const [magicIsValid, setMagicIsValid] = useState(false)
-    const [fileToUpload, setFileToUpload] = useState(null)
+    const [fileToUpload, setFileToUpload] = useState<fileUpload>()
 
     /* Submit handler */
 
@@ -109,7 +109,10 @@ const AddCreature = () => {
         }
 
     }
-    const handleFileToUpload = () => {}
+    const handleFileToUpload = (e: React.ChangeEvent<HTMLInputElement> ) => {
+      const file = e.currentTarget.files![0]
+        setFileToUpload({name: postCreatureState.name, file: file})
+    }
 
     return (
         <>
@@ -124,9 +127,9 @@ const AddCreature = () => {
             </section>
             {/* Image Upload */}
             <section>
-                <label ></label>
-                <input onChange={} type="file"></input>
-                <p></p>
+                <label>Upload an Image</label>
+                <input onChange={handleFileToUpload} type="file"></input>
+                <p>An image is required</p>
             </section>
             {/* description */}
             <section className={classes.formSection}>
