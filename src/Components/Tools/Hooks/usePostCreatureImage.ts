@@ -5,7 +5,7 @@ import { uploadBytes } from "firebase/storage";
 import { useState } from "react";
 
 
-const usePostCreatureImage = (file: File, name: string) => {
+const usePostCreatureImage = async (file: File, name: string) => {
    
  
     // progress
@@ -13,7 +13,12 @@ const usePostCreatureImage = (file: File, name: string) => {
    
     const storageRef = ref(projectStorage, `/monsters/${file.name}`)
     uploadBytes(storageRef, file)
-    
+    const getImageUrl = async() => {
+        const imageUrl =  await getDownloadURL(storageRef)
+        return imageUrl;
+    }
+    const fetchURl = await getImageUrl() 
+    return fetchURl;
     
 };
 

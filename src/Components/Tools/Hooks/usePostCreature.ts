@@ -3,26 +3,29 @@ import { database } from "../../../firebase/config"
 import { fileUpload } from "../../../Models/interface";
 import { onValue, ref, set } from "firebase/database";
 import usePostCreatureImage from "./usePostCreatureImage";
+import { useState } from "react";
 
 
 const usePostCreature: (name: string, desc: string, hp: string, attack: string, defence: string, magic: string, image: File) => void= (name, desc, hp, attack, defence, magic, image ) => {
     const getCharAT = name.charAt(0).toUpperCase()
+    //const [getImageURL, setGetImageURL] = useState<string>()
     //const imageFile = image
-    const dataToPost = {
-        attack, defence, desc, hp, id: `${name.toLowerCase()}ID`, imageURL: `${name.toLowerCase()}`, magic, name,  
-    }
+   
     /* POST new data to DB  */
-    const postData = () => {
+    const postData = async () => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const postImage = await usePostCreatureImage(image, name)
+        //setGetImageURL(postImage)
+        const dataToPost = {
+            attack, defence, desc, hp, id: `${name.toLowerCase()}ID`, imageURL: postImage, magic, name,  
+        }
         set(ref(database, `/monsters/names/${name}`), {
             name
           });
         set(ref(database, `/monsters/${getCharAT}/${name}`), {
             ...dataToPost
           });
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        usePostCreatureImage(image, name)
-        // upload image code
-        // returns a response object?
+      
     }
    
     /* Fetch array to check matches */
