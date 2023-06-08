@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { creatureCardProps } from '../../../Models/types'
 import classes from "./CreatureCard.module.css"
-import { getImages } from '../../MonsterCard/Images/getImages'
-import { isPending } from '@reduxjs/toolkit'
 import StatBar from './StatBar'
 
 const CreatureCard: React.FC<creatureCardProps> = (props) => {
