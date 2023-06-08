@@ -36,8 +36,8 @@ const AddCreature = () => {
     const [attackIsValid, setAttackIsValid] = useState(false)
     const [defenceIsValid, setDefenceIsValid] = useState(false)
     const [magicIsValid, setMagicIsValid] = useState(false)
-    const [fileToUpload, setFileToUpload] = useState<fileUpload>({ name: "", file: null })
-    const [UploadValid, setUploadValid] = useState(false)
+    const [fileToUpload, setFileToUpload] = useState<File>()
+    const [uploadValid, setUploadValid] = useState(false)
     const [uploadError, setUploadError] = useState({
         isError: false,
         message: ""
@@ -56,7 +56,7 @@ const AddCreature = () => {
                  postCreatureState.attack, 
                  postCreatureState.defence, 
                  postCreatureState.magic, 
-                 fileToUpload )
+                 fileToUpload! )
             // issue post to db
             // issue post file to storage
         }
@@ -131,8 +131,10 @@ const AddCreature = () => {
     const handleFileToUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         
         const file = e.currentTarget.files![0]
+        
+        console.log(file)
         try {
-            setFileToUpload({ name: postCreatureState.name, file: file })
+            setFileToUpload(file)
             setUploadValid(true)
 
         } catch (error) {
@@ -157,18 +159,17 @@ const AddCreature = () => {
             attackIsValid && 
             magicIsValid && 
             hpIsValid && 
-            UploadValid
+            uploadValid
             ) {
                 setFormIsValid(true)
             } else {
                 setFormIsValid(false)
             }
-    }, [nameIsValid, descIsValid, defenceIsValid, attackIsValid, magicIsValid, hpIsValid, UploadValid])
+    }, [nameIsValid, descIsValid, defenceIsValid, attackIsValid, magicIsValid, hpIsValid, uploadValid])
 
     return (
         <>
-            {fileToUpload!.name.length > 0 &&
-                <h4>{fileToUpload!.name}</h4>}
+            
             <h3 className={classes.heading}>Add a new creature to the database...</h3>
             <form onSubmit={handleSubmit}>
                 {/* Name */}
@@ -182,7 +183,7 @@ const AddCreature = () => {
                 <section className={classes.formSection}>
                     <label className={classes.label}>Upload an Image</label>
                     <input className={classes.input} onChange={handleFileToUpload} type="file"></input>
-                    {UploadValid && postCreatureState.name.length === 0 &&
+                    {uploadValid && postCreatureState.name.length === 0 &&
                         <p className={classes.invalid}>An image and name is required</p>}
                     {uploadError.isError && 
                     <p className={classes.error}>{uploadError.message}</p>}

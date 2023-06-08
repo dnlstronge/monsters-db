@@ -5,7 +5,7 @@ import { onValue, ref, set } from "firebase/database";
 import usePostCreatureImage from "./usePostCreatureImage";
 
 
-const usePostCreature: (name: string, desc: string, hp: string, attack: string, defence: string, magic: string, image:fileUpload) => void= (name, desc, hp, attack, defence, magic, image ) => {
+const usePostCreature: (name: string, desc: string, hp: string, attack: string, defence: string, magic: string, image: File) => void= (name, desc, hp, attack, defence, magic, image ) => {
     const getCharAT = name.charAt(0).toUpperCase()
     //const imageFile = image
     const dataToPost = {
@@ -20,7 +20,7 @@ const usePostCreature: (name: string, desc: string, hp: string, attack: string, 
             ...dataToPost
           });
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        usePostCreatureImage(name, image)
+        usePostCreatureImage(image, name)
         // upload image code
         // returns a response object?
     }
