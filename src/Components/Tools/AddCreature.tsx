@@ -35,6 +35,7 @@ const AddCreature = () => {
     const [attackIsValid, setAttackIsValid] = useState(false)
     const [defenceIsValid, setDefenceIsValid] = useState(false)
     const [magicIsValid, setMagicIsValid] = useState(false)
+    const [fileToUpload, setFileToUpload] = useState(null)
 
     /* Submit handler */
 
@@ -108,6 +109,7 @@ const AddCreature = () => {
         }
 
     }
+    const handleFileToUpload = () => {}
 
     return (
         <>
@@ -119,6 +121,12 @@ const AddCreature = () => {
                 <input className={classes.input} type="text" onChange={handleName}></input>
                  {postCreatureState.name && !nameIsValid &&
                 <p className={classes.invalid}>Name should 16 chars or less, and contain only letters</p>}
+            </section>
+            {/* Image Upload */}
+            <section>
+                <label ></label>
+                <input onChange={} type="file"></input>
+                <p></p>
             </section>
             {/* description */}
             <section className={classes.formSection}>
