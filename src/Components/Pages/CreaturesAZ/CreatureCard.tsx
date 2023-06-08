@@ -6,13 +6,7 @@ import StatBar from './StatBar'
 const CreatureCard: React.FC<creatureCardProps> = (props) => {
 
     // gs://monsterdb-30be5.appspot.com/monsters/agromole.png
-    
-    const [imageURLstate, setImageURLstate] = useState("")
-    const [imageError, setImageError] = useState({
-        showError: false,
-        message: "No Image found..."
-    })
-    const [imagePending, setImagePending] = useState(false)
+
    
    
   
