@@ -13,17 +13,35 @@ const usePostCreature: (name: string, desc: string, hp: string, attack: string, 
    
     /* POST new data to DB  */
     const postData = async () => {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const postImage = await usePostCreatureImage(image, name)
-        const dataToPost = {
-            attack, defence, desc, hp, id: `${name.toLowerCase()}ID`, imageURL: postImage, magic, name,  
+        try {
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            const postImage = await usePostCreatureImage(image, name)
+            const dataToPost = {
+                attack, defence, desc, hp, id: `${name.toLowerCase()}ID`, imageURL: postImage, magic, name,  
+            }
+            set(ref(database, `/monsters/names/${name}`), {
+                name
+              });
+            set(ref(database, `/monsters/${getCharAT}/${name}`), {
+                ...dataToPost
+              });
+             return {
+                status: "success",
+                message: "Item and image have been added to the database",
+                imageUploaded: true,
+                fileUploaded: true
+             } 
+        } catch (error) {
+            return {
+                status: "Failed",
+                message: "Item and image not been added to the database",
+                imageUploaded: false,
+                fileUploaded: false
+            }
         }
-        set(ref(database, `/monsters/names/${name}`), {
-            name
-          });
-        set(ref(database, `/monsters/${getCharAT}/${name}`), {
-            ...dataToPost
-          });
+
+
+       
       
     }
    
@@ -37,29 +55,24 @@ const usePostCreature: (name: string, desc: string, hp: string, attack: string, 
     console.log(usedNames)
     if(!usedNames.includes(name.toLowerCase())) {
         // post request valid send ===>
-        try {
-            postData()
-        return {
-            status: response.status,
-            success: true,
-            failed: false,
-            message: "Success - Item has been added to DB"
-        }
+       try {
+           const serverResponse = postData()
+           return serverResponse;
         } catch (error) {
             return {
-                status: response.status,
-                success: false,
-                failed: true,
-                message: `${response.status}-${error}`
+                status: "Failed",
+                message: "Item and image not been added to the database",
+                imageUploaded: false,
+                fileUploaded: false
             }
         }
         
     } else {
         return {
-            status: response.status,
-            success: false,
-            failed: true,
-            message: `Failed - Item already exists`
+            status: "Failed",
+            message: "Item already exists in the database",
+            imageUploaded: false,
+            fileUploaded: false
         }
     }
     }
