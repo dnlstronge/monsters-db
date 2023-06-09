@@ -31,9 +31,10 @@ const postCreature = async(name: string, desc: string, hp: string, attack: strin
         
         } catch(error) {
             return { status: "failed",
-                    message: error
+                    message: `${error}`
      }
     }
+    return {status: "success", message: "request sent"}
 }
 
 export default postCreature

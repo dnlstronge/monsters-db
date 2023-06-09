@@ -12,17 +12,18 @@ const usePostCreature: (name: string, desc: string, hp: string, attack: string, 
     Promise<{
     status: string;
     message: string
-    } | undefined> = async(name, desc, hp, attack, defence, magic, image ) => {
+    }> = async(name, desc, hp, attack, defence, magic, image ) => {
+        let trypost = {
+            status: "",
+            message: ""
+        }
     const alreadyExists = await checkDup(name)
     if(!alreadyExists) {
-        postCreature(name, desc, hp, attack, defence, magic, image )
+       trypost = await postCreature(name, desc, hp, attack, defence, magic, image )
     } else {
-        return {
-            status: "failed",
-            message: "Entry already exists in Database"
-        }
+       trypost = {status: "failed", message: "Item already exists in database"}
     }
-    
+    return trypost
 }
 
 export default usePostCreature;

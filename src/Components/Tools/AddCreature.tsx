@@ -1,8 +1,6 @@
 
 import React, { useState, useEffect } from "react"
 import classes from "./AddCreature.module.css"
-import { FormEventHandler } from "react"
-import { fileUpload } from "../../Models/interface"
 import usePostCreature from "./Hooks/usePostCreature"
 
 
@@ -62,6 +60,7 @@ const AddCreature = () => {
             // issue post to db
             // issue post file to storage
             setPostResponse(serverResponse)
+            console.log(serverResponse)
             
         }
     }
