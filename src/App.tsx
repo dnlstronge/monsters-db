@@ -30,7 +30,6 @@ function App() {
         <Tools />}
         {!showCreaturesAZ && !showCreatureTool &&
         <p>Coming soon...</p>}
-      
       </div>
       <Home />
     </div>
