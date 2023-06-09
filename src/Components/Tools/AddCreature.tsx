@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 import classes from "./AddCreature.module.css"
 import { FormEventHandler } from "react"
 import { fileUpload } from "../../Models/interface"
-import usePostCreature  from "./Hooks/usePostCreature"
+import usePostCreature from "./Hooks/usePostCreature"
 
 
 
@@ -45,18 +45,18 @@ const AddCreature = () => {
 
     /* Submit handler */
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => { 
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        if(formIsValid) {
+        if (formIsValid) {
             // eslint-disable-next-line react-hooks/rules-of-hooks
             usePostCreature(
-                 postCreatureState.name, 
-                 postCreatureState.desc , 
-                 postCreatureState.hp, 
-                 postCreatureState.attack, 
-                 postCreatureState.defence, 
-                 postCreatureState.magic, 
-                 fileToUpload! )
+                postCreatureState.name,
+                postCreatureState.desc,
+                postCreatureState.hp,
+                postCreatureState.attack,
+                postCreatureState.defence,
+                postCreatureState.magic,
+                fileToUpload!)
             // issue post to db
             // issue post file to storage
         }
@@ -129,10 +129,9 @@ const AddCreature = () => {
 
     }
     const handleFileToUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        
+
         const file = e.currentTarget.files![0]
-        
-        console.log(file)
+
         try {
             setFileToUpload(file)
             setUploadValid(true)
@@ -152,24 +151,24 @@ const AddCreature = () => {
     /* Form Validator side effect */
 
     useEffect(() => {
-        if(
+        if (
             nameIsValid &&
             descIsValid &&
-            defenceIsValid && 
-            attackIsValid && 
-            magicIsValid && 
-            hpIsValid && 
+            defenceIsValid &&
+            attackIsValid &&
+            magicIsValid &&
+            hpIsValid &&
             uploadValid
-            ) {
-                setFormIsValid(true)
-            } else {
-                setFormIsValid(false)
-            }
+        ) {
+            setFormIsValid(true)
+        } else {
+            setFormIsValid(false)
+        }
     }, [nameIsValid, descIsValid, defenceIsValid, attackIsValid, magicIsValid, hpIsValid, uploadValid])
 
     return (
         <>
-            
+
             <h3 className={classes.heading}>Add a new creature to the database...</h3>
             <form onSubmit={handleSubmit}>
                 {/* Name */}
@@ -185,8 +184,8 @@ const AddCreature = () => {
                     <input className={classes.input} onChange={handleFileToUpload} type="file"></input>
                     {uploadValid && postCreatureState.name.length === 0 &&
                         <p className={classes.invalid}>An image and name is required</p>}
-                    {uploadError.isError && 
-                    <p className={classes.error}>{uploadError.message}</p>}
+                    {uploadError.isError &&
+                        <p className={classes.error}>{uploadError.message}</p>}
                 </section>
                 {/* description */}
                 <section className={classes.formSection}>

@@ -15,7 +15,6 @@ const usePostCreature: (name: string, desc: string, hp: string, attack: string, 
     const postData = async () => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const postImage = await usePostCreatureImage(image, name)
-        //setGetImageURL(postImage)
         const dataToPost = {
             attack, defence, desc, hp, id: `${name.toLowerCase()}ID`, imageURL: postImage, magic, name,  
         }
@@ -38,11 +37,16 @@ const usePostCreature: (name: string, desc: string, hp: string, attack: string, 
     console.log(usedNames)
     if(!usedNames.includes(name.toLowerCase())) {
         // post request valid send ===>
-        console.log("Theres no match")
         postData()
+        return {
+            status: response.status,
+            message: "Success - Item has been added to DB"
+        }
     } else {
-        console.log("There is a match")
-        return
+        return {
+            status: response.status,
+            message: `Failed - Item already exists`
+        }
     }
     }
     
