@@ -42,14 +42,15 @@ const AddCreature = () => {
         isError: false,
         message: ""
     })
+    const [postResponse, setPostResponse] = useState <any>()
 
     /* Submit handler */
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (formIsValid) {
             // eslint-disable-next-line react-hooks/rules-of-hooks
-            usePostCreature(
+           const serverResponse = await usePostCreature(
                 postCreatureState.name,
                 postCreatureState.desc,
                 postCreatureState.hp,
@@ -57,10 +58,14 @@ const AddCreature = () => {
                 postCreatureState.defence,
                 postCreatureState.magic,
                 fileToUpload!)
+               
             // issue post to db
             // issue post file to storage
+            setPostResponse(serverResponse)
+            
         }
     }
+    useEffect(() => {console.log(postResponse)}, [postResponse])
 
     /* state handlers */
 
