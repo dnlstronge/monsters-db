@@ -8,7 +8,7 @@ const postCreature = async(name: string, desc: string, hp: string, attack: strin
     //sets image and returns DL url
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const postImage = await usePostCreatureImage(image, name)
-    const dataToPost = {
+    const dataToPost = await {
         attack, defence, desc, hp, id: `${name.toLowerCase()}ID`, imageURL: postImage, magic, name,  
     }
     try {

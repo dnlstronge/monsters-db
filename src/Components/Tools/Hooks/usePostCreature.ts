@@ -23,10 +23,6 @@ const usePostCreature: (name: string, desc: string, hp: string, attack: string, 
         }
     }
     
-   
-    
-    
-    
 }
 
 export default usePostCreature;
