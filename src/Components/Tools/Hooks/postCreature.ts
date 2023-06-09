@@ -7,7 +7,7 @@ const postCreature = async(name: string, desc: string, hp: string, attack: strin
     const getCharAT = name.charAt(0).toUpperCase()
     //sets image and returns DL url
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    
+    let response = {status: "", message: ""}
     const dataToPost = {
         attack, defence, desc, hp, id: `${name.toLowerCase()}ID`, imageURL: image, magic, name,  
     }
@@ -30,11 +30,12 @@ const postCreature = async(name: string, desc: string, hp: string, attack: strin
             postList() 
         
         } catch(error) {
-            return { status: "failed",
-                    message: `${error}`
+            response = { status: "failed",
+                    message: `${error}` }
      }
+     return response
     }
-    return {status: "success", message: "request sent"}
-}
+
+
 
 export default postCreature
