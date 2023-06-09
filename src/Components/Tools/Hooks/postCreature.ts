@@ -22,12 +22,9 @@ const postCreature = async(name: string, desc: string, hp: string, attack: strin
                 await set(ref(database, `/monsters/${getCharAT}/${name}`), {
                     ...dataToPost
                 })
-                return {
-                    status: "success",
-                    message: "Upload Successful"
-                }
+               return {status: "success", message: "Data upload successfull"}
             }
-            postList() 
+          response = await postList()!
         
         } catch(error) {
             response = { status: "failed",
