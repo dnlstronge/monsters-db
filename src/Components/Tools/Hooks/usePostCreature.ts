@@ -37,13 +37,23 @@ const usePostCreature: (name: string, desc: string, hp: string, attack: string, 
     console.log(usedNames)
     if(!usedNames.includes(name.toLowerCase())) {
         // post request valid send ===>
-        postData()
+        try {
+            postData()
         return {
             status: response.status,
-            success: false,
-            failed: true,
+            success: true,
+            failed: false,
             message: "Success - Item has been added to DB"
         }
+        } catch (error) {
+            return {
+                status: response.status,
+                success: false,
+                failed: true,
+                message: `${response.status}-${error}`
+            }
+        }
+        
     } else {
         return {
             status: response.status,
