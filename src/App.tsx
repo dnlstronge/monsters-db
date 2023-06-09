@@ -28,6 +28,9 @@ function App() {
         <CreaturesAZ />}
         {showCreatureTool && 
         <Tools />}
+        {!showCreaturesAZ && !showCreatureTool &&
+        <p>Coming soon...</p>}
+      
       </div>
       <Home />
     </div>

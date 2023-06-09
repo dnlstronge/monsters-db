@@ -1,15 +1,15 @@
-import usePostCreatureImage from "./usePostCreatureImage";
+import usePostCreatureImage from "./postCreatureImage";
 import { onValue, ref, set } from "firebase/database";
 import { database } from "../../../firebase/config";
 
 
-const postCreature = async(name: string, desc: string, hp: string, attack: string, defence: string, magic: string, image: File ) => {
+const postCreature = async(name: string, desc: string, hp: string, attack: string, defence: string, magic: string, image: string ) => {
     const getCharAT = name.charAt(0).toUpperCase()
     //sets image and returns DL url
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const postImage = await usePostCreatureImage(image, name)
-    const dataToPost = await {
-        attack, defence, desc, hp, id: `${name.toLowerCase()}ID`, imageURL: postImage, magic, name,  
+    
+    const dataToPost = {
+        attack, defence, desc, hp, id: `${name.toLowerCase()}ID`, imageURL: image, magic, name,  
     }
     try {
          /** sets duplicate list */

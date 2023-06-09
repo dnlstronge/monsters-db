@@ -5,7 +5,7 @@ import { uploadBytes } from "firebase/storage";
 import { useState } from "react";
 
 
-const usePostCreatureImage = async (file: File, name: string) => {
+const postCreatureImage = async (file: File, name: string) => {
    
  
     // progress
@@ -22,4 +22,4 @@ const usePostCreatureImage = async (file: File, name: string) => {
     
 };
 
-export default usePostCreatureImage;
+export default postCreatureImage;
