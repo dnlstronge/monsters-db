@@ -40,11 +40,15 @@ const usePostCreature: (name: string, desc: string, hp: string, attack: string, 
         postData()
         return {
             status: response.status,
+            success: false,
+            failed: true,
             message: "Success - Item has been added to DB"
         }
     } else {
         return {
             status: response.status,
+            success: false,
+            failed: true,
             message: `Failed - Item already exists`
         }
     }
