@@ -21,9 +21,12 @@ const usePostCreature: (name: string, desc: string, hp: string, attack: string, 
     
     const alreadyExists = await checkDup(name)
     if(!alreadyExists) {
+      console.log("checks exists")
       const postImage = await postCreatureImage(image, name)
+      console.log("post attempted")
        trypost = await postCreature(name, desc, hp, attack, defence, magic, postImage )
     } else {
+        console.log("post failed")
        trypost = {status: "failed", message: "Item already exists in database"}
     }
     return trypost

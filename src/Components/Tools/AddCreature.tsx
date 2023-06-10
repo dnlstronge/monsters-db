@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"
 import classes from "./AddCreature.module.css"
 import usePostCreature from "./Hooks/usePostCreature"
 import PostSuccess from "../UI/PostSuccess"
+import PostFailure from "../UI/PostFailure"
 
 
 /* Local Types */
@@ -63,7 +64,7 @@ const AddCreature = () => {
             console.log(serverResponse)
             setTimeout(() => {
                 setPostResponse({status: "", message: ""})
-            }, 1000)
+            }, 2000)
             
         }
     }
@@ -175,9 +176,12 @@ const AddCreature = () => {
 
     return (
         <>
+        {/* Post success and failure messages */}
             {postResponse.status === "success" &&
             <PostSuccess text={postResponse.message}/>}
-            <h3 className={classes.heading}>Add a new creature to the database...</h3>
+            {postResponse.status === "failed" &&
+            <PostFailure text={postResponse.message}/>}
+            <h3 className={classes.heading}>Add to the database...</h3>
             <form onSubmit={handleSubmit}>
                 {/* Name */}
                 <section className={classes.formSection}>

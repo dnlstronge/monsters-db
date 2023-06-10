@@ -1,8 +1,9 @@
 .container {
     display: flex;
     flex-direction: row;
-    background: rgb(82, 108, 43);
-    padding: 2rem;
+    background: rgb(206, 72, 83);
+    padding: 1rem;
+    height: 4rem;
 }
 .container p {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
