@@ -2,16 +2,18 @@
     display: flex;
     flex-direction: row;
     background: grey;
-    margin-left: 60%;
-    height: 2.8rem;
+    margin-left: 55%;
+    height: 3.4rem;
     width: 25rem;
     border-radius: 4px;
+    padding: 0.2rem;
 }
 .input {
     height: 2.5rem;
     width: 10rem;
     margin-right: 1rem;
     margin-left: 2rem;
+    padding-left: 0.5rem;
 }
 .btn {
     color: grey;
