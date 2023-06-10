@@ -1,6 +1,6 @@
 .container {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background: rgb(57, 57, 57);
+    background: rgb(22, 22, 22);
     position: fixed;
     height: 50rem;
     width: 10rem;
@@ -8,8 +8,9 @@
 
 }
 .codex {
+    padding: 0.5rem;
     margin: 0.5rem;
-    height: 2rem;
+    height: 1.5rem;
     width: 6rem;
     cursor: pointer
 }
@@ -19,12 +20,12 @@
     width: 6rem;
 }
 .sectionNotActive {
+    color: black;
     font-size: 12px;
-    margin-left: 1rem;
-    margin-top: 0.5rem;
+    margin-left: 0rem;
+    margin-top: 0.2rem;
     margin-bottom: 0.5rem;
-    
-    background: rgb(47, 46, 46);
+    background: rgb(198, 191, 191);
     padding: 0.2rem;
     cursor: pointer
     

@@ -237,7 +237,7 @@ const AddCreature = () => {
                         <p className={classes.invalid}>Enter number between 1-100 </p>}
                 </section>
 
-                <button type="submit">Submit</button>
+                <button className={classes.btn} type="submit">Submit</button>
             </form>
         </>
     )

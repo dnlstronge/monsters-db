@@ -36,3 +36,10 @@
     background-color: #f8f8f8;
     resize: none;
 }
+.btn {
+    align-self: center;
+    height: 2rem;
+    width: 7rem;
+    margin-left: 40%;
+    margin-top: 1rem;
+}

@@ -6,7 +6,7 @@ const PostSuccess: React.FC<{text: string}> = (props) => {
   return (
     <div className={classes.container}>
         <p>{props.text || "Data upload successful"}</p>
-        <TiTick className={classes.icon} size="2rem" color='white' />
+        <TiTick className={classes.icon} size="3rem" color='white' />
     </div>
   )
 }
