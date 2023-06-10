@@ -19,6 +19,7 @@
 .invalid {
     color: rgb(241, 131, 131);
     margin: 0.2rem;
+    font-size: 10px;
 }
 
 .input {
@@ -44,6 +45,9 @@
     margin-top: 1rem;
     margin-bottom: 1.5rem;
 }
+.btn:hover {
+    cursor: pointer;
+}
 .btnReset {
     align-self: center;
     height: 2rem;
@@ -51,4 +55,7 @@
     margin-left: 1rem;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
+}
+.btnReset:hover {
+    cursor: pointer;
 }
