@@ -238,6 +238,7 @@ const AddCreature = () => {
                 </section>
 
                 <button className={classes.btn} type="submit">Submit</button>
+                <button className={classes.btnReset}>Reset</button>
             </form>
         </>
     )

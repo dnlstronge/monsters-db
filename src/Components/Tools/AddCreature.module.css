@@ -42,4 +42,13 @@
     width: 7rem;
     margin-left: 40%;
     margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+.btnReset {
+    align-self: center;
+    height: 2rem;
+    width: 4rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
 }
