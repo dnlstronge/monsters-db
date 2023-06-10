@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react"
 import classes from "./AddCreature.module.css"
 import usePostCreature from "./Hooks/usePostCreature"
-
+import PostSuccess from "../UI/PostSuccess"
 
 
 /* Local Types */
@@ -172,8 +172,8 @@ const AddCreature = () => {
 
     return (
         <>
-            {/* {postResponse.status === "success" &&
-            <h2 className={}>{postResponse.message}</h2>} */}
+            {postResponse.status === "success" &&
+            <PostSuccess text={postResponse.message}/>}
             <h3 className={classes.heading}>Add a new creature to the database...</h3>
             <form onSubmit={handleSubmit}>
                 {/* Name */}
