@@ -40,7 +40,7 @@ const AddCreature = () => {
         isError: false,
         message: ""
     })
-    const [postResponse, setPostResponse] = useState <any>()
+    const [postResponse, setPostResponse] = useState({status: "", message: ""})
 
     /* Submit handler */
 
@@ -64,7 +64,7 @@ const AddCreature = () => {
             
         }
     }
-    useEffect(() => {console.log(postResponse)}, [postResponse])
+   // useEffect(() => {console.log(postResponse)}, [postResponse])
 
     /* state handlers */
 
@@ -172,7 +172,8 @@ const AddCreature = () => {
 
     return (
         <>
-
+            {/* {postResponse.status === "success" &&
+            <h2 className={}>{postResponse.message}</h2>} */}
             <h3 className={classes.heading}>Add a new creature to the database...</h3>
             <form onSubmit={handleSubmit}>
                 {/* Name */}
