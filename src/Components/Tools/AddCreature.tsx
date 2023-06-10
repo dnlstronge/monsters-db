@@ -61,6 +61,9 @@ const AddCreature = () => {
             // issue post file to storage
             setPostResponse(serverResponse)
             console.log(serverResponse)
+            setTimeout(() => {
+                setPostResponse({status: "", message: ""})
+            }, 1000)
             
         }
     }

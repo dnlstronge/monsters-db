@@ -5,8 +5,8 @@ import classes from "./PostSuccess.module.css"
 const PostSuccess: React.FC<{text: string}> = (props) => {
   return (
     <div className={classes.container}>
-        <p>{props.text}</p>
-        <TiTick color='white' />
+        <p>{props.text || "Data upload successful"}</p>
+        <TiTick size="2rem" color='white' />
     </div>
   )
 }
