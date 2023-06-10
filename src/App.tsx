@@ -6,6 +6,7 @@ import Navbar from './Components/Nav/Navbar';
 /* page imports */
 import CreaturesAZ from './Components/Pages/CreaturesAZ/CreaturesAZ';
 import Tools from './Components/Tools/Tools';
+import Search from './Components/Search/Search';
 
 function App() {
   const [showCreaturesAZ, setShowCreaturesAZ] = useState(false)
@@ -21,9 +22,12 @@ function App() {
   
   return (
     <div className={classes.container}>
+      <Search />
       <title>Monsters DB </title>
       <Navbar creaturesAZ={handleShowCreatures} tools={handleShowTools} />
+
       <div className={classes.panel}>
+        
         {showCreaturesAZ && 
         <CreaturesAZ />}
         {showCreatureTool && 

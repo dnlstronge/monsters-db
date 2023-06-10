@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    background: grey;
+    margin-left: 60%;
+    height: 2.8rem;
+    width: 25rem;
+    border-radius: 4px;
+}
+.input {
+    height: 2.5rem;
+    width: 10rem;
+    margin-right: 1rem;
+    margin-left: 2rem;
+}
+.btn {
+    color: grey;
+    width: 3rem;
+    height: 2.8rem;
+}
+.btn:hover {
+    color: white;
+    cursor: pointer;
+    background: rgb(57, 57, 57);
+}
