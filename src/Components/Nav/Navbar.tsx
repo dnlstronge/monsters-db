@@ -57,7 +57,6 @@ const Navbar: React.FC<navBarProps> = (props) => {
         setShowPlaceAZ(false)
     }
 
-
  /* handlers  - section two */
     const handleExpandTools = () => {
         setExpand(false)
