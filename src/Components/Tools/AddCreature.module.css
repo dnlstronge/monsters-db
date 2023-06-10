@@ -26,6 +26,10 @@
     margin-top: 0.2rem;
     width: 12rem;
 }
+.bottomInput {
+    margin-top: 0.2rem;
+    width: 12rem;
+}
 
 .inputDesc {
     margin-top: 1rem;
@@ -36,6 +40,7 @@
     border-radius: 4px;
     background-color: #f8f8f8;
     resize: none;
+    width: 40%;
 }
 .btn {
     align-self: center;

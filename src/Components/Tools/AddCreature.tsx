@@ -211,28 +211,28 @@ const AddCreature = () => {
                 {/* Hit points */}
                 <section className={classes.formSection}>
                     <label className={classes.label} htmlFor="hp">Hit Points</label>
-                    <input onChange={handleHp} type="number" id="hp"></input>
+                    <input className={classes.bottomInput} onChange={handleHp} type="number" id="hp"></input>
                     {postCreatureState.hp && !hpIsValid &&
                         <p className={classes.invalid}>Enter a whole number 1 or greater </p>}
                 </section>
                 {/* attack */}
                 <section className={classes.formSection}>
                     <label className={classes.label} htmlFor="attack">Attack</label>
-                    <input onChange={handleAttack} type="number" id="attack"></input>
+                    <input className={classes.bottomInput} onChange={handleAttack} type="number" id="attack"></input>
                     {((postCreatureState.attack && !attackIsValid) || (submitClick && !attackIsValid)) && 
                         <p className={classes.invalid}>Enter number between 1-100 </p>}
                 </section>
                 {/* defence */}
                 <section className={classes.formSection}>
                     <label className={classes.label} htmlFor="defence">Defence</label>
-                    <input onChange={handleDefence} type="number" id="defence"></input>
+                    <input className={classes.bottomInput} onChange={handleDefence} type="number" id="defence"></input>
                     {((postCreatureState.defence && !defenceIsValid) || (submitClick && !defenceIsValid)) &&
                         <p className={classes.invalid}>Enter number between 1-100 </p>}
                 </section>
                 {/* magic */}
                 <section className={classes.formSection}>
                     <label className={classes.label} htmlFor="magic">Magic</label>
-                    <input onChange={handleMagic} type="number" id="magic"></input>
+                    <input className={classes.bottomInput} onChange={handleMagic} type="number" id="magic"></input>
                     {((postCreatureState.magic && !magicIsValid )|| (submitClick && !magicIsValid)) &&
                         <p className={classes.invalid}>Enter number between 1-100 </p>}
                 </section>
