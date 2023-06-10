@@ -41,12 +41,14 @@ const AddCreature = () => {
         isError: false,
         message: ""
     })
+    const [submitClick, setSubmitClick] = useState(false)
     const [postResponse, setPostResponse] = useState({status: "", message: ""})
 
     /* Submit handler */
 
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        setSubmitClick(true)
         if (formIsValid) {
             // eslint-disable-next-line react-hooks/rules-of-hooks
            const serverResponse = await usePostCreature(
@@ -187,14 +189,14 @@ const AddCreature = () => {
                 <section className={classes.formSection}>
                     <label className={classes.label} htmlFor="name">Name</label>
                     <input className={classes.input} type="text" onChange={handleName}></input>
-                    {postCreatureState.name && !nameIsValid &&
+                    {((postCreatureState.name && !nameIsValid) || (submitClick && !nameIsValid)) &&
                         <p className={classes.invalid}>Name should 16 chars or less, and contain only letters</p>}
                 </section>
                 {/* Image Upload */}
                 <section className={classes.formSection}>
                     <label className={classes.label}>Upload an Image</label>
                     <input className={classes.input} onChange={handleFileToUpload} type="file"></input>
-                    {uploadValid && postCreatureState.name.length === 0 &&
+                    {((uploadValid && postCreatureState.name.length )=== 0 || (submitClick && !uploadValid)) &&
                         <p className={classes.invalid}>An image and name is required</p>}
                     {uploadError.isError &&
                         <p className={classes.error}>{uploadError.message}</p>}
@@ -203,7 +205,7 @@ const AddCreature = () => {
                 <section className={classes.formSection}>
                     <label className={classes.label} htmlFor="desc">Description</label>
                     <textarea onChange={handleDesc} className={classes.inputDesc}></textarea>
-                    {postCreatureState.desc && !descIsValid &&
+                    {((postCreatureState.desc && !descIsValid) || ( submitClick && !descIsValid)) &&
                         <p className={classes.invalid}>Description should not be empty</p>}
                 </section>
                 {/* Hit points */}
@@ -217,21 +219,21 @@ const AddCreature = () => {
                 <section className={classes.formSection}>
                     <label className={classes.label} htmlFor="attack">Attack</label>
                     <input onChange={handleAttack} type="number" id="attack"></input>
-                    {postCreatureState.attack && !attackIsValid &&
+                    {((postCreatureState.attack && !attackIsValid) || (submitClick && !attackIsValid)) && 
                         <p className={classes.invalid}>Enter number between 1-100 </p>}
                 </section>
                 {/* defence */}
                 <section className={classes.formSection}>
                     <label className={classes.label} htmlFor="defence">Defence</label>
                     <input onChange={handleDefence} type="number" id="defence"></input>
-                    {postCreatureState.defence && !defenceIsValid &&
+                    {((postCreatureState.defence && !defenceIsValid) || (submitClick && !defenceIsValid)) &&
                         <p className={classes.invalid}>Enter number between 1-100 </p>}
                 </section>
                 {/* magic */}
                 <section className={classes.formSection}>
                     <label className={classes.label} htmlFor="magic">Magic</label>
                     <input onChange={handleMagic} type="number" id="magic"></input>
-                    {postCreatureState.magic && !magicIsValid &&
+                    {((postCreatureState.magic && !magicIsValid )|| (submitClick && !magicIsValid)) &&
                         <p className={classes.invalid}>Enter number between 1-100 </p>}
                 </section>
 
