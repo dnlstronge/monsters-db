@@ -204,7 +204,7 @@ const AddCreature = () => {
             <PostSuccess text={postResponse.message}/>}
             {postResponse.status === "failed" &&
             <PostFailure text={postResponse.message}/>}
-            <h3 className={classes.heading}>Add to the database...</h3>
+            <h3 className={classes.heading}>Add to database...</h3>
             <form onSubmit={handleSubmit}>
                 {/* Name */}
                 <section className={classes.formSection}>
