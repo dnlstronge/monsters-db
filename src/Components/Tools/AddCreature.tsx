@@ -156,6 +156,26 @@ const AddCreature = () => {
 
     }
 
+    const handleReset = () => {
+        setPostCreatureState({
+            magic: "",
+            attack: "",
+            defence: "",
+            desc: "",
+            hp: "",
+            id: "",
+            imageURL: "",
+            name: ""
+        })
+        setAttackIsValid(false)
+        setDefenceIsValid(false)
+        setDescIsValid(false)
+        setFormIsValid(false)
+        setHpIsValid(false)
+        setMagicIsValid(false)
+        setNameIsValid(false)
+        setSubmitClick(false)
+    }
 
 
     /* Form Validator side effect */
@@ -176,6 +196,7 @@ const AddCreature = () => {
         }
     }, [nameIsValid, descIsValid, defenceIsValid, attackIsValid, magicIsValid, hpIsValid, uploadValid])
 
+
     return (
         <>
         {/* Post success and failure messages */}
@@ -188,7 +209,7 @@ const AddCreature = () => {
                 {/* Name */}
                 <section className={classes.formSection}>
                     <label className={classes.label} htmlFor="name">Name</label>
-                    <input className={classes.input} type="text" onChange={handleName}></input>
+                    <input value={postCreatureState.name} className={classes.input} type="text" onChange={handleName}></input>
                     {((postCreatureState.name && !nameIsValid) || (submitClick && !nameIsValid)) &&
                         <p className={classes.invalid}>Name should 16 chars or less, and contain only letters</p>}
                 </section>
@@ -204,41 +225,41 @@ const AddCreature = () => {
                 {/* description */}
                 <section className={classes.formSection}>
                     <label className={classes.label} htmlFor="desc">Description</label>
-                    <textarea onChange={handleDesc} className={classes.inputDesc}></textarea>
+                    <textarea value={postCreatureState.desc} onChange={handleDesc} className={classes.inputDesc}></textarea>
                     {((postCreatureState.desc && !descIsValid) || ( submitClick && !descIsValid)) &&
                         <p className={classes.invalid}>Description should not be empty</p>}
                 </section>
                 {/* Hit points */}
                 <section className={classes.formSection}>
                     <label className={classes.label} htmlFor="hp">Hit Points</label>
-                    <input className={classes.bottomInput} onChange={handleHp} type="number" id="hp"></input>
+                    <input value={postCreatureState.hp} className={classes.bottomInput} onChange={handleHp} type="number" id="hp"></input>
                     {postCreatureState.hp && !hpIsValid &&
                         <p className={classes.invalid}>Enter a whole number 1 or greater </p>}
                 </section>
                 {/* attack */}
                 <section className={classes.formSection}>
                     <label className={classes.label} htmlFor="attack">Attack</label>
-                    <input className={classes.bottomInput} onChange={handleAttack} type="number" id="attack"></input>
+                    <input value={postCreatureState.attack} className={classes.bottomInput} onChange={handleAttack} type="number" id="attack"></input>
                     {((postCreatureState.attack && !attackIsValid) || (submitClick && !attackIsValid)) && 
                         <p className={classes.invalid}>Enter number between 1-100 </p>}
                 </section>
                 {/* defence */}
                 <section className={classes.formSection}>
                     <label className={classes.label} htmlFor="defence">Defence</label>
-                    <input className={classes.bottomInput} onChange={handleDefence} type="number" id="defence"></input>
+                    <input value={postCreatureState.defence} className={classes.bottomInput} onChange={handleDefence} type="number" id="defence"></input>
                     {((postCreatureState.defence && !defenceIsValid) || (submitClick && !defenceIsValid)) &&
                         <p className={classes.invalid}>Enter number between 1-100 </p>}
                 </section>
                 {/* magic */}
                 <section className={classes.formSection}>
                     <label className={classes.label} htmlFor="magic">Magic</label>
-                    <input className={classes.bottomInput} onChange={handleMagic} type="number" id="magic"></input>
+                    <input value={postCreatureState.magic} className={classes.bottomInput} onChange={handleMagic} type="number" id="magic"></input>
                     {((postCreatureState.magic && !magicIsValid )|| (submitClick && !magicIsValid)) &&
                         <p className={classes.invalid}>Enter number between 1-100 </p>}
                 </section>
 
                 <button className={classes.btn} type="submit">Submit</button>
-                <button className={classes.btnReset}>Reset</button>
+                <button type="button" onClick={handleReset} className={classes.btnReset}>Reset</button>
             </form>
         </>
     )
