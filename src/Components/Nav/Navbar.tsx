@@ -92,7 +92,7 @@ const Navbar: React.FC<navBarProps> = (props) => {
 
                 
              <Link to="/">Home</Link>
-            
+            <Link to="creaturesaz">Creatures</Link>
             {/* Codex and drop */}
 
             <div onClick={handleExpandCodex} className={classes.codex}>Codex </div>
