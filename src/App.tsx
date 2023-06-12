@@ -7,6 +7,7 @@ import Navbar from './Components/Nav/Navbar';
 import CreaturesAZ from './Components/Pages/CreaturesAZ/CreaturesAZ';
 import Tools from './Components/Tools/Tools';
 import Search from './Components/Search/Search';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   const [showCreaturesAZ, setShowCreaturesAZ] = useState(false)
@@ -25,9 +26,8 @@ function App() {
       <Search />
       <title>Monsters DB </title>
       <Navbar creaturesAZ={handleShowCreatures} tools={handleShowTools} />
-
+      <BrowserRouter>
       <div className={classes.panel}>
-        
         {showCreaturesAZ && 
         <CreaturesAZ />}
         {showCreatureTool && 
@@ -35,6 +35,7 @@ function App() {
         {!showCreaturesAZ && !showCreatureTool &&
         <p>Coming soon...</p>}
       </div>
+      </BrowserRouter>
       <Home />
     </div>
   );
