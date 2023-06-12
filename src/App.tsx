@@ -7,7 +7,7 @@ import Navbar from './Components/Nav/Navbar';
 import CreaturesAZ from './Components/Pages/CreaturesAZ/CreaturesAZ';
 import Tools from './Components/Tools/Tools';
 import Search from './Components/Search/Search';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   const [showCreaturesAZ, setShowCreaturesAZ] = useState(false)
@@ -28,6 +28,10 @@ function App() {
       <Navbar creaturesAZ={handleShowCreatures} tools={handleShowTools} />
       <BrowserRouter>
       <div className={classes.panel}>
+        <Routes>
+          <Route path="/" element={<Home/>}></Route>
+       
+        </Routes>
         {showCreaturesAZ && 
         <CreaturesAZ />}
         {showCreatureTool && 

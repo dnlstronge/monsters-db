@@ -51,7 +51,7 @@ const fetchMonster = async() => {
 }
 
   return (
-    <div  className={classes.container}>
+    <div  className={classes.container}> Coming soon
         {/* <h3 className={classes.title}>Welcome to monsters database</h3>
         <p className={classes.intro}>
             This app allows users to search for fictional monsters. Selecting a monster allows the viewer
