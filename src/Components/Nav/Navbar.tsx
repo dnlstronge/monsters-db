@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import classes from "./Navbar.module.css"
+import { Link } from "react-router-dom"
 
 // types 
 import { navBarProps } from "../../Models/types"
@@ -20,15 +21,15 @@ const Navbar: React.FC<navBarProps> = (props) => {
 
     /* conditional styles */
 
-    const creaturesStyle = showCreaturesAZ ? classes.sectionActive : classes.sectionNotActive 
-    const placeStyle = showPlaceAZ ? classes.sectionActive : classes.sectionNotActive 
-    const miscStyle = showMiscAZ ? classes.sectionActive : classes.sectionNotActive 
-    const addCreaturesStyle = showAddCreature ? classes.sectionActive: classes.sectionNotActive
-    const addPlacesStyle = showAddPlaces ? classes.sectionActive: classes.sectionNotActive
-    const addMiscStyle = showAddMisc ? classes.sectionActive: classes.sectionNotActive
+    const creaturesStyle = showCreaturesAZ ? classes.sectionActive : classes.sectionNotActive
+    const placeStyle = showPlaceAZ ? classes.sectionActive : classes.sectionNotActive
+    const miscStyle = showMiscAZ ? classes.sectionActive : classes.sectionNotActive
+    const addCreaturesStyle = showAddCreature ? classes.sectionActive : classes.sectionNotActive
+    const addPlacesStyle = showAddPlaces ? classes.sectionActive : classes.sectionNotActive
+    const addMiscStyle = showAddMisc ? classes.sectionActive : classes.sectionNotActive
 
     /* handlers  - section one */
-    
+
     const handleExpandCodex = () => {
         setExpand(!expand)
         setExpandTools(false)
@@ -57,7 +58,7 @@ const Navbar: React.FC<navBarProps> = (props) => {
         setShowPlaceAZ(false)
     }
 
- /* handlers  - section two */
+    /* handlers  - section two */
     const handleExpandTools = () => {
         setExpand(false)
         setExpandTools(!expandTools)
@@ -88,33 +89,37 @@ const Navbar: React.FC<navBarProps> = (props) => {
 
     return (
         <nav className={classes.container}>
+
+                
+             <Link to="/">Home</Link>
             
-        
             {/* Codex and drop */}
+
             <div onClick={handleExpandCodex} className={classes.codex}>Codex </div>
+
+            <div onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</div>
             
-        
-            {expand && 
-                    <div onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</div>}
-            {expand && 
-                    <div onClick={handleShowPlaces}className={placeStyle}>Places A-Z</div>}
-            {expand && 
-                    <div onClick={handleShowMisc} className={miscStyle}>Misc A-Z</div>}
-           
+            {expand &&
+                <div onClick={handleShowPlaces} className={placeStyle}>Places A-Z</div>}
+            {expand &&
+                <div onClick={handleShowMisc} className={miscStyle}>Misc A-Z</div>}
+
+
+
 
             {/* tools and drop */}
-            
-            <div onClick={handleExpandTools} className={classes.codex}>Tools </div>
-           
-        
-            {expandTools && 
-                    <div onClick={handleShowAddCreature} className={addCreaturesStyle}>Add Creature </div>}
-            {expandTools&& 
-                    <div onClick={handleShowAddPlaces}className={addPlacesStyle}>Add Places</div>}
-            {expandTools && 
-                    <div onClick={handleShowAddMisc} className={addMiscStyle}>Add Misc</div>}
 
-            
+            <div onClick={handleExpandTools} className={classes.codex}>Tools </div>
+
+
+            {expandTools &&
+                <div onClick={handleShowAddCreature} className={addCreaturesStyle}>Add Creature </div>}
+            {expandTools &&
+                <div onClick={handleShowAddPlaces} className={addPlacesStyle}>Add Places</div>}
+            {expandTools &&
+                <div onClick={handleShowAddMisc} className={addMiscStyle}>Add Misc</div>}
+
+
         </nav>
     )
 }

@@ -26,13 +26,12 @@ function App() {
       <Search />
       <title>Monsters DB </title>
       <Navbar creaturesAZ={handleShowCreatures} tools={handleShowTools} />
-      <BrowserRouter>
-      <div className={classes.panel}>
-        <Routes>
+      <Routes>
           <Route path="/" element={<Home/>}></Route>
-          <Route path="/creaturesaz" element={<CreaturesAZ />}
+          <Route path="/creaturesaz" element={<CreaturesAZ/>} />
           <Route path="/tools" element ={<Tools/>}/>
         </Routes>
+      <div className={classes.panel}>
         {showCreaturesAZ && 
         <CreaturesAZ />}
         {showCreatureTool && 
@@ -40,7 +39,7 @@ function App() {
         {!showCreaturesAZ && !showCreatureTool &&
         <p>Coming soon...</p>}
       </div>
-      </BrowserRouter>
+      
       <Home />
     </div>
   );
