@@ -30,7 +30,8 @@ function App() {
       <div className={classes.panel}>
         <Routes>
           <Route path="/" element={<Home/>}></Route>
-       
+          <Route path="/creaturesaz" element={<CreaturesAZ />}
+          <Route path="/tools" element ={<Tools/>}/>
         </Routes>
         {showCreaturesAZ && 
         <CreaturesAZ />}
