@@ -118,7 +118,8 @@ const Navbar: React.FC<navBarProps> = (props) => {
 
 
             {expandTools &&
-                <div onClick={handleShowAddCreature} className={addCreaturesStyle}>Add Creature </div>}
+            <Link to="/tools/addcreature">
+                <div onClick={handleShowAddCreature} className={addCreaturesStyle}>Add Creature </div> </Link>}
             {expandTools &&
                 <div onClick={handleShowAddPlaces} className={addPlacesStyle}>Add Places</div>}
             {expandTools &&
