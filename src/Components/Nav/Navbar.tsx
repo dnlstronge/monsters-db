@@ -90,19 +90,19 @@ const Navbar: React.FC<navBarProps> = (props) => {
     return (
         <nav className={classes.container}>
 
-            <section id="links">    
-            <Link className={classes.Links} to="/">Home</Link>
-            
+            <section id="links">
+                <Link className={classes.Links} to="/">Home</Link>
+
             </section>
             {/* Codex and drop */}
 
             <div onClick={handleExpandCodex} className={classes.codex}>Codex </div>
-            {expand && 
-            <Link to="/creaturesaz"><div onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</div></Link>}
-            
+            {expand &&
+                <Link to="/creaturesaz"><div onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</div></Link>}
+
             {expand &&
                 <Link to="/placesaz">
-                <div onClick={handleShowPlaces} className={placeStyle}>Places A-Z</div>
+                    <div onClick={handleShowPlaces} className={placeStyle}>Places A-Z</div>
                 </Link>}
             {expand &&
                 <div onClick={handleShowMisc} className={miscStyle}>Misc A-Z</div>}
