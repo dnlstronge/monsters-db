@@ -1,3 +1,7 @@
+.section {
+    background: rgb(22, 22, 22);
+}
+
 .container {
     display: flex;
     flex-direction: row;
