@@ -8,6 +8,7 @@ import CreaturesAZ from './Components/Pages/CreaturesAZ/CreaturesAZ';
 import Tools from './Components/Tools/Tools';
 import Search from './Components/Search/Search';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Places from './Components/Pages/PlacesAZ/Places';
 
 function App() {
   const [showCreaturesAZ, setShowCreaturesAZ] = useState(false)
@@ -31,6 +32,7 @@ function App() {
       <Routes>
           <Route path="/" element={<Home/>}></Route>
           <Route path="/creaturesaz" element={<CreaturesAZ/>} />
+          <Route path="/placesaz" element = {<Places />} />
           <Route path="/tools" element ={<Tools/>}/>
         </Routes>
         {/* {showCreaturesAZ && 
