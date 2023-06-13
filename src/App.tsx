@@ -26,18 +26,19 @@ function App() {
       <Search />
       <title>Monsters DB </title>
       <Navbar creaturesAZ={handleShowCreatures} tools={handleShowTools} />
+     
+      <div className={classes.panel}>
       <Routes>
           <Route path="/" element={<Home/>}></Route>
           <Route path="/creaturesaz" element={<CreaturesAZ/>} />
           <Route path="/tools" element ={<Tools/>}/>
         </Routes>
-      <div className={classes.panel}>
-        {showCreaturesAZ && 
+        {/* {showCreaturesAZ && 
         <CreaturesAZ />}
         {showCreatureTool && 
         <Tools />}
         {!showCreaturesAZ && !showCreatureTool &&
-        <p>Coming soon...</p>}
+        <p>Coming soon...</p>} */}
       </div>
       
       <Home />
