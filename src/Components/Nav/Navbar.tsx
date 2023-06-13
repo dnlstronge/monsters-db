@@ -90,7 +90,7 @@ const Navbar: React.FC<navBarProps> = (props) => {
     return (
         <nav className={classes.container}>
 
-            <section>    
+            <section id="links">    
             <Link className={classes.Links} to="/">Home</Link>
             
             </section>
