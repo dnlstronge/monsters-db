@@ -3,7 +3,7 @@ import classes from "./Misc.module.css"
 
 const Misc = () => {
   return (
-    <div className={classes.container}>Coming Soon...</div>
+    <div className={classes.container}>Coming soon...</div>
   )
 }
 

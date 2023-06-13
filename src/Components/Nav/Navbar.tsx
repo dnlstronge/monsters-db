@@ -98,14 +98,14 @@ const Navbar: React.FC<navBarProps> = (props) => {
 
             <div onClick={handleExpandCodex} className={classes.codex}>Codex </div>
             {expand &&
-                <Link to="/creaturesaz"><div onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</div></Link>}
+                <Link to="/codex/creaturesaz"><div onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</div></Link>}
 
             {expand &&
-                <Link to="/placesaz">
+                <Link to="/codex/placesaz">
                     <div onClick={handleShowPlaces} className={placeStyle}>Places A-Z</div>
                 </Link>}
             {expand &&
-                <Link to="/miscaz">
+                <Link to="/codex/miscaz">
                 <div onClick={handleShowMisc} className={miscStyle}>Misc A-Z</div>
                 </Link>}
 

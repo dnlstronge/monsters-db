@@ -32,10 +32,11 @@ function App() {
       <div className={classes.panel}>
       <Routes>
           <Route path="/" element={<Home/>}></Route>
-          <Route path="/creaturesaz" element={<CreaturesAZ/>} />
-          <Route path="/placesaz" element = {<Places />} />
-          <Route path="/miscaz" element = {<Misc />} />
+          <Route path="/codex/creaturesaz" element={<CreaturesAZ/>} />
+          <Route path="/codex/placesaz" element = {<Places />} />
+          <Route path="/codex/miscaz" element = {<Misc />} />
           <Route path="/tools" element ={<Tools/>}/>
+
         </Routes>
         {/* {showCreaturesAZ && 
         <CreaturesAZ />}
