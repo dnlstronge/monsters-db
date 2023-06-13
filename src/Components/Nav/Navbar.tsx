@@ -90,10 +90,9 @@ const Navbar: React.FC<navBarProps> = (props) => {
     return (
         <nav className={classes.container}>
 
-            <section id="links">
-                <Link className={classes.Links} to="/">Home</Link>
+            <Link className={classes.link} to="/">Home</Link>
 
-            </section>
+
             {/* Codex and drop */}
 
             <div onClick={handleExpandCodex} className={classes.codex}>Codex </div>
@@ -106,7 +105,7 @@ const Navbar: React.FC<navBarProps> = (props) => {
                 </Link>}
             {expand &&
                 <Link to="/codex/miscaz">
-                <div onClick={handleShowMisc} className={miscStyle}>Misc A-Z</div>
+                    <div onClick={handleShowMisc} className={miscStyle}>Misc A-Z</div>
                 </Link>}
 
 
@@ -118,8 +117,8 @@ const Navbar: React.FC<navBarProps> = (props) => {
 
 
             {expandTools &&
-            <Link to="/tools/addcreature">
-                <div onClick={handleShowAddCreature} className={addCreaturesStyle}>Add Creature </div> </Link>}
+                <Link to="/tools/addcreature">
+                    <div onClick={handleShowAddCreature} className={addCreaturesStyle}>Add Creature </div> </Link>}
             {expandTools &&
                 <div onClick={handleShowAddPlaces} className={addPlacesStyle}>Add Places</div>}
             {expandTools &&

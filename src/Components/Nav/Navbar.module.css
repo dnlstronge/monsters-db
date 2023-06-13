@@ -7,6 +7,19 @@
     color: whitesmoke;
 
 }
+.link {
+    display: flex;
+    color: white;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    height: 2rem;
+    width: 6rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+.link:hover {
+    background: grey;
+}
 .codex {
     padding: 0.5rem;
     margin: 0.5rem;
@@ -15,9 +28,11 @@
     cursor: pointer
 }
 .tools {
+    padding: 0.5rem;
     margin: 0.5rem;
-    height: 2rem;
+    height: 1.5rem;
     width: 6rem;
+    cursor: pointer
 }
 .sectionNotActive {
     color: black;
