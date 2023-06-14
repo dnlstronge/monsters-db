@@ -36,7 +36,7 @@ const SearchResults = () => {
       const char = searchTerm.charAt(0).toUpperCase()
       try {
         setDataSet({...dataSet, error: false, isPending: true})
-        const response = await fetch(`https://monstersdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/${char}/.json`)
+        const response = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/${char}/.json`)
         if (response!.ok) {
           const data = await response.json()
           setDataSet({

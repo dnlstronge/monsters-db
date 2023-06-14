@@ -19,6 +19,11 @@
     font-weight: bolder;
     margin: 0.2rem;
 }
+.sectionbtn {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+}
 
 .letterButton {
     border-radius: 6px;

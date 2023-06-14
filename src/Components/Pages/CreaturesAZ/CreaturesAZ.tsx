@@ -106,10 +106,10 @@ const CreaturesAZ = () => {
         {lettersAZ.map((letter) => {
 
           return (
-            <>
-            {letter !== "A" && <div className={classes.slash}>-</div>}
+            <section className={classes.sectionbtn}key={letter}>
+            {letter !== "A" && <div key={`1001-${letter}`} className={classes.slash}>-</div>}
             <button className={classes.letterButton} onClick={() => { handleClick(letter) }} key={letter}>{letter}</button>
-            </>
+            </section>
           )
         })}
       </div>
