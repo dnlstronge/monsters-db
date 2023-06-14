@@ -103,6 +103,7 @@ const AddCreature = () => {
         const regex = /^[0-9]/
         if (hpToValidate > 0 && e.currentTarget.value.match(regex)) {
             setHpIsValid(true)
+            
         } else {
             setHpIsValid(false)
         }
@@ -233,7 +234,7 @@ const AddCreature = () => {
                 <section className={classes.formSection}>
                     <label className={classes.label} htmlFor="hp">Hit Points</label>
                     <input value={postCreatureState.hp} className={classes.bottomInput} onChange={handleHp} type="number" id="hp"></input>
-                    {postCreatureState.hp && !hpIsValid &&
+                    {((postCreatureState.hp && !hpIsValid) || (submitClick && !hpIsValid)) &&
                         <p className={classes.invalid}>Enter a whole number 1 or greater </p>}
                 </section>
                 {/* attack */}
