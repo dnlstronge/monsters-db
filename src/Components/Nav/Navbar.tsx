@@ -104,7 +104,7 @@ const Navbar: React.FC<navBarProps> = (props) => {
                     <div onClick={handleShowPlaces} className={placeStyle}>Places A-Z</div>
                 </Link>}
             {expand &&
-                <Link to="/codex/miscaz">
+                <Link style={{textDecoration: "none"}} to="/codex/miscaz">
                     <div onClick={handleShowMisc} className={miscStyle}>Misc A-Z</div>
                 </Link>}
 
