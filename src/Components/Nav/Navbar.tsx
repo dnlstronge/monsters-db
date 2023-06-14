@@ -97,10 +97,10 @@ const Navbar: React.FC<navBarProps> = (props) => {
 
             <div onClick={handleExpandCodex} className={classes.codex}>Codex </div>
             {expand &&
-                <Link to="/codex/creaturesaz"><div onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</div></Link>}
+                <Link style={{textDecoration: "none"}} to="/codex/creaturesaz"><div onClick={handleShowCreaturesAZ} className={creaturesStyle}>Creatures A-Z</div></Link>}
 
             {expand &&
-                <Link to="/codex/placesaz">
+                <Link style={{textDecoration: "none"}} to="/codex/placesaz">
                     <div onClick={handleShowPlaces} className={placeStyle}>Places A-Z</div>
                 </Link>}
             {expand &&
