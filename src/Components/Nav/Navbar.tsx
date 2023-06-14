@@ -117,7 +117,7 @@ const Navbar: React.FC<navBarProps> = (props) => {
 
 
             {expandTools &&
-                <Link to="/tools/addcreature">
+                <Link style={{textDecoration: "none"}} to="/tools/addcreature">
                     <div onClick={handleShowAddCreature} className={addCreaturesStyle}>Add Creature </div> </Link>}
             {expandTools &&
                 <div onClick={handleShowAddPlaces} className={addPlacesStyle}>Add Places</div>}

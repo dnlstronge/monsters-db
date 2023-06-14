@@ -12,8 +12,19 @@
 }
 .letters {
     padding: 2rem;
+    display: flex;
+    flex-direction: row;
+}
+.slash {
+    font-weight: bolder;
+    margin: 0.2rem;
 }
 
+.letterButton {
+    border-radius: 6px;
+    width: 2rem;
+    height: 2rem;
+}
 .lettertitle {
     margin-top: 1rem;
     margin-left: 2rem;

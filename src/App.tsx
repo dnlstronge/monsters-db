@@ -30,7 +30,7 @@ function App() {
       <title>Monsters DB </title>
       <Navbar creaturesAZ={handleShowCreatures} tools={handleShowTools} />
      
-      <div className={classes.panel}>
+      <div data-testid="panel" className={classes.panel}>
       <Routes>
           <Route path="/" element={<Home/>}></Route>
           <Route path="/codex/creaturesaz" element={<CreaturesAZ/>} />
