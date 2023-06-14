@@ -3,6 +3,7 @@ import classes from "./SearchResults.module.css"
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../Redux/store'
 import Search from '../../Search/Search'
+import { isPending } from '@reduxjs/toolkit'
 
 const SearchResults = () => {
 
@@ -21,7 +22,9 @@ const SearchResults = () => {
 
   useEffect(() => {
     /* fetch  */
+   
     const fetchData = async () => {
+      setDataSet({...dataSet, isPending: true})
       const char = searchTerm.charAt(0).toUpperCase()
       try {
         const response = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/${char}/.json`)
@@ -65,10 +68,11 @@ const SearchResults = () => {
 }, [dataSet, searchTerm, searchValid])
 return (
 
-  <>
+  <div className={classes.container}>
     <Search setTerm={setSearchTerm} activeSearch={setSearchIsValid} />
-  </>
-
+    {dataSet.isPending && 
+    <div className={classes.loading}>loading...</div>}
+  </div>
 )
 }
 
