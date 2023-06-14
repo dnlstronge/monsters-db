@@ -14,6 +14,7 @@
     padding: 2rem;
     display: flex;
     flex-direction: row;
+    ;
 }
 .slash {
     font-weight: bolder;
@@ -27,8 +28,8 @@
 
 .letterButton {
     border-radius: 6px;
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 .lettertitle {
     margin-top: 1rem;
