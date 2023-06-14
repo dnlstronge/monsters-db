@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { setSearchTerm, setShowSearch } from '../../Redux/searchTermSlice'
 import { RootState } from '../../Redux/store'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 const Search = () => {
   const dispatch: any = useDispatch()
@@ -25,10 +26,9 @@ const Search = () => {
         <div className={classes.container}>
         <label className={classes.label} htmlFor="search"></label>
         <input value={search} onChange={handleSearchTerm} placeholder="search..." type="text" className={classes.input}></input>
-        <button onClick={handleSearch} className={classes.btn}>Go</button>
+        <Link to="/search"> <button onClick={handleSearch} className={classes.btn}>Go</button></Link>
     </div>
-    {testStateSearch && 
-    <div style={{color: "white"}}>Test redux state update</div>}
+    
     </section>
   
   )
