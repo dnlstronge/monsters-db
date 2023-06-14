@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useFetchCreaturesAZ } from '../../Hooks/useFetchCreaturesAZ'
 import classes from "./CreaturesAz.module.css"
 import CreatureCard from './CreatureCard'
-import useImage from '../../Hooks/useImage'
-import { SetStateAction } from 'react'
-
-import { projectStorage } from "../../../firebase/config"
-import { ref, getDownloadURL } from "firebase/storage"
 
 /** get results and filter ???  */
 
@@ -18,7 +12,7 @@ const CreaturesAZ = () => {
   const [letterSearch, setLetterSearch] = useState("")
   const [showResults, setShowResults] = useState([])
   const [dataByLetter, setDataByLetter] = useState(null)
-  const [urlForProps, setUrlForProps] = useState("")
+
 
   /* Loading and Error state */
   const [isLoading, setIsLoading] = useState(false)
@@ -74,11 +68,6 @@ const CreaturesAZ = () => {
 
 
   }, [letterSearch])
-
-  // /* To test fetch */
-  // useEffect(() => {
-  //   console.log(showResults)
-  // }, [showResults])
 
 
   /* Handlers */
