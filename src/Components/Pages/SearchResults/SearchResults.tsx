@@ -5,6 +5,14 @@ import { RootState } from '../../../Redux/store'
 import Search from '../../Search/Search'
 import { isPending } from '@reduxjs/toolkit'
 
+export type dataSetProp = {
+  status: string
+  error: boolean
+  isPending: boolean
+  message: string
+  data: null | any
+}
+
 const SearchResults = () => {
 
   const [searchValid, setSearchIsValid] = useState(false)
@@ -24,10 +32,11 @@ const SearchResults = () => {
     /* fetch  */
    
     const fetchData = async () => {
-      setDataSet({...dataSet, isPending: true})
+      
       const char = searchTerm.charAt(0).toUpperCase()
       try {
-        const response = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/${char}/.json`)
+        setDataSet({...dataSet, error: false, isPending: true})
+        const response = await fetch(`https://monstersdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/${char}/.json`)
         if (response!.ok) {
           const data = await response.json()
           setDataSet({
@@ -42,26 +51,28 @@ const SearchResults = () => {
             status: response.status.toString(),
             error: true,
             isPending: false,
-            message: "Request was unsuccessful",
+            message: `${response.status} = request was not successful`,
             data: null
           })
+        
         }
       } catch (error) {
         setDataSet({
           status: "Request Failure",
-          error: false,
+          error: true,
           isPending: false,
-          message: "Request was unsuccessful",
+          message: `${error}`,
           data: null
         })
       }
 
     }
 
-    if (searchTerm.length > 0 && searchValid) {
+    if (searchTerm.trim().length > 0 && searchValid) {
     fetchData()
   } else {
-   return
+   // setDataSet({status: "request failed" , error: true, isPending: false, message: "No value entered", data: null })
+    return
   }
   setSearchIsValid(false)
   console.log(dataSet)
@@ -69,9 +80,11 @@ const SearchResults = () => {
 return (
 
   <div className={classes.container}>
-    <Search setTerm={setSearchTerm} activeSearch={setSearchIsValid} />
-    {dataSet.isPending && 
+    <Search setTerm={setSearchTerm} activeSearch={setSearchIsValid} error={setDataSet} />
+    {dataSet.isPending && !dataSet.error &&
     <div className={classes.loading}>loading...</div>}
+    {dataSet.error && 
+    <div className={classes.error}>{dataSet.message}</div>} 
   </div>
 )
 }

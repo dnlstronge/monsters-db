@@ -8,11 +8,14 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'react'
 import { SetStateAction } from 'react'
+import { dataSetProp } from '../Pages/SearchResults/SearchResults'
 
 const Search: 
 React.FC<{
    setTerm: Dispatch<SetStateAction<string>>,
-   activeSearch: Dispatch<SetStateAction<boolean>>}> = (props) => {
+   activeSearch: Dispatch<SetStateAction<boolean>>
+  error: Dispatch<SetStateAction<dataSetProp>>
+  }> = (props) => {
 
   const [search, setSearch] = useState("")
   
@@ -23,8 +26,20 @@ React.FC<{
 
   /* handler */
   const handleSearch = () => {
+    if(search.trim().length > 0) {
     props.activeSearch(true)
     props.setTerm(search)
+    setSearch("")
+    } else {
+      props.error({
+        status: "",
+        error: true,
+        isPending: false,
+        message: "Please enter a search term",
+        data: null
+      })
+    }
+    
   }
   const handleSearchTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.currentTarget.value)
