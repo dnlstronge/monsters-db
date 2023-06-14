@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-
+import { PayloadAction } from "@reduxjs/toolkit"
 export const searchTermSlice = createSlice({
     name: "searchTerm", 
     initialState: {
@@ -9,7 +9,7 @@ export const searchTermSlice = createSlice({
             setShowSearch(state, action) {
                 state.showSearch = action.payload
             },
-            setSearchTerm(state, action) {
+            setSearchTerm(state, action: PayloadAction<string>) {
                 state.searchQuery = action.payload
             }
         }
