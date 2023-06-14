@@ -89,8 +89,9 @@ const Navbar: React.FC<navBarProps> = (props) => {
 
     return (
         <nav className={classes.container}>
-
+           
             <Link className={classes.link} to="/">Home</Link>
+            <Link className={classes.link} to="/search">Search</Link>
 
 
             {/* Codex and drop */}

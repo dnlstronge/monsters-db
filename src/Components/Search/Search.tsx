@@ -2,20 +2,29 @@ import React from 'react'
 import classes from "./Search.module.css"
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setSearchTerm, setShowSearch } from '../../Redux/searchTermSlice'
+import {  setSearchTerm, setShowSearch } from '../../Redux/searchTermSlice'
 import { RootState } from '../../Redux/store'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Dispatch } from 'react'
+import { SetStateAction } from 'react'
 
-const Search = () => {
-  const dispatch: any = useDispatch()
+const Search: 
+React.FC<{
+   setTerm: Dispatch<SetStateAction<string>>,
+   activeSearch: Dispatch<SetStateAction<boolean>>}> = (props) => {
+
   const [search, setSearch] = useState("")
-  const testStateSearch = useSelector((state: RootState) => state.searchTerm.showSearch)
+  
+
+
+  /* fetch */
+
 
   /* handler */
   const handleSearch = () => {
-    dispatch(setShowSearch({type: "SHOW", payload: true}))
-    dispatch(setSearchTerm(search))
+    props.activeSearch(true)
+    props.setTerm(search)
   }
   const handleSearchTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.currentTarget.value)

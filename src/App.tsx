@@ -27,7 +27,6 @@ function App() {
   
   return (
     <div className={classes.container}>
-      <Search />
       <title>Monsters DB </title>
       <Navbar creaturesAZ={handleShowCreatures} tools={handleShowTools} />
      
