@@ -6,8 +6,12 @@ export const searchTermSlice = createSlice({
         showSearch: false,
         searchQuery: "", },
         reducers: {
-            setShowSearch() {},
-            setSearchTerm() {}
+            setShowSearch(state, action) {
+                state.showSearch = action.payload
+            },
+            setSearchTerm(state, action) {
+                state.searchQuery = action.payload
+            }
         }
     
 })
