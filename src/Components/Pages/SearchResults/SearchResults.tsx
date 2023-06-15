@@ -24,7 +24,7 @@ const SearchResults = () => {
   })
   const [list, setList] = useState<string[]>()
   /* State for card */
-  const [dataForCard, setDataForCard] = useState()
+  const [dataForCard, setDataForCard] = useState<any>()
   const [cardActive, settCardActive] = useState(false)
 
 
@@ -33,6 +33,7 @@ const SearchResults = () => {
   const renderCard: (name: string )=> void = (name: string) => {
     if(dataSet.data !== null ) {
       setDataForCard(dataSet.data[name])
+      settCardActive(true)
     }
     
   }
@@ -102,6 +103,11 @@ return (
     <div className={classes.loading}>loading...</div>}
     {dataSet.error && 
     <div className={classes.error}>{dataSet.message}</div>}
+    <section>
+      {cardActive &&
+      <div>{dataForCard.name}</div>
+      }
+    </section>
       {list?.includes(searchTerm.toLowerCase()) ? 
         // do this 
         <div>

@@ -9,17 +9,17 @@ const postCreature = async(name: string, desc: string, hp: string, attack: strin
     // eslint-disable-next-line react-hooks/rules-of-hooks
     let response = {status: "", message: ""}
     const dataToPost = {
-        attack, defence, desc, hp, id: `${name.toLowerCase()}ID`, imageURL: image, magic, name,  
+        attack, defence, desc, hp, id: `${name.toLowerCase()}ID`, imageURL: image, magic, name: name.toLowerCase(),  
     }
     try {
          /** sets duplicate list */
             const postList = async() => {
-                await set(ref(database, `/monsters/names/${name}`), {
+                await set(ref(database, `/monsters/names/${name.toLowerCase()}`), {
                     name
                 });
             
                 /*Sets actual data */
-                await set(ref(database, `/monsters/${getCharAT}/${name}`), {
+                await set(ref(database, `/monsters/${getCharAT}/${name.toLowerCase()}`), {
                     ...dataToPost
                 })
                return {status: "success", message: "data upload successfull"}
