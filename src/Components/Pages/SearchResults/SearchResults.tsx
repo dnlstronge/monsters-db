@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import classes from "./SearchResults.module.css"
-import { useSelector } from 'react-redux'
-import { RootState } from '../../../Redux/store'
 import Search from '../../Search/Search'
-import { isPending } from '@reduxjs/toolkit'
+
 
 export type dataSetProp = {
   status: string
@@ -25,6 +23,19 @@ const SearchResults = () => {
     data: null
   })
   const [list, setList] = useState<string[]>()
+  /* State for card */
+  const [dataForCard, setDataForCard] = useState()
+  const [cardActive, settCardActive] = useState(false)
+
+
+
+  /* render card helper */ 
+  const renderCard: (name: string )=> void = (name: string) => {
+    if(dataSet.data !== null ) {
+      setDataForCard(dataSet.data[name])
+    }
+    
+  }
 
   /*fetch helper */
 
@@ -93,12 +104,16 @@ return (
     <div className={classes.error}>{dataSet.message}</div>}
       {list?.includes(searchTerm.toLowerCase()) ? 
         // do this 
-        <button>{searchTerm}</button>
+        <div>
+          <button>{searchTerm}</button>
+        </div>
       :
         // do that
         list?.map((item) => {
           return (
-            <button>{item}</button>
+            <div>
+              <button onClick={() => {renderCard(item)}}>{item}</button>
+            </div>
           )
         })
       }
