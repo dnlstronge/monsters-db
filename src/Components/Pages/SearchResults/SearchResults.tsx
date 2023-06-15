@@ -31,11 +31,7 @@ const SearchResults = () => {
 
   /* render card helper */ 
   const renderCard: (name: string )=> void = (name: string) => {
-    if(dataSet.data !== null ) {
-      setDataForCard(dataSet.data[name])
-      settCardActive(true)
-    }
-    
+  
   }
 
   /*fetch helper */
@@ -103,36 +99,11 @@ return (
     {dataSet.error && 
     <div className={classes.error}>{dataSet.message}</div>}
     <section>
-      {cardActive &&
-      <div>{dataForCard.name}</div>
-      }
     </section>
-      {list?.includes(searchTerm.toLowerCase()) ? 
-        // do this 
-        <div>
-          <button onClick={() => {renderCard(searchTerm.toLowerCase())}}>{searchTerm}</button>
-        </div>
-      :
-        // do that
-        list?.map((item) => {
-           
-          return (
-            <div className={classes.card}>
-              <button onClick={() => {renderCard(item)}}>{item}</button>
-            </div>
-          )
-        })
-      }
+      
 
       
 
-    {/* {
-    
-    list?.map((item) => {
-      return (
-        <button key={item}>{item}</button>
-      )
-    })} */}
   </div>
 )
 }
