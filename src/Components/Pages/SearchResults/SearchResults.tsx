@@ -8,14 +8,14 @@ export type dataSetProp = {
   error: boolean
   isPending: boolean
   message: string
-  data: null | any
+  data: null | any[]
 }
 
 const SearchResults = () => {
 
   const [searchValid, setSearchIsValid] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
-  const [dataSet, setDataSet] = useState({
+  const [dataSet, setDataSet] = useState<dataSetProp>({
     status: "",
     error: false,
     isPending: false,
@@ -52,17 +52,16 @@ const SearchResults = () => {
         const response = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/${char}/.json`)
         if (response!.ok )  {
           const data = await response.json()
+          const filter = [data]
+          console.log(filter)
           setDataSet({
             status: response.status.toString(),
             error: false,
             isPending: false,
             message: "Request was successful",
-            data: data
+            data: filter
           })
-          const names = Object.keys(data)
-          const mapped = names.map((item) => item.toLocaleLowerCase())
-          setList(mapped)
-          //console.log(data)
+          
         } else {
           setDataSet({
             status: response.status.toString(),
@@ -111,13 +110,14 @@ return (
       {list?.includes(searchTerm.toLowerCase()) ? 
         // do this 
         <div>
-          <button>{searchTerm}</button>
+          <button onClick={() => {renderCard(searchTerm.toLowerCase())}}>{searchTerm}</button>
         </div>
       :
         // do that
         list?.map((item) => {
+           
           return (
-            <div>
+            <div className={classes.card}>
               <button onClick={() => {renderCard(item)}}>{item}</button>
             </div>
           )
