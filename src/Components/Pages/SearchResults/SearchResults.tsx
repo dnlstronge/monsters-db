@@ -24,6 +24,7 @@ const SearchResults = () => {
     message: "",
     data: null
   })
+  const [list, setList] = useState<string[]>()
 
   /*fetch helper */
 
@@ -37,7 +38,7 @@ const SearchResults = () => {
       try {
         setDataSet({...dataSet, error: false, isPending: true})
         const response = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/${char}/.json`)
-        if (response!.ok) {
+        if (response!.ok )  {
           const data = await response.json()
           setDataSet({
             status: response.status.toString(),
@@ -46,6 +47,10 @@ const SearchResults = () => {
             message: "Request was successful",
             data: data
           })
+          const names = Object.keys(data)
+          const mapped = names.map((item) => item.toLocaleLowerCase())
+          setList(mapped)
+          //console.log(data)
         } else {
           setDataSet({
             status: response.status.toString(),
@@ -70,12 +75,13 @@ const SearchResults = () => {
 
     if (searchTerm.trim().length > 0 && searchValid) {
     fetchData()
+    
   } else {
    // setDataSet({status: "request failed" , error: true, isPending: false, message: "No value entered", data: null })
     return
   }
   setSearchIsValid(false)
-  console.log(dataSet)
+  
 }, [dataSet, searchTerm, searchValid])
 return (
 
@@ -84,7 +90,28 @@ return (
     {dataSet.isPending && !dataSet.error &&
     <div className={classes.loading}>loading...</div>}
     {dataSet.error && 
-    <div className={classes.error}>{dataSet.message}</div>} 
+    <div className={classes.error}>{dataSet.message}</div>}
+      {list?.includes(searchTerm.toLowerCase()) ? 
+        // do this 
+        <button>{searchTerm}</button>
+      :
+        // do that
+        list?.map((item) => {
+          return (
+            <button>{item}</button>
+          )
+        })
+      }
+
+      
+
+    {/* {
+    
+    list?.map((item) => {
+      return (
+        <button key={item}>{item}</button>
+      )
+    })} */}
   </div>
 )
 }

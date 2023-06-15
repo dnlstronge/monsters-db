@@ -1,10 +1,6 @@
 import React from 'react'
 import classes from "./Search.module.css"
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import {  setSearchTerm, setShowSearch } from '../../Redux/searchTermSlice'
-import { RootState } from '../../Redux/store'
-import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'react'
 import { SetStateAction } from 'react'
