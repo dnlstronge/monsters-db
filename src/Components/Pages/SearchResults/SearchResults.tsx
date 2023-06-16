@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import classes from "./SearchResults.module.css"
 import Search from '../../Search/Search'
+import Card from './Card'
 
 
 export type dataSetProp = {
@@ -30,8 +31,13 @@ const SearchResults = () => {
 
 
   /* render card helper */ 
-  const renderCard: (name: string )=> void = (name: string) => {
-  
+  const renderCard: ( name: string, desc: string,
+    attack: string, defence: string, magic: string,
+    hp: string, image: string) => void
+   = (name: string, desc: string, attack: string, defence: string, magic:string, hp: string, image:string) => {
+    setDataForCard({
+      name, desc, attack, defence, magic, hp, image
+    })
   }
 
   /*fetch helper */
@@ -98,11 +104,19 @@ return (
     <div className={classes.loading}>loading...</div>}
     {dataSet.error && 
     <div className={classes.error}>{dataSet.message}</div>}
+    <section id="expandresult">
+      {/* <Card 
+          name={dataForCard.name} desc={dataForCard.desc}
+          attack={dataForCard.attack} defence={dataForCard.defence}
+          magic={dataForCard.magic} hp={dataForCard.hp} image={dataForCard.image}/> */}
+    </section>
     <section id="results" className={classes.resultsSection}>
       {dataSet.data?.map((item) => {
         
         return (
-          <div key={item[1].id} className={classes.result}>
+          <div onClick={() => {renderCard(
+            item, item[1].desc, item[1].attack, item[1].defence, item[1].magic, item[1].hp, item[1].imageURL
+          )}} key={item[1].id} className={classes.result}>
             <div className={classes.resultBtn} key={item[0]}>{item[0]}</div>
             <img src={item[1].imageURL} className={classes.imageThumb} alt={item[0]}/>
           </div>

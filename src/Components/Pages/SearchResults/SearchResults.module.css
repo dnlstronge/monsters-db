@@ -38,7 +38,7 @@
 }
 .result {
     display: flex;
-    background: grey;
+    background: rgb(67, 63, 63);
     flex-direction: row;
     align-items: center;
     width: 14rem;
@@ -46,8 +46,6 @@
     margin: 0.5rem;
     margin-right: 1rem;
     border-radius: 3px;
-    
-   
 }
 .result:hover {
     cursor: pointer;
