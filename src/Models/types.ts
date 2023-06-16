@@ -36,5 +36,6 @@ type cardProps = {
     defence: string
     hp: string
     magic: string
+    image: string
 }
 export type { navBarProps, creatureCardProps, statBarProps, creaturePostDBparams, cardProps }; 

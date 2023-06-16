@@ -31,7 +31,8 @@ const SearchResults = () => {
     attack: "",
     defence: "",
     hp: "",
-    magic: ""
+    magic: "",
+    image: ""
   })
   const [cardActive, settCardActive] = useState(false)
 
@@ -114,7 +115,7 @@ const SearchResults = () => {
       {dataSet.error &&
         <div className={classes.error}>{dataSet.message}</div>}
       <section id="expandresult">
-        {cardActive && 
+        {cardActive && dataForCard.name.length > 0 &&
         <Card 
           name={dataForCard.name} desc={dataForCard.desc}
           attack={dataForCard.attack} defence={dataForCard.defence}
@@ -126,7 +127,7 @@ const SearchResults = () => {
           return (
             <div onClick={() => {
               renderCard(
-                item, item[1].desc, item[1].attack, item[1].defence, item[1].magic, item[1].hp, item[1].imageURL
+                item[1].name, item[1].desc, item[1].attack, item[1].defence, item[1].magic, item[1].hp, item[1].imageURL
               )
             }} key={item[1].id} className={classes.result}>
               <div className={classes.resultBtn} key={item[0]}>{item[0]}</div>

@@ -3,9 +3,13 @@ import classes from "./Card.module.css"
 
 import { cardProps } from '../../../Models/types'
 
-const Card: React.FC<cardProps> = () => {
+const Card: React.FC<cardProps> = (props) => {
+  console.log(`here asshat: ${props.name}`)
   return (
-    <div>Card</div>
+    <div>
+      <h4>A</h4>
+      <p>B</p>
+    </div>
   )
 }
 
