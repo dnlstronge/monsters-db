@@ -98,7 +98,7 @@ return (
     <div className={classes.loading}>loading...</div>}
     {dataSet.error && 
     <div className={classes.error}>{dataSet.message}</div>}
-    <section id="results">
+    <section id="results" className={classes.resultsSection}>
       {dataSet.data?.map((item) => {
         
         return (

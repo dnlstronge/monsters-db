@@ -4,6 +4,11 @@ import classes from "./AddCreature.module.css"
 import usePostCreature from "./Hooks/usePostCreature"
 import PostSuccess from "../UI/PostSuccess"
 import PostFailure from "../UI/PostFailure"
+import postCreatureImage from "./Hooks/postCreatureImage"
+import { getDownloadURL, ref} from "firebase/storage";
+import { projectStorage } from "../../firebase/config";
+import { uploadBytes } from "firebase/storage";
+
 
 
 /* Local Types */
@@ -35,7 +40,7 @@ const AddCreature = () => {
     const [attackIsValid, setAttackIsValid] = useState(false)
     const [defenceIsValid, setDefenceIsValid] = useState(false)
     const [magicIsValid, setMagicIsValid] = useState(false)
-    const [fileToUpload, setFileToUpload] = useState<File>()
+    const [fileToUpload, setFileToUpload] = useState("")
     const [uploadValid, setUploadValid] = useState(false)
     const [uploadError, setUploadError] = useState({
         isError: false,
@@ -58,7 +63,7 @@ const AddCreature = () => {
                 postCreatureState.attack,
                 postCreatureState.defence,
                 postCreatureState.magic,
-                fileToUpload!)
+                fileToUpload)
                
             // issue post to db
             // issue post file to storage
@@ -144,7 +149,14 @@ const AddCreature = () => {
         const file = e.currentTarget.files![0]
 
         try {
-            setFileToUpload(file)
+            const getImageUrl = async() => {
+                const storageRef = ref(projectStorage, `/monsters/${file.name}`)
+                uploadBytes(storageRef, file)
+                const imageUrl =  await getDownloadURL(storageRef)
+                return imageUrl;
+            }
+            const imageURL = await postCreatureImage(file, postCreatureState.name)
+            setFileToUpload(imageURL)
             setUploadValid(true)
 
         } catch (error) {

@@ -1,15 +1,10 @@
-import { creaturePostDBparams } from "../../../Models/types"
-import { database } from "../../../firebase/config"
-import { fileUpload } from "../../../Models/interface";
-import { onValue, ref, set } from "firebase/database";
-import usePostCreatureImage from "./postCreatureImage";
-import { useState } from "react";
+
 import postCreature from "./postCreature";
 import checkDup from "./checkdup";
-import postCreatureImage from "./postCreatureImage";
 
 
-const usePostCreature: (name: string, desc: string, hp: string, attack: string, defence: string, magic: string, image: File) => 
+
+const usePostCreature: (name: string, desc: string, hp: string, attack: string, defence: string, magic: string, image: string) => 
     Promise<{
     status: string;
     message: string
@@ -21,10 +16,10 @@ const usePostCreature: (name: string, desc: string, hp: string, attack: string, 
     
     const alreadyExists = await checkDup(name)
     if(!alreadyExists) {
-      console.log("checks exists")
-      const postImage = await postCreatureImage(image, name)
-      console.log("post attempted")
-       trypost = await postCreature(name, desc, hp, attack, defence, magic, postImage )
+      //console.log("checks exists")
+      //const postImage = await postCreatureImage(image, name)
+      //console.log("post attempted")
+       trypost = await postCreature(name, desc, hp, attack, defence, magic, image )
     } else {
         console.log("post failed")
        trypost = {status: "failed", message: "Item already exists in database"}

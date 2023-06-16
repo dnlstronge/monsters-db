@@ -11,9 +11,10 @@ const postCreatureImage = async (file: File, name: string) => {
     // progress
 
    
-    const storageRef = ref(projectStorage, `/monsters/${file.name}`)
-    uploadBytes(storageRef, file)
+   
     const getImageUrl = async() => {
+        const storageRef = ref(projectStorage, `/monsters/${file.name}`)
+        uploadBytes(storageRef, file)
         const imageUrl =  await getDownloadURL(storageRef)
         return imageUrl;
     }
