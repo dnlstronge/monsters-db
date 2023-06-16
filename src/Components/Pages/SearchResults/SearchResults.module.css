@@ -27,3 +27,20 @@
     padding: 3rem;
     padding-left: 10rem;
 }
+
+/* search results */
+
+.resuts {
+    display: flex;
+    flex-direction: row;
+}
+.resultBtn {
+    height: 2rem;
+    width: 6rem;
+    margin-bottom: 1rem;
+}
+.imageThumb {
+    height: 3rem;
+    width: 3rem;
+    border: 2px solid purple;
+}

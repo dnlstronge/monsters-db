@@ -103,7 +103,8 @@ return (
         
         return (
           <div key={item[1].id} className={classes.result}>
-            <button key={item[0]}>{item[0]}</button>
+            <button className={classes.resultBtn} key={item[0]}>{item[0]}</button>
+            <img src={item[1].imageURL} className={classes.imageThumb} alt={item[0]}/>
           </div>
           
         )
