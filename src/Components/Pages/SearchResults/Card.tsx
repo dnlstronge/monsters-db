@@ -4,18 +4,21 @@ import StatBar from '../CreaturesAZ/StatBar'
 import { cardProps } from '../../../Models/types'
 
 const Card: React.FC<cardProps> = (props) => {
- 
+
   return (
     <div className={classes.container}>
       <h4 className={classes.heading}>{props.name}</h4>
-      <section id="image and bars">
-      <img className={classes.image}src={props.image} alt={props.name}/>
-      <div className={classes.bars}>
-        <StatBar hp={props.hp} attack={props.attack} defence={props.defence} magic={props.magic}/>
-      </div>
+      <section className={classes.imagedesc} id="image and bars">
+        <img className={classes.image} src={props.image} alt={props.name} />
+        <div className={classes.stats}>
+          <StatBar hp={props.hp} attack={props.attack} defence={props.defence} magic={props.magic} />
+          <p>{props.desc}</p>
+        </div>
+
       </section>
-      
-      <p>{props.desc}</p>
+
+
+
 
     </div>
   )

@@ -1,10 +1,33 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    margin-bottom: 1.5rem;
+    height: 20rem;
+    width: 100%;
+}
+
 .heading {
     margin-left: 3rem;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+}
+.imageDesc {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
 }
 
 .image {
+    float: left;
     height: 15rem;
     width: 15rem;
     border: 3px solid whitesmoke;
     margin-left: 3rem;
+    margin-right: 1rem;
+}
+
+.stats {
+    margin-top: 3rem;
 }
