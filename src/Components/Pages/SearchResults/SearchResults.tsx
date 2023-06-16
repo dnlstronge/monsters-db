@@ -137,10 +137,6 @@ const SearchResults = () => {
           )
         })}
       </section>
-
-
-
-
     </div>
   )
 }
