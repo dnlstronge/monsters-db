@@ -33,14 +33,22 @@
 .resuts {
     display: flex;
     flex-direction: row;
+    width: 15rem;
+    height: 6rem;
 }
 .resultBtn {
+    display: flex;
+    align-self: center;
     height: 2rem;
     width: 6rem;
     margin-bottom: 1rem;
+    margin-right: 4rem;
+    margin-left: 2rem;
+    padding-bottom: 2rem;
 }
 .imageThumb {
     height: 3rem;
     width: 3rem;
     border: 2px solid purple;
+    margin-top: 1rem;
 }
