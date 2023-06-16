@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import classes from "./SearchResults.module.css"
 import Search from '../../Search/Search'
 import Card from './Card'
-
+import { cardProps } from '../../../Models/types'
 
 export type dataSetProp = {
   status: string
@@ -25,7 +25,14 @@ const SearchResults = () => {
   })
   const [list, setList] = useState<string[]>()
   /* State for card */
-  const [dataForCard, setDataForCard] = useState<any>()
+  const [dataForCard, setDataForCard] = useState<cardProps>({
+    name: "",
+    desc: "",
+    attack: "",
+    defence: "",
+    hp: "",
+    magic: ""
+  })
   const [cardActive, settCardActive] = useState(false)
 
 
