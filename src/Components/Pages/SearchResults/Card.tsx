@@ -1,7 +1,9 @@
 import React from 'react'
 import classes from "./Card.module.css"
 
-const Card = () => {
+import { cardProps } from '../../../Models/types'
+
+const Card: React.FC<cardProps> = () => {
   return (
     <div>Card</div>
   )
