@@ -100,9 +100,10 @@ return (
     <div className={classes.error}>{dataSet.message}</div>}
     <section id="results">
       {dataSet.data?.map((item) => {
+        
         return (
-          <div className={classes.result}>
-            <button>{item[0]}</button>
+          <div key={item[1].id} className={classes.result}>
+            <button key={item[0]}>{item[0]}</button>
           </div>
           
         )
