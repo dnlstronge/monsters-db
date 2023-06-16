@@ -149,14 +149,17 @@ const AddCreature = () => {
         const file = e.currentTarget.files![0]
 
         try {
-            const getImageUrl = async() => {
+            const getImageUrl = async(file: File, name: string) => {
                 const storageRef = ref(projectStorage, `/monsters/${file.name}`)
-                uploadBytes(storageRef, file)
-                const imageUrl =  await getDownloadURL(storageRef)
-                return imageUrl;
+                const uploaded = await uploadBytes(storageRef, file)
+                if(uploaded.metadata) {
+                    const imageUrl =  await getDownloadURL(storageRef)
+                    setFileToUpload(imageUrl)
+                }
+             
             }
-            const imageURL = await postCreatureImage(file, postCreatureState.name)
-            setFileToUpload(imageURL)
+            
+            getImageUrl(file, postCreatureState.name)
             setUploadValid(true)
 
         } catch (error) {
