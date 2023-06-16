@@ -41,21 +41,29 @@
     background: grey;
     flex-direction: row;
     align-items: center;
-    width: 12rem;
+    width: 14rem;
     height: 4rem;
     margin: 0.5rem;
+    margin-right: 1rem;
+    border-radius: 3px;
     
    
+}
+.result:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    transition: all .2s ease-in-out;
 }
 .resultBtn {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     height: 3rem;
-    width: 7rem;
+    width: 8rem;
     margin: 0 auto;
     background: grey;
     float: left;
     border: 2px solid white;
     margin-left: 1rem;
+    margin-right: 1rem;
     text-align: center;
     padding-top: 0.2rem;
 }
@@ -64,6 +72,7 @@
     height: 3.2rem;
     width: 3rem;
     margin: 0 auto;
+    margin-right: 1rem;
   
     border: 2px solid purple;
    
