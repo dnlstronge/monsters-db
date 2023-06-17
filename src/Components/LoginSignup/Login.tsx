@@ -15,11 +15,14 @@ const Login = () => {
 
     
     /* handlers */
-    const handleSubmit = () => {
-        if(loginValid) {
-            const response = authLogin(email, password)
-            console.log(response)
-        }
+    const handleSubmit = async() => {
+        console.log("got as far try authlogin")
+        console.log(email)
+        console.log(password)
+        const response = authLogin(email, password)
+        console.log(response)
+       
+        
     }
 
     const handleEmail = (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,10 +35,10 @@ const Login = () => {
     }
   return (
     <div className={classes.container}>
-        <label className={classes.label} htmlFor='username'>Email:  </label>
-        <input onChange={handleEmail}id="email" className={classes.input} type="text"/>
-        <label className={classes.label} htmlFor="password">Password: </label>
-        <input onChange={handlePassword } id="password" className={classes.input} type="password" ></input>
+        <label className={classes.label} htmlFor='_001emailLS'>Email:  </label>
+        <input onChange={handleEmail}id="_001emailLS" className={classes.input} type="text"/>
+        <label className={classes.label} htmlFor="_001passwordLS">Password: </label>
+        <input onChange={handlePassword } id="_001passwordLS" className={classes.input} type="password" ></input>
         <button onClick={handleSubmit}>Login</button>
     </div>
   )
