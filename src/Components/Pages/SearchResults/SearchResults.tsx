@@ -65,34 +65,29 @@ const SearchResults = () => {
         if (response!.ok) {
           const data = await response.json()
           // filter based on match also
-
           const filter: any = Object.entries(data)
           console.log(filter)
-          
-          if(searchTerm.length > 0) {
-            //  let regex = `${searchTerm}`
-             let validMatch = filter.filter((item: any) => { return item[0] === searchTerm})
-             console.log(filter)
-             console.log("made it to if")
-             console.log(`Match valid: ${validMatch}`)
-             setDataSet({
-              status: response.status.toString(),
-              error: false,
-              isPending: false,
-              message: "Request was successful",
-              data: validMatch
-            })
-          } else {
-            setDataSet({
-              status: response.status.toString(),
-              error: false,
-              isPending: false,
-              message: "Request was successful",
-              data: filter
-            })
-          }
-          
-
+            let validMatch = filter.filter((item: any) => { return item[0] === searchTerm})
+            
+            if(validMatch.length > 0) {
+              console.log("valid match found")
+              setDataSet({
+                status: response.status.toString(),
+                error: false,
+                isPending: false,
+                message: "Request was successful",
+                data: validMatch
+              }) 
+             } else {
+              setDataSet({
+                status: response.status.toString(),
+                error: false,
+                isPending: false,
+                message: "Request was successful",
+                data: filter
+              })
+             }
+             
         } else {
           setDataSet({
             status: response.status.toString(),
