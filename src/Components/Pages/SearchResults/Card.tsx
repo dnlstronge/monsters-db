@@ -14,7 +14,6 @@ const Card: React.FC<cardProps> = (props) => {
           <StatBar hp={props.hp} attack={props.attack} defence={props.defence} magic={props.magic} />
           <p>{props.desc}</p>
         </div>
-
       </section>
 
 
