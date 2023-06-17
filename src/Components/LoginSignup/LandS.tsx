@@ -4,7 +4,7 @@ import React from 'react'
 // get state from redux ?? 
 
 
-const Login = () => {
+const LoginSignup= () => {
   return (
     <div>
         {/* {show login} */}
@@ -14,4 +14,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default LoginSignup;
