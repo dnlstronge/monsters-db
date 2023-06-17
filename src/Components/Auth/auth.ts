@@ -2,14 +2,16 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../Redux/store";
 
-export const authLogin = (email: string, password: string) => {
-    const dispatch: AppDispatch = useDispatch()
+
+export const useAuthLogin = (email: string, password: string) => {
+    
+  
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
    .then((userCredential) => {
 
     const user = userCredential.user;
-    console.log(user)
+    //console.log(user)
     return user
   })
   .catch((error) => {
@@ -17,4 +19,5 @@ export const authLogin = (email: string, password: string) => {
     const errorCode = error.code;
     const errorMessage = error.message;
   });
+  return auth
 }

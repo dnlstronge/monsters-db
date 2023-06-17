@@ -1,11 +1,12 @@
 import React, { ChangeEvent, useState } from 'react'
 import classes from "./Login.module.css"
-import { authLogin } from '../Auth/auth'
+import { useAuthLogin } from '../Auth/auth'
 
 
-const Login = () => {
+const Login: React.FC = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [user, setUser] = useState<any>()
 
     /* validators */
     const emailValid = email.length > 0 && email.includes("@")
@@ -15,12 +16,13 @@ const Login = () => {
 
     
     /* handlers */
-    const handleSubmit = async() => {
+    const useHandleSubmit = async() => {
         console.log("got as far try authlogin")
-        console.log(email)
-        console.log(password)
-        const response = authLogin(email, password)
-        console.log(response)
+        // console.log(email)
+        // console.log(password)
+        // const response = useAuthLogin(email, password)
+        setUser(useAuthLogin(email, password))
+        
        
         
     }
@@ -39,7 +41,7 @@ const Login = () => {
         <input onChange={handleEmail}id="_001emailLS" className={classes.input} type="text"/>
         <label className={classes.label} htmlFor="_001passwordLS">Password: </label>
         <input onChange={handlePassword } id="_001passwordLS" className={classes.input} type="password" ></input>
-        <button onClick={handleSubmit}>Login</button>
+        <button onClick={useHandleSubmit}>Login</button>
     </div>
   )
 }
