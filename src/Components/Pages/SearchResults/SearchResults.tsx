@@ -64,15 +64,22 @@ const SearchResults = () => {
         const response = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/${char}/.json`)
         if (response!.ok) {
           const data = await response.json()
-          const filter = Object.entries(data)
+          // filter based on match also
+
+          const filter: any = Object.entries(data)
           console.log(filter)
-          setDataSet({
-            status: response.status.toString(),
-            error: false,
-            isPending: false,
-            message: "Request was successful",
-            data: filter
-          })
+          if(searchTerm && filter.includes(searchTerm)) {
+            
+          } else {
+            setDataSet({
+              status: response.status.toString(),
+              error: false,
+              isPending: false,
+              message: "Request was successful",
+              data: filter
+            })
+          }
+          
 
         } else {
           setDataSet({
