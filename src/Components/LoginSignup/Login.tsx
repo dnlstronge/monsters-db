@@ -12,10 +12,13 @@ const Login = () => {
     const regex = /^[0-9]/
     const passwordValid = password.length >= 6 && password.includes(`${regex}`)
     const loginValid = passwordValid && emailValid ? true : false
+
+    
     /* handlers */
     const handleSubmit = () => {
         if(loginValid) {
-            authLogin(email, password)
+            const response = authLogin(email, password)
+            console.log(response)
         }
     }
 
