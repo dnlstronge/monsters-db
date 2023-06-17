@@ -15,6 +15,7 @@
     margin-bottom: 1.5rem;
 }
 .imageDesc {
+    
     display: flex;
     flex-direction: row;
     margin-top: 1rem;
@@ -30,5 +31,6 @@
 }
 
 .stats {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-top: 3rem;
 }
