@@ -11,9 +11,15 @@ const authContextSlice = createSlice({
         
     },
     reducers: {
-        setUID() {},
-        setAdmin() {},
-        setIsAuth() {},
+        setUID (state, action) {
+            state.userId = action.payload
+        },
+        setAdmin(state) {
+            state.admin = true
+        },
+        setIsAuth(state) {
+            state.isAuth = true
+        },
         setLogout(state) {
             state.userId = ""
             state.admin = false
