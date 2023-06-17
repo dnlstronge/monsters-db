@@ -66,7 +66,7 @@ const SearchResults = () => {
           const data = await response.json()
           // filter based on match also
           const filter: any = Object.entries(data)
-          console.log(filter)
+          // console.log(filter)
             let validMatch = filter.filter((item: any) => { return item[0] === searchTerm})
             
             if(validMatch.length > 0) {
