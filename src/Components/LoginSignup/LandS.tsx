@@ -1,4 +1,6 @@
 import React from 'react'
+import Login from './Login';
+import classes from "./LandS.module.css"
 
 
 // get state from redux ?? 
@@ -6,10 +8,10 @@ import React from 'react'
 
 const LoginSignup= () => {
   return (
-    <div>
+    <div className={classes.container}>
+      <Login />
         {/* {show login} */}
         {/* {show signup} */}
-
     </div>
   )
 }
