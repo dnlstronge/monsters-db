@@ -51,16 +51,13 @@ const fetchMonster = async() => {
 }
 
   return (
-    <div  className={classes.container}> Coming soon
-        {/* <h3 className={classes.title}>Welcome to monsters database</h3>
-        <p className={classes.intro}>
-            This app allows users to search for fictional monsters. Selecting a monster allows the viewer
-            to view it's atrributes and other information about the creature....</p>
-        <section className={classes.testsection}>
-          <button onClick={fetchMonster} className={classes.btn}>Get Monster... </button>
-        </section>
-        
-       <MonsterCard name={testMonster.name} imageURL={testMonster.imageURL} description={testMonster.description}/> */}
+    <div  className={classes.container}>
+       <h5>Welcome to Monsters-db</h5>
+       <p>This front-end app allows users to view and create fictional entries for different types of 
+        creatures and acts a bit like a wiki or codex. It uses firebase to handle the data and backend.
+        The search function allows users to search alpabetically or exactly with the results providing 
+        simple statistics and information
+       </p>
     </div>
   )
 }
