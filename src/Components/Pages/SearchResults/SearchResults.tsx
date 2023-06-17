@@ -68,8 +68,13 @@ const SearchResults = () => {
 
           const filter: any = Object.entries(data)
           console.log(filter)
-          if(searchTerm && filter.includes(searchTerm)) {
-            
+          console.log(filter.match(searchTerm))
+          if(searchTerm) {
+             let regex = `${searchTerm}`
+             let data = filter.filter((item: string) => {
+              return item.match(regex)
+             })
+             console.log(data)
           } else {
             setDataSet({
               status: response.status.toString(),
