@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import classes from "./Home.module.css"
-import { projectStorage } from '../../firebase/config'
-import { ref, getDownloadURL } from "firebase/storage"
-import MonsterCard from '../MonsterCard/MonsterCard'
 import useImage from '../Hooks/useImage'
+import LoginSignup from '../LoginSignup/LandS'
 
 
 
@@ -52,6 +50,9 @@ const fetchMonster = async() => {
 
   return (
     <div  className={classes.container}>
+      <section className={classes.lands}>
+        <LoginSignup />
+      </section>
        <h5 className={classes.heading}>Welcome to Monsters-db</h5>
        <p className={classes.para}>This front-end app allows users to view and create fictional entries for different types of 
         creatures and acts a bit like a wiki or codex. It uses firebase to handle the data and backend.
