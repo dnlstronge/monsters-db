@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import { Dispatch } from 'react'
 import { SetStateAction } from 'react'
 import { dataSetProp } from '../Pages/SearchResults/SearchResults'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../Redux/store'
 
 const Search: 
 React.FC<{
@@ -15,7 +17,7 @@ React.FC<{
 
   const [search, setSearch] = useState("")
   
-
+  const showIfLoggedIn = useSelector((state: RootState) => state.authentication.isAuth)
 
   /* fetch */
 
@@ -44,6 +46,11 @@ React.FC<{
   return (
     <section className={classes.section}>
         <div className={classes.container}>
+          {/* Div to check persistence */}
+          {showIfLoggedIn && 
+          <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+            Blanditiis itaque suscipit quos numquam? Ea, alias!</div>
+          }
         <label className={classes.label} htmlFor="search"></label>
         <input value={search} onChange={handleSearchTerm} placeholder="search..." type="text" className={classes.input}></input>
         <Link to="/search"> <button onClick={handleSearch} className={classes.btn}>Go</button></Link>
