@@ -10,6 +10,10 @@ import { signOut, getAuth } from 'firebase/auth'
 
 const TopNav = () => {
   const [logoutMessage, setLogoutMessage] = useState(false)
+  const [page, setPage] = useState({
+    login: true,
+    signup: true
+  })
   const showLoginandSignup = useSelector((state: RootState) => state.authentication.isAuth)
   const dispatch = useDispatch()
   /* handlers */
@@ -23,16 +27,24 @@ const TopNav = () => {
       // An error happened.
     });
   }
+
+  /* handle page nav */
+  const handleLoginPage = () => {
+    setPage({login: false, signup: true})
+  }
+  const handleSignupPage = () => {
+    setPage({login: true, signup: false})
+  }
   return (
     <div className={classes.container}>
       <section className={classes.buttons}>
-        {!showLoginandSignup &&
+        {!showLoginandSignup && page.login && 
           <Link to="/login">
-            <button className={classes.btn}>Login</button>
+            <button onClick={handleLoginPage} className={classes.btn}>Login</button>
           </Link>}
-        {!showLoginandSignup &&
+        {!showLoginandSignup && page.signup &&
           <Link to="/signup">
-            <button className={classes.btn}>Signup</button>
+            <button onClick={handleSignupPage} className={classes.btn}>Signup</button>
           </Link>}
 
         {showLoginandSignup &&
