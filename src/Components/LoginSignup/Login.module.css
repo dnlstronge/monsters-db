@@ -1,7 +1,7 @@
 .container {
     background: rgb(57, 56, 56);
-    width: 80%;
-    padding: 2rem;
+    width: 90%;
+    padding: 1rem;
 }
 .loginSection {
     display: flex;

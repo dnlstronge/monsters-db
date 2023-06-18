@@ -72,9 +72,9 @@ const Login: React.FC = () => {
     const useHandleSubmit = async() => {
            // setUser(useAuthLogin(email, password))
            const authResponse = sendLogin(email, password)
-           if(authResponse.currentUser) {
+           if(authResponse.currentUser !== null) {
             dispatch(setIsAuth())
-            dispatch(setUID(authResponse.currentUser))
+            dispatch(setUID(authResponse.currentUser.uid))
             setInvalidLogin(false)
            } else {
             setInvalidLogin(true)
@@ -90,7 +90,7 @@ const Login: React.FC = () => {
     }
     const handlePassword = (e: ChangeEvent<HTMLInputElement>) => {
         const regex = /^[0-9]/
-        if(e.currentTarget.value.length >= 6 && e.currentTarget.value.includes(`${regex}`))
+       if(e.currentTarget.value.length >= 6 && e.currentTarget.value.includes(`${regex}`))
         setPassword(e.currentTarget.value)
     }
 
