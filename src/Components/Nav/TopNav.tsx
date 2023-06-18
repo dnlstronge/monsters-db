@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import classes from "./TopNav.module.css"
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,15 +9,16 @@ import { signOut, getAuth } from 'firebase/auth'
 
 
 const TopNav = () => {
-
+  const [logoutMessage, setLogoutMessage] = useState(false)
   const showLoginandSignup = useSelector((state: RootState) => state.authentication.isAuth)
   const dispatch = useDispatch()
   /* handlers */
   const handleLogout = () => {
+    setLogoutMessage(true)
     dispatch(setLogout())
         const auth = getAuth();
          signOut(auth).then(() => {
-  // Sign-out successful.
+          setTimeout(() => {setLogoutMessage(false)}, 1000)
         }).catch((error) => {
   // An error happened.
         });
@@ -33,11 +34,15 @@ const TopNav = () => {
             <Link to="/signup">
                  <button className={classes.btn}>Signup</button> 
             </Link>}
-            {showLoginandSignup && 
-              <button onClick={handleLogout} className={classes.btn}>Logout</button>}
             
-           
+            {showLoginandSignup && 
+            <Link to="/login">
+              <button onClick={handleLogout} className={classes.btn}>Logout</button>
+            </Link>
+              }  
         </section>
+        {logoutMessage && 
+            <div style={{color: "white"}}>Successfully logged out</div>}
         
     </div>
   )

@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom'
 import { Dispatch } from 'react'
 import { SetStateAction } from 'react'
 import { dataSetProp } from '../Pages/SearchResults/SearchResults'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../Redux/store'
+
 
 const Search: 
 React.FC<{
