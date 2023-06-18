@@ -90,9 +90,11 @@ const Login: React.FC = () => {
   return (
     <div className={classes.container}>
         {showFromRedux && 
-        <div style={{color: "green" , fontWeight: "bolder"}}>Welcome!! </div>}
+        <div style={{color: "green" , fontWeight: "bolder"}}>Welcome... </div>}
+        
         {showFromReduxUID && 
         <div style={{color: "green" , fontWeight: "bolder"}}>UID present</div>}
+
         {!showFromRedux && 
         <>
         <label className={classes.label} htmlFor='_001emailLS'>Email:  </label>

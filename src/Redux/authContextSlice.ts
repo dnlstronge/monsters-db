@@ -27,6 +27,7 @@ const authContextSlice = createSlice({
         },
         setLogout(state) {
             state.userId = ""
+            state.username = ""
             state.admin = false
             state.isAuth = false
         }
