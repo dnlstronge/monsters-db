@@ -1,10 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import searchTermReducer from "./searchTermSlice"
 import authContextSliceReducer from './authContextSlice'
 
 export const store = configureStore({
   reducer: {
-    searchTerm: searchTermReducer,
     authentication: authContextSliceReducer
   }
 })

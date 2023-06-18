@@ -18,6 +18,7 @@ const authContextSlice = createSlice({
             state.admin = true
         },
         setIsAuth(state) {
+            console.log('reducer has fired')
             state.isAuth = true
         },
         setLogout(state) {
