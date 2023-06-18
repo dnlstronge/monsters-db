@@ -2,9 +2,9 @@ import React, { ChangeEvent, useState, useEffect } from 'react'
 import classes from "./Login.module.css"
 import { useAuthLogin } from '../Auth/auth'
 import { useDispatch, useSelector } from 'react-redux'
-import { setIsAuth, setUID, setUsername } from '../../Redux/authContextSlice'
+import { setIsAuth, setLogout, setUID, setUsername } from '../../Redux/authContextSlice'
 import { RootState } from '../../Redux/store'
-import useFetchUserName from './Helpers/fetchUsername'
+import { signOut, getAuth } from 'firebase/auth'
 import fetchUserName from './Helpers/fetchUsername'
 
 type userDataState = {
@@ -21,6 +21,7 @@ const Login: React.FC = () => {
     
     /* Auth pending */
     const [authPending, setAuthPending] = useState(false)
+    const [logoutMessage, setLogoutMessage] = useState(false)
 
     /*userdata */
     const [userData, setUserData] = useState<userDataState>({
@@ -35,73 +36,80 @@ const Login: React.FC = () => {
     /* redux dispatch & selector */
     const dispatch = useDispatch()
     const showFromRedux = useSelector((state: RootState) => state.authentication.isAuth)
-    const showFromReduxUID = useSelector((state: RootState) => state.authentication.userId)
-    const showUsername = useSelector((state: RootState) => state.authentication.username)
+    // const showFromReduxUID = useSelector((state: RootState) => state.authentication.userId)
+    // const showUsername = useSelector((state: RootState) => state.authentication.username)
 
-    /* validators */
-    const emailValid = email.length > 0 && email.includes("@")
-    const regex = /^[0-9]/
-    const passwordValid = password.length >= 6 && password.includes(`${regex}`)
-    const loginValid = passwordValid && emailValid ? true : false
-
-    
     /* handlers */
     const useHandleSubmit = async() => {
-        setUser(useAuthLogin(email, password))
+            setUser(useAuthLogin(email, password))
     }
 
     const handleEmail = (e: ChangeEvent<HTMLInputElement>) => {
-        // add validation
+        if(e.currentTarget.value.length > 0 && e.currentTarget.value.includes("@"))
         setEmail(e.currentTarget.value)
     }
     const handlePassword = (e: ChangeEvent<HTMLInputElement>) => {
-        // add validation
+        const regex = /^[0-9]/
+        if(e.currentTarget.value.length >= 6 && e.currentTarget.value.includes(`${regex}`))
         setPassword(e.currentTarget.value)
     }
+
+    /* handle logout (reset) */
+    const handleLogout = () => {
+        setLogoutMessage(true)
+        setTimeout(() => setLogoutMessage(false), 2000)
+        setUserData({ status: "",
+        error: false,
+        message: "",
+        data: null })
+        dispatch(setLogout())
+        setEmail("")
+        setPassword("")
+        setUser(null)
+        const auth = getAuth();
+         signOut(auth).then(() => {
+  // Sign-out successful.
+        }).catch((error) => {
+  // An error happened.
+        });
+        }
+
 
     /* update global state via redux */
 
     useEffect(() => {
     
        if(user) {
+        setAuthPending(true)
         const uid: string = user.lastNotifiedUid
         /* redux updates */
         dispatch(setUID({payload: uid}))
         dispatch(setIsAuth())
-        const getusername = async() => {
-            const username = await fetchUserName(user.lastNotifiedUid)
-            setUserData(username)
-           }
-           setAuthPending(true)
-           setTimeout(() => {
-            getusername()
-           }, 2000)
+        setAuthPending(false)
         
-
-       
        } else {
         return
        }
 
        
         
-    }, [user, dispatch, showFromRedux])
+    }, [user, dispatch])
 
     /*side effect for username */
 
-    useEffect(()=>{
-        dispatch(setUsername({payload: userData.data}))
-        setWelcomeUser(userData.data)
-        setAuthPending(false)
-    }, [dispatch, userData])
+  
 
   return (
     <div className={classes.container}>
         {userData.message! && userData.error && 
             <div style={{color: "red"}}>{userData.status} Error</div>}
         {authPending && 
-            <div style={{color: "white"}}>{userData.status} signing in....</div>}
-        <div style={{color: "green" , fontWeight: "bolder"}}>{welcomeUser}</div>
+            <div className={classes.loading} style={{color: "white"}}>{userData.status} signing in....</div>}
+        {logoutMessage && 
+            <div className={classes.welcome} style={{color: "white" , fontWeight: "bolder"}}>Successfully logged out</div>
+        }
+        {userData.data && 
+        <div className={classes.welcome} style={{color: "white" , fontWeight: "bolder"}}>Welcome back {welcomeUser}</div>}
         
 
         {!showFromRedux && 
@@ -115,7 +123,11 @@ const Login: React.FC = () => {
         
        
         {showFromRedux && 
-        <button>logout</button>}
+        <button onClick={handleLogout}>logout</button>}
+        {showFromRedux && 
+        <p> SHOULD ONLY BE VISIBLE IF LOGGED IN - Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+            Qui facere aperiam debitis laborum atque? Velit sunt iste ea similique vitae deleniti 
+            fuga fugiat exercitationem veritatis.</p>}
         
     </div>
   )
