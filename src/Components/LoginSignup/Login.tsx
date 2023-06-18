@@ -50,7 +50,18 @@ const Login: React.FC = () => {
         const uid = user.lastNotifiedUid
             dispatch(setUID({payload: uid}))
             dispatch(setIsAuth())
-            
+       const checkAdmin = async() => {}
+       // gets username
+       const fethUserName = async() => {
+       const response = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/users/${uid}.json`)
+       if(response!.ok) {
+        const username = await response.json()
+        return username
+       } else {
+        return
+       }
+       
+       }   
        } else {
         return
        }
