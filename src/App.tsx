@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Home from './Components/Home/Home';
 import classes from "./App.module.css"
 import Navbar from './Components/Nav/Navbar';
+import TopNav from './Components/Nav/TopNav';
 
 /* page imports */
 import CreaturesAZ from './Components/Pages/CreaturesAZ/CreaturesAZ';
@@ -28,6 +29,7 @@ function App() {
   return (
     <div className={classes.container}>
       <title>Monsters DB </title>
+      <TopNav />
       <Navbar creaturesAZ={handleShowCreatures} tools={handleShowTools} />
      
       <div data-testid="panel" className={classes.panel}>

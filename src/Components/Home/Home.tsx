@@ -8,7 +8,7 @@ import LoginSignup from '../LoginSignup/LandS'
 
 
 
-const Home = () => {
+const Home: React.FC = () => {
 
 /* todo - create real-time DB  connect using FB for now - 
   clicking button should issue fetch request and store data in state....
@@ -17,36 +17,8 @@ const Home = () => {
 
 
 const [testMonsterOK, setTestMonsterOK] = useState(false)
-const [testMonster, settestMonster] = useState({
-  id: "",
-  name: "",
-  description: "",
-  hp: "",
-  imageURL: ""
-})
-  
-const fetchMonster = async() => {
-  setTestMonsterOK(false)
-  const response = await fetch("https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/monsters/A/Agromole.json")
-  const data = await response.json()
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const imageURL = await useImage(data.imageURL)
-  setTestMonsterOK(true)
-  //console.log(data)
-  //console.log(response)
-  console.log(imageURL)
-  settestMonster({
-        id: data.id,
-        name: data.name,
-        description: data.desc,
-        hp: data.hp,
-        imageURL: imageURL
-       })
-  console.log(testMonster)
  
-  
- 
-}
+
 
   return (
     <div  className={classes.container}>

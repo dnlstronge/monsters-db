@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 3rem;
+    width: 100%;
+    background: rgb(22, 22, 22);
+    
+}
+
+.buttons {
+    margin-left: 70%;
+}
+
+.btn {
+    background: grey;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 2rem;
+    height: 3rem;
+    width: 6rem;
+   
+}
+
+.btn:hover {
+  background: black;
+  cursor: pointer;
+}
