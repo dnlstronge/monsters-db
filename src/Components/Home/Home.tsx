@@ -23,7 +23,7 @@ const [testMonsterOK, setTestMonsterOK] = useState(false)
   return (
     <div  className={classes.container}>
       <section className={classes.lands}>
-        <LoginSignup />
+        
       </section>
        <h5 className={classes.heading}>Welcome to Monsters-db</h5>
        <p className={classes.para}>This front-end app allows users to view and create fictional entries for different types of 

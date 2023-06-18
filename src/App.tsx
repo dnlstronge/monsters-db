@@ -13,6 +13,8 @@ import Places from './Components/Pages/PlacesAZ/Places';
 import Misc from './Components/Pages/MiscAZ/Misc';
 import AddCreature from './Components/Tools/AddCreature';
 import SearchResults from './Components/Pages/SearchResults/SearchResults';
+import Login from './Components/LoginSignup/Login';
+import Signup from './Components/LoginSignup/Signup';
 
 function App() {
   const [showCreaturesAZ, setShowCreaturesAZ] = useState(false)
@@ -35,6 +37,8 @@ function App() {
       <div data-testid="panel" className={classes.panel}>
       <Routes>
           <Route path="/" element={<Home/>}></Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/codex/creaturesaz" element={<CreaturesAZ/>} />
           <Route path="/codex/placesaz" element = {<Places />} />
           <Route path="/codex/miscaz" element = {<Misc />} />
