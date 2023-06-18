@@ -7,6 +7,7 @@ import { RootState } from '../../Redux/store'
 import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from 'firebase/auth'
 import { signOut, getAuth } from 'firebase/auth'
 import fetchUserName from './Helpers/fetchUsername'
+import Greeting from './Greeting/Greeting'
 
 type userDataState = {
     status: string | number
@@ -19,6 +20,7 @@ const Login: React.FC = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [user, setUser] = useState<any>()
+    const [invalidLogin, setInvalidLogin] = useState(false)
     
     /* Auth pending */
     const [authPending, setAuthPending] = useState(false)
@@ -70,8 +72,17 @@ const Login: React.FC = () => {
     const useHandleSubmit = async() => {
            // setUser(useAuthLogin(email, password))
            const authResponse = sendLogin(email, password)
-           dispatch(setIsAuth())
-           dispatch(setUID(authResponse.currentUser))
+           if(authResponse.currentUser) {
+            dispatch(setIsAuth())
+            dispatch(setUID(authResponse.currentUser))
+            setInvalidLogin(false)
+           } else {
+            setInvalidLogin(true)
+            setTimeout(() => {
+                setInvalidLogin(false)
+            }, 1200)
+           }
+          
     }
     const handleEmail = (e: ChangeEvent<HTMLInputElement>) => {
        if(e.currentTarget.value.length > 0 && e.currentTarget.value.includes("@"))
@@ -87,10 +98,6 @@ const Login: React.FC = () => {
     const handleLogout = () => {
         setLogoutMessage(true)
         setTimeout(() => setLogoutMessage(false), 2000)
-        setUserData({ status: "",
-        error: false,
-        message: "",
-        data: null })
         dispatch(setLogout())
         setEmail("")
         setPassword("")
@@ -123,8 +130,8 @@ const Login: React.FC = () => {
 
   return (
     <div className={classes.container}>
-        {userData.message! && userData.error && 
-            <div style={{color: "red"}}>{userData.status} Error</div>}
+        {invalidLogin &&
+            <div style={{color: "red"}}>{userData.status}Invalid login details entered</div>}
         {authPending && 
             <div className={classes.loading} style={{color: "white"}}>{userData.status} signing in....</div>}
         {logoutMessage && 
@@ -135,22 +142,19 @@ const Login: React.FC = () => {
         
 
         {!showFromRedux && 
-        <>
+        <section className={classes.loginSection}>
         <label className={classes.label} htmlFor='_001emailLS'>Email:  </label>
         <input onChange={handleEmail}id="_001emailLS" className={classes.input} type="text"/>
         <label className={classes.label} htmlFor="_001passwordLS">Password: </label>
         <input onChange={handlePassword } id="_001passwordLS" className={classes.input} type="password" ></input>
-        <button onClick={useHandleSubmit}>Login</button>
-        </>}
+        <button className={classes.btn} onClick={useHandleSubmit}>Login</button>
+        </section>}
         
        
         {showFromRedux && 
-        <button onClick={handleLogout}>logout</button>}
-        {showFromRedux && 
-        <p> SHOULD ONLY BE VISIBLE IF LOGGED IN - Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-            Qui facere aperiam debitis laborum atque? Velit sunt iste ea similique vitae deleniti 
-            fuga fugiat exercitationem veritatis.</p>}
-        
+        <>
+            <Greeting />
+        </>}
     </div>
   )
 }
