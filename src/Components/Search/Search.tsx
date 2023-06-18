@@ -12,12 +12,12 @@ const Search:
 React.FC<{
    setTerm: Dispatch<SetStateAction<string>>,
    activeSearch: Dispatch<SetStateAction<boolean>>
-  error: Dispatch<SetStateAction<dataSetProp>>
+   error: Dispatch<SetStateAction<dataSetProp>>
   }> = (props) => {
 
   const [search, setSearch] = useState("")
   
-  const showIfLoggedIn = useSelector((state: RootState) => state.authentication.isAuth)
+  
 
   /* fetch */
 
