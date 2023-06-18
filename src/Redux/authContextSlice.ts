@@ -16,13 +16,14 @@ const authContextSlice = createSlice({
             state.userId = action.payload
         },
         setUsername(state, action) {
+            console.log("state has been updated with username")
+            console.log(action.payload)
             state.username = action.payload
         },
         setAdmin(state) {
             state.admin = true
         },
         setIsAuth(state) {
-            console.log('reducer has fired')
             state.isAuth = true
         },
         setLogout(state) {

@@ -4,6 +4,8 @@
 const fetchUserName = async(uid: string) => {
 
     try {
+        console.log("fetch fires")
+        console.log(uid)
         const response = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/users/${uid}.json`)
         if(response!.ok) {
          const username = await response.json()
