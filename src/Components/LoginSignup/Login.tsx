@@ -72,16 +72,14 @@ const Login: React.FC = () => {
            const authResponse = sendLogin(email, password)
            dispatch(setIsAuth())
            dispatch(setUID(authResponse.currentUser))
-           
     }
-
     const handleEmail = (e: ChangeEvent<HTMLInputElement>) => {
-       // if(e.currentTarget.value.length > 0 && e.currentTarget.value.includes("@"))
+       if(e.currentTarget.value.length > 0 && e.currentTarget.value.includes("@"))
         setEmail(e.currentTarget.value)
     }
     const handlePassword = (e: ChangeEvent<HTMLInputElement>) => {
         const regex = /^[0-9]/
-        // if(e.currentTarget.value.length >= 6 && e.currentTarget.value.includes(`${regex}`))
+        if(e.currentTarget.value.length >= 6 && e.currentTarget.value.includes(`${regex}`))
         setPassword(e.currentTarget.value)
     }
 
