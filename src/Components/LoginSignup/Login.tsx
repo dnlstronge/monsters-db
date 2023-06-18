@@ -4,6 +4,8 @@ import { useAuthLogin } from '../Auth/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { setIsAuth, setUID } from '../../Redux/authContextSlice'
 import { RootState } from '../../Redux/store'
+import useFetchUserName from './Helpers/fetchUsername'
+import fetchUserName from './Helpers/fetchUsername'
 
 
 const Login: React.FC = () => {
@@ -47,21 +49,16 @@ const Login: React.FC = () => {
     useEffect(() => {
     
        if(user) {
-        const uid = user.lastNotifiedUid
-            dispatch(setUID({payload: uid}))
-            dispatch(setIsAuth())
-       const checkAdmin = async() => {}
-       // gets username
-       const fethUserName = async() => {
-       const response = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/users/${uid}.json`)
-       if(response!.ok) {
-        const username = await response.json()
-        return username
-       } else {
-        return
+        const uid: string = user.lastNotifiedUid
+        /* redux updates */
+        dispatch(setUID({payload: uid}))
+        dispatch(setIsAuth())
+       const checkAdmin = async() => {
+        // helper function to follow
        }
-       
-       }   
+       // gets username
+       const username = fetchUserName(uid)
+       console.log(username)
        } else {
         return
        }
