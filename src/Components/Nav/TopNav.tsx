@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import classes from "./TopNav.module.css"
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -16,34 +16,34 @@ const TopNav = () => {
   const handleLogout = () => {
     setLogoutMessage(true)
     dispatch(setLogout())
-        const auth = getAuth();
-         signOut(auth).then(() => {
-          setTimeout(() => {setLogoutMessage(false)}, 1000)
-        }).catch((error) => {
-  // An error happened.
-        });
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      setTimeout(() => { setLogoutMessage(false) }, 1000)
+    }).catch((error) => {
+      // An error happened.
+    });
   }
   return (
     <div className={classes.container}>
-        <section className={classes.buttons}>
-            {!showLoginandSignup && 
-            <Link to="/login">
-                <button className={classes.btn}>Login</button>
-            </Link>}
-            {!showLoginandSignup && 
-            <Link to="/signup">
-                 <button className={classes.btn}>Signup</button> 
-            </Link>}
-            
-            {showLoginandSignup && 
-            <Link to="/login">
-              <button onClick={handleLogout} className={classes.btn}>Logout</button>
-            </Link>
-              }  
-        </section>
-        {logoutMessage && 
-            <div style={{color: "white"}}>Successfully logged out</div>}
-        
+      <section className={classes.buttons}>
+        {!showLoginandSignup &&
+          <Link to="/login">
+            <button className={classes.btn}>Login</button>
+          </Link>}
+        {!showLoginandSignup &&
+          <Link to="/signup">
+            <button className={classes.btn}>Signup</button>
+          </Link>}
+
+        {showLoginandSignup &&
+          <Link to="/login">
+            <button onClick={handleLogout} className={classes.btn}>Logout</button>
+          </Link>
+        }
+      </section>
+      {logoutMessage &&
+        <div style={{ color: "white" }}>Successfully logged out</div>}
+
     </div>
   )
 }
