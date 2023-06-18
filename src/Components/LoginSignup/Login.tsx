@@ -2,16 +2,30 @@ import React, { ChangeEvent, useState, useEffect } from 'react'
 import classes from "./Login.module.css"
 import { useAuthLogin } from '../Auth/auth'
 import { useDispatch, useSelector } from 'react-redux'
-import { setIsAuth, setUID } from '../../Redux/authContextSlice'
+import { setIsAuth, setUID, setUsername } from '../../Redux/authContextSlice'
 import { RootState } from '../../Redux/store'
 import useFetchUserName from './Helpers/fetchUsername'
 import fetchUserName from './Helpers/fetchUsername'
 
+type userDataState = {
+    status: string | number
+    error: boolean
+    message: string | unknown
+    data: null | any
+}
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [user, setUser] = useState<any>()
+
+    /*userdata */
+    const [userData, setUserData] = useState<userDataState>({
+        status: "",
+        error: false,
+        message: "",
+        data: null 
+    })
 
     /* redux dispatch & selector */
     const dispatch = useDispatch()
@@ -57,8 +71,15 @@ const Login: React.FC = () => {
         // helper function to follow
        }
        // gets username
-       const username = fetchUserName(uid)
-       console.log(username)
+       const getusername = async() => {
+        const username = await fetchUserName(uid)
+        setUserData(username)
+        console.log("username had been set in redux")
+        dispatch(setUsername({payload: username.data}))
+       }
+       getusername()
+
+       
        } else {
         return
        }

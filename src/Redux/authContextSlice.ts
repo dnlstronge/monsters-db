@@ -5,6 +5,7 @@ const authContextSlice = createSlice({
     name: "authentication",
     initialState: {
         userId: "",
+        username: "",
         admin: false,
         isAuth: false 
 
@@ -13,6 +14,9 @@ const authContextSlice = createSlice({
     reducers: {
         setUID (state, action) {
             state.userId = action.payload
+        },
+        setUsername(state, action) {
+            state.username = action.payload
         },
         setAdmin(state) {
             state.admin = true
@@ -31,5 +35,5 @@ const authContextSlice = createSlice({
    
 })
 
-export const {setUID, setAdmin, setIsAuth, setLogout} = authContextSlice.actions
+export const {setUID, setUsername, setAdmin, setIsAuth, setLogout} = authContextSlice.actions
 export default authContextSlice.reducer
