@@ -8,6 +8,7 @@ import postCreatureImage from "./Hooks/postCreatureImage"
 import { getDownloadURL, ref} from "firebase/storage";
 import { projectStorage } from "../../firebase/config";
 import { uploadBytes } from "firebase/storage";
+import AdminMessage from "../Admin/AdminMessage"
 
 
 
@@ -221,6 +222,7 @@ const AddCreature = () => {
             {postResponse.status === "failed" &&
             <PostFailure text={postResponse.message}/>}
             <h3 className={classes.heading}>Add to database...</h3>
+            <AdminMessage />
             <form onSubmit={handleSubmit}>
                 {/* Name */}
                 <section className={classes.formSection}>
