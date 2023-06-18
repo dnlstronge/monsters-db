@@ -4,7 +4,7 @@ import classes from "./AdminMessage.module.css"
 const AdminMessage = () => {
   return (
     <div className={classes.container}>
-        <p>You need to log in with an admin account to make changes to the database</p>
+        <p className={classes.para}>You need to log in with an admin account to make changes to the database</p>
     </div>
   )
 }
