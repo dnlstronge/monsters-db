@@ -17,7 +17,10 @@
 
 }
 .para {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 .intro {
     color: white;

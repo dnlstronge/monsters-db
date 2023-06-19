@@ -53,8 +53,6 @@ function App() {
         {!showCreaturesAZ && !showCreatureTool &&
         <p>Coming soon...</p>} */}
       </div>
-      
-      <Home />
     </div>
   );
 }
