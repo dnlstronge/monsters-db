@@ -106,20 +106,8 @@ const Login: React.FC = () => {
     }
 
     /* handle logout (reset) */
-    const handleLogout = () => {
-        setLogoutMessage(true)
-        setTimeout(() => setLogoutMessage(false), 2000)
-        dispatch(setLogout())
-        setEmail("")
-        setPassword("")
-        setUser(null)
-        const auth = getAuth();
-         signOut(auth).then(() => {
-  // Sign-out successful.
-        }).catch((error) => {
-  // An error happened.
-        });
-        }
+   
+        
 
 
     /* update global state via redux */
@@ -149,7 +137,7 @@ const Login: React.FC = () => {
             <div style={{color: "red"}}>{userData.status}Invalid login details entered</div>}
         {authPending && 
             <div className={classes.loading} style={{color: "white"}}>{userData.status} signing in....</div>}
-        {showFromRedux && 
+        {!showFromRedux && logoutMessage &&
             <div className={classes.welcome} style={{color: "white" , fontWeight: "bolder"}}>Successfully logged out</div>
         }
         {userData.data && 
@@ -158,7 +146,7 @@ const Login: React.FC = () => {
 
         {!showFromRedux && 
         <section className={classes.loginSection}>
-        <label className={classes.label} htmlFor='_001emailLS'>Email:  </label>
+        <label className={classes.label} htmlFor='_001emailLS'>email: </label>
         <input onChange={handleEmail}id="_001emailLS" className={classes.input} type="text"/>
         <label className={classes.label} htmlFor="_001passwordLS">Password: </label>
         <input onChange={handlePassword } id="_001passwordLS" className={classes.input} type="password" ></input>
