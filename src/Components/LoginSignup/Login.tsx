@@ -129,11 +129,13 @@ const Login: React.FC = () => {
        useEffect(() => {
         if(userData.data !== null) {
             console.log("FIRE REDUCERS!!!")
-            dispatch(setIsAuth)
+            dispatch(setIsAuth())
             dispatch(setUID(userData.data.uid))
+           
         }
         
-       }, [dispatch, userData.data])
+        
+       }, [ dispatch, userData.data])
         
 
 
@@ -147,7 +149,7 @@ const Login: React.FC = () => {
             <div style={{color: "red"}}>{userData.status}Invalid login details entered</div>}
         {authPending && 
             <div className={classes.loading} style={{color: "white"}}>{userData.status} signing in....</div>}
-        {logoutMessage && 
+        {showFromRedux && 
             <div className={classes.welcome} style={{color: "white" , fontWeight: "bolder"}}>Successfully logged out</div>
         }
         {userData.data && 
