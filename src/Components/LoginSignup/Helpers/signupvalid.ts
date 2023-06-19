@@ -19,6 +19,9 @@ export const signupvalid = async(username: string, email: string, password:strin
     if(arrayFromData.includes(username)) {
         validationObject = {...validationObject, invalid: true, userNameError: "Username already exists" }
     }
+    if(username.trim().length === 0) {
+        validationObject = {...validationObject, invalid: true, userNameError: "name cannot be empty"}
+    }
     if(email.includes("@")) {
         validationObject = {...validationObject, invalid: true, emailError: "Please enter a valid email address" }
     }

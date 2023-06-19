@@ -17,17 +17,18 @@ const Signup = () => {
    const [password, setPassword] = useState("")
    const [confirmPassword, setConfirmPassword] = useState("")
    const [validation, setValidation] = useState<validationObj | null>()
+   const [validUsername, setValidUsername] = useState("")
 
   /* handlers */
   const HandleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const isvalid = await signupvalid(username, password, confirmPassword, email)
     console.log(isvalid)
-    // if(isvalid.invalid) {
-    //   setValidation(isvalid)
-    // } else {
-    //   console.log("no validation error")
-    // }
+    if(isvalid.invalid) {
+      setValidUsername(isvalid.userNameError)
+    } else {
+      console.log("no validation error")
+    }
     const signup = useSignup()
     //console.log(isvalid)
   }
@@ -35,6 +36,7 @@ const Signup = () => {
   /* state handlers */
 
   const handleUsername = (e: React.FormEvent<HTMLInputElement>) => {
+    setValidUsername("")
     setUsername(e.currentTarget.value)
   }
   const handleEmail = (e: React.FormEvent<HTMLInputElement>) => {
@@ -52,8 +54,8 @@ const Signup = () => {
       <form className={classes.form} onSubmit={HandleSubmit}>
         <label className={classes.label} htmlFor="__username">Username</label>
         <input onChange={handleUsername}type="text" className={classes.input} id="__username"/>
-        {validation?.userNameError &&
-        <p className="warning"></p>}
+        {validUsername.length > 0 &&
+        <p className="warning">{validUsername}</p>}
         <label className={classes.label}htmlFor="__email">Email</label>
         <input  onChange={handleEmail} className={classes.input} type="email" id="__email" />
         <label className={classes.label} htmlFor="__password">Password</label>

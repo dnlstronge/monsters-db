@@ -20,6 +20,9 @@
 
     
 }
+.warning {
+    color: rgb(241, 107, 107);
+}
 .btn {
     font-size: 17px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
