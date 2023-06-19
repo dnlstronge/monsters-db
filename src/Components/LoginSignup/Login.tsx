@@ -6,7 +6,6 @@ import { setIsAuth, setLogout, setUID, setUsername } from '../../Redux/authConte
 import { RootState } from '../../Redux/store'
 import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from 'firebase/auth'
 import { signOut, getAuth } from 'firebase/auth'
-import fetchUserName from './Helpers/fetchUsername'
 import Greeting from './Greeting/Greeting'
 
 type userDataState = {
@@ -26,13 +25,7 @@ const Login: React.FC = () => {
     const [authPending, setAuthPending] = useState(false)
     const [logoutMessage, setLogoutMessage] = useState(false)
 
-    /*userdata */
-    const [userData, setUserData] = useState<userDataState>({
-        status: "",
-        error: false,
-        message: "",
-        data: null 
-    })
+    
     //const [showUN, setShowUN] = useState(false)
     const [welcomeUser, setWelcomeUser] = useState("")
 
@@ -46,19 +39,12 @@ const Login: React.FC = () => {
         const auth = getAuth();
         setPersistence(auth, browserSessionPersistence)
       .then(async () => {
-        // Existing and future Auth states are now persisted in the current
-        // session only. Closing the window would clear any existing state even
-        // if a user forgets to sign out.
-        // ...
-        // New sign-in will be persisted with session persistence.
+       
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         return userCredential.user
-        // console.log(userID)
-        // return userID;
         
       })
-    
-        
+    /* handle error */
       .catch((error) => {
         console.log(error)
         const errorCode = error.code;
@@ -112,8 +98,6 @@ const Login: React.FC = () => {
 
 
     /* update global state via redux */
-
-   
 
        useEffect(() => {
         if(user) {
