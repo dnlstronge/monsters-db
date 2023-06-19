@@ -73,8 +73,8 @@ const Login: React.FC = () => {
         console.log(error)
         const errorCode = error.code;
         const errorMessage = error.message;
-        return setUserData({
-            status: error.code,
+         setUserData({
+            status: errorCode,
             error: true,
             message: errorMessage,
             data: null
@@ -92,20 +92,8 @@ const Login: React.FC = () => {
     /* handlers */
     const handleSubmit = async() => {
            // setUser(useAuthLogin(email, password))
-            
             const authResponse = sendLogin(email, password)
-            console.log(authResponse)
-            if(authResponse.currentUser !== null) {
-                dispatch(setIsAuth())
-                dispatch(setUID(authResponse.currentUser.uid))
-                setInvalidLogin(false)
-               } else {
-                setInvalidLogin(true)
-                setTimeout(() => {
-                    setInvalidLogin(false)
-                }, 1200)
-               }
-          
+            console.log(authResponse) 
     }
     const handleEmail = (e: ChangeEvent<HTMLInputElement>) => {
        //if(e.currentTarget.value.length > 0 && e.currentTarget.value.includes("@"))
@@ -139,11 +127,13 @@ const Login: React.FC = () => {
    
 
        useEffect(() => {
-        if(user) {
-            console.log("Triggers on render")
+        if(userData.data !== null) {
+            console.log("FIRE REDUCERS!!!")
+            dispatch(setIsAuth)
+            dispatch(setUID(userData.data.uid))
         }
         
-       }, [user])
+       }, [dispatch, userData.data])
         
 
 
