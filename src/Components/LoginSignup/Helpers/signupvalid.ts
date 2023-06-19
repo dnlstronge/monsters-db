@@ -12,6 +12,7 @@ export const signupvalid = async(username: string, email: string, password:strin
     try {
        const checkUsername = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/usernames/.json`)
        const data = await checkUsername.json()
+       console.log(data)
        arrayFromData = Object.keys(data)
        // create array from values
 
