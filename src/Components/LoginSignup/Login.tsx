@@ -12,7 +12,7 @@ import Greeting from './Greeting/Greeting'
 type userDataState = {
     status: string | number
     error: boolean
-    message: string | unknown
+    message: string 
     data: null | any
 }
 
@@ -135,14 +135,14 @@ const Login: React.FC = () => {
 
   return (
     <div className={classes.container}>
-        {invalidLogin &&
-            <div style={{color: "red"}}>{userData.status}Invalid login details entered</div>}
+        {userData.error && 
+            <div className={classes.error}>{userData.message}</div>}
       
         
 
         {!showFromRedux && 
         <section className={classes.loginSection}>
-        <label className={classes.label} htmlFor='_001emailLS'>email: </label>
+        <label className={classes.label} htmlFor='_001emailLS'>Email: </label>
         <input value={email} onChange={handleEmail}id="_001emailLS" className={classes.input} type="text"/>
         <label className={classes.label} htmlFor="_001passwordLS">Password: </label>
         <input value={password} onChange={handlePassword } id="_001passwordLS" className={classes.input} type="password" ></input>
