@@ -1,0 +1,39 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 50%;
+    margin-left: 2rem;
+}
+.label {
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 2rem;
+    width: 12rem;
+    margin: 0.3rem;
+ 
+}
+.input {
+    height: 2rem;
+    width: 12rem;
+    margin: 0.4rem;
+
+    
+}
+.btn {
+    font-size: 17px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    color: white;
+    background: grey;
+    height: 3rem;
+    width: 10rem;
+    margin: 1.2rem;
+    border-radius: 6px;
+    border: 2px solid white;
+}
+.btn:hover {
+    cursor: pointer;
+    background-color: bisque;
+    color: grey;
+}
