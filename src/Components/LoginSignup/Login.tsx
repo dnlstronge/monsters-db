@@ -6,8 +6,8 @@ import { setIsAuth, setLogout, setUID, setUsername } from '../../Redux/authConte
 import { RootState } from '../../Redux/store'
 import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from 'firebase/auth'
 import { signOut, getAuth } from 'firebase/auth'
+import fetchUserName from './Helpers/fetchUsername'
 import Greeting from './Greeting/Greeting'
-import 
 
 type userDataState = {
     status: string | number
@@ -15,7 +15,6 @@ type userDataState = {
     message: string | unknown
     data: null | any
 }
-
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState("")
@@ -27,7 +26,13 @@ const Login: React.FC = () => {
     const [authPending, setAuthPending] = useState(false)
     const [logoutMessage, setLogoutMessage] = useState(false)
 
-    
+    /*userdata */
+    const [userData, setUserData] = useState<userDataState>({
+        status: "",
+        error: false,
+        message: "",
+        data: null 
+    })
     //const [showUN, setShowUN] = useState(false)
     const [welcomeUser, setWelcomeUser] = useState("")
 
@@ -41,12 +46,19 @@ const Login: React.FC = () => {
         const auth = getAuth();
         setPersistence(auth, browserSessionPersistence)
       .then(async () => {
-       
+        // Existing and future Auth states are now persisted in the current
+        // session only. Closing the window would clear any existing state even
+        // if a user forgets to sign out.
+        // ...
+        // New sign-in will be persisted with session persistence.
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         return userCredential.user
+        // console.log(userID)
+        // return userID;
         
       })
-    /* handle error */
+    
+        
       .catch((error) => {
         console.log(error)
         const errorCode = error.code;
@@ -54,31 +66,45 @@ const Login: React.FC = () => {
       });
       return auth
     }
-    
+
+    /* validation */
+    const regex = /^[0-9]/
+    const emailValid = email.length > 0 && email.includes("@") 
+    const passwordValid = password.length >= 6 && password.includes(`${regex}`)
+    const validLogin = emailValid && passwordValid
 
     /* handlers */
-    const useHandleSubmit = async() => {
+    const handleSubmit = async() => {
            // setUser(useAuthLogin(email, password))
-           const authResponse = sendLogin(email, password)
-           if(authResponse.currentUser !== null) {
-            dispatch(setIsAuth())
-            dispatch(setUID(authResponse.currentUser.uid))
-            setInvalidLogin(false)
-           } else {
-            setInvalidLogin(true)
-            setTimeout(() => {
+            if(email.length > 0 && password.length > 0) {
+            const authResponse = sendLogin(email, password)
+            if(authResponse.currentUser !== null) {
+                dispatch(setIsAuth())
+                dispatch(setUID(authResponse.currentUser.uid))
                 setInvalidLogin(false)
-            }, 1200)
-           }
+               } else {
+                setInvalidLogin(true)
+                setTimeout(() => {
+                    setInvalidLogin(false)
+                }, 1200)
+               }
+            } else {
+                handleSubmit()
+            }
+            
+            
+           
+           
+         
           
     }
     const handleEmail = (e: ChangeEvent<HTMLInputElement>) => {
-       if(e.currentTarget.value.length > 0 && e.currentTarget.value.includes("@"))
+       //if(e.currentTarget.value.length > 0 && e.currentTarget.value.includes("@"))
         setEmail(e.currentTarget.value)
     }
     const handlePassword = (e: ChangeEvent<HTMLInputElement>) => {
         const regex = /^[0-9]/
-       if(e.currentTarget.value.length >= 6 && e.currentTarget.value.includes(`${regex}`))
+       //if(e.currentTarget.value.length >= 6 && e.currentTarget.value.includes(`${regex}`))
         setPassword(e.currentTarget.value)
     }
 
@@ -100,6 +126,8 @@ const Login: React.FC = () => {
 
 
     /* update global state via redux */
+
+   
 
        useEffect(() => {
         if(user) {
@@ -133,7 +161,7 @@ const Login: React.FC = () => {
         <input onChange={handleEmail}id="_001emailLS" className={classes.input} type="text"/>
         <label className={classes.label} htmlFor="_001passwordLS">Password: </label>
         <input onChange={handlePassword } id="_001passwordLS" className={classes.input} type="password" ></input>
-        <button className={classes.btn} onClick={useHandleSubmit}>Login</button>
+        <button className={classes.btn} onClick={handleSubmit}>Login</button>
         </section>}
         
        
