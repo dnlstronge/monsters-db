@@ -9,6 +9,7 @@ export const signupvalid = async(username: string, email: string, password:strin
     let arrayFromData: string[] = []
     const P1 = password
     const P2 = confirmPassword
+    const numRegex = /^[0-9]/g
     console.log(confirmPassword)
     console.log(password)
     try {
@@ -22,13 +23,16 @@ export const signupvalid = async(username: string, email: string, password:strin
         validationObject = {...validationObject, invalid: true, userNameError: "Username already exists" }
     }
     if(username.trim().length === 0) {
-        validationObject = {...validationObject, invalid: true, userNameError: "username cannot be empty"}
+        validationObject = {...validationObject, invalid: true, userNameError: "Username cannot be empty"}
     }
     if(email.trim().length === 0) {
         validationObject = {...validationObject, invalid: true, emailError: "Please enter a valid email address" }
     }
+    if(!numRegex.test(P1)) {
+        validationObject = {...validationObject, invalid: true, passwordError: "Password should contain a number"}
+    }
     if(P1 !== P2) {
-        validationObject = {...validationObject, invalid: true, passwordError: "password does not match"}
+        validationObject = {...validationObject, invalid: true, passwordError: "Password does not match"}
     }
 
     } catch (error) {
