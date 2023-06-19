@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
     width: 60%;
-    margin-left: 1rem;
+    margin-left: 4rem;
 }
 .label {
     font-size: 10px;
@@ -40,14 +40,14 @@
     border-radius: 4px;
     background-color: #f8f8f8;
     resize: none;
-    width: 40%;
+    width: 46%;
 }
 .btn {
     background: rgb(236, 234, 234);
     align-self: center;
     height: 2rem;
     width: 7rem;
-    margin-left: 3%;
+    margin-left: 9%;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
     border-radius: 3px;

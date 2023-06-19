@@ -5,8 +5,9 @@
     border-radius: 6px;
 }
 .para {
-    color: rgb(241, 201, 241);
-    font-size: 16px;
+    color: rgb(246, 192, 192);
+    font-size: 14px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
+    background: grey;;
 }

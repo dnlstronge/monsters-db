@@ -25,7 +25,7 @@ const Signup = () => {
   const HandleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const isvalid = await signupvalid(username, email, password, confirmPassword,)
-    console.log(isvalid)
+    
     if(isvalid.invalid) {
       setValidUsername(isvalid.userNameError)
       setValidEmail(isvalid.emailError)
@@ -49,12 +49,12 @@ const Signup = () => {
   }
   const handlePassword = (e: React.FormEvent<HTMLInputElement>) => {
     setValidPassword('')
-    console.log(e.currentTarget.value)
+    
     setPassword(e.currentTarget.value)
   }
   const handleConfirmPassword = (e: React.FormEvent<HTMLInputElement>) => {
     setConfirmPassword(e.currentTarget.value)
-    console.log(e.currentTarget.value)
+   
   }
   return (
     <div className={classes.container}>
