@@ -51,15 +51,15 @@ const Signup = () => {
 
       <form className={classes.form} onSubmit={HandleSubmit}>
         <label className={classes.label} htmlFor="__username">Username</label>
-        <input type="text" className={classes.input} id="__username"/>
+        <input onChange={handleUsername}type="text" className={classes.input} id="__username"/>
         {validation?.userNameError &&
         <p className="warning"></p>}
         <label className={classes.label}htmlFor="__email">Email</label>
-        <input className={classes.input} type="email" id="__email" />
+        <input  onChange={handleEmail} className={classes.input} type="email" id="__email" />
         <label className={classes.label} htmlFor="__password">Password</label>
-        <input className={classes.input} type="password" id="__password"/>
+        <input  onChange={handlePassword} className={classes.input} type="password" id="__password"/>
         <label className={classes.label} htmlFor="__password-b">Confirm password</label>
-        <input className={classes.input} type="password" id="__password-b"/>
+        <input  onChange={handleConfirmPassword} className={classes.input} type="password" id="__password-b"/>
         <button className={classes.btn} type="submit">Submit</button>
       </form>
     </div>
