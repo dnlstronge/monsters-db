@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import classes from "./Home.module.css"
-import useImage from '../Hooks/useImage'
-import LoginSignup from '../LoginSignup/LandS'
 
 
 
@@ -14,10 +12,6 @@ const Home: React.FC = () => {
   clicking button should issue fetch request and store data in state....
 
 */ 
-
-
-const [testMonsterOK, setTestMonsterOK] = useState(false)
- 
 
 
   return (
@@ -34,6 +28,9 @@ const [testMonsterOK, setTestMonsterOK] = useState(false)
        <p className={classes.para}>I've built this project to try out different forms of data manipulation and api requests while 
         having a bit of fun with it creatively. It hopefully showcases some of my skills with React as it makes use of
         a lot of what I have learned to date. 
+       </p>
+       <p className={classes.para}>The application includes basic authentication, and allows users to create a basic account
+       and log in, users with admin privilages can also use tools to make additions to the db
        </p>
     </div>
   )
