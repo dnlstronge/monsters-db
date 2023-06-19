@@ -7,6 +7,7 @@ import { RootState } from '../../Redux/store'
 import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from 'firebase/auth'
 import { signOut, getAuth } from 'firebase/auth'
 import Greeting from './Greeting/Greeting'
+import 
 
 type userDataState = {
     status: string | number
@@ -14,31 +15,7 @@ type userDataState = {
     message: string | unknown
     data: null | any
 }
-const checkAdmin = async() => {
-    try {
-       const response = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/adminKey/.json`)
-       if (response!.ok ){
-        const key = response.json()
-        return {
-            status: response.status,
-            error: false,
-            message: key
-        }
-       } else {
-        return {
-            status: response.status,
-            error: true,
-            message: `${response.status} - Key not found`
-        }
-       }
-    } catch (error) {
-       return {
-        status: "unable to fetch key",
-        error: true,
-        message: error
-       }
-    }
-}
+
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState("")
