@@ -52,8 +52,18 @@ const Login: React.FC = () => {
         // ...
         // New sign-in will be persisted with session persistence.
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        return userCredential.user
-        // console.log(userID)
+        
+        console.log(userCredential.user)
+       
+            setUserData({
+                status: "Success",
+                error: false,
+                message: "User logged in",
+                data: userCredential.user
+            })
+         
+
+
         // return userID;
         
       })
@@ -63,6 +73,12 @@ const Login: React.FC = () => {
         console.log(error)
         const errorCode = error.code;
         const errorMessage = error.message;
+        return setUserData({
+            status: error.code,
+            error: true,
+            message: errorMessage,
+            data: null
+        })
       });
       return auth
     }
@@ -76,8 +92,9 @@ const Login: React.FC = () => {
     /* handlers */
     const handleSubmit = async() => {
            // setUser(useAuthLogin(email, password))
-            if(email.length > 0 && password.length > 0) {
+            
             const authResponse = sendLogin(email, password)
+            console.log(authResponse)
             if(authResponse.currentUser !== null) {
                 dispatch(setIsAuth())
                 dispatch(setUID(authResponse.currentUser.uid))
@@ -88,14 +105,6 @@ const Login: React.FC = () => {
                     setInvalidLogin(false)
                 }, 1200)
                }
-            } else {
-                handleSubmit()
-            }
-            
-            
-           
-           
-         
           
     }
     const handleEmail = (e: ChangeEvent<HTMLInputElement>) => {
