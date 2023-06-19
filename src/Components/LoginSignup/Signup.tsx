@@ -18,14 +18,18 @@ const Signup = () => {
    const [confirmPassword, setConfirmPassword] = useState("")
    const [validation, setValidation] = useState<validationObj | null>()
    const [validUsername, setValidUsername] = useState("")
+   const [validEmail, setValidEmail] = useState("")
+   const [validPassword, setValidPassword] = useState("")
 
   /* handlers */
   const HandleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const isvalid = await signupvalid(username, password, confirmPassword, email)
+    const isvalid = await signupvalid(username, email, password, confirmPassword,)
     console.log(isvalid)
     if(isvalid.invalid) {
       setValidUsername(isvalid.userNameError)
+      setValidEmail(isvalid.emailError)
+      setValidPassword(isvalid.passwordError)
     } else {
       console.log("no validation error")
     }
@@ -40,13 +44,17 @@ const Signup = () => {
     setUsername(e.currentTarget.value)
   }
   const handleEmail = (e: React.FormEvent<HTMLInputElement>) => {
+    setValidEmail("")
     setEmail(e.currentTarget.value)
   }
   const handlePassword = (e: React.FormEvent<HTMLInputElement>) => {
+    setValidPassword('')
+    console.log(e.currentTarget.value)
     setPassword(e.currentTarget.value)
   }
   const handleConfirmPassword = (e: React.FormEvent<HTMLInputElement>) => {
     setConfirmPassword(e.currentTarget.value)
+    console.log(e.currentTarget.value)
   }
   return (
     <div className={classes.container}>
@@ -54,12 +62,19 @@ const Signup = () => {
       <form className={classes.form} onSubmit={HandleSubmit}>
         <label className={classes.label} htmlFor="__username">Username</label>
         <input onChange={handleUsername}type="text" className={classes.input} id="__username"/>
+         {/* validity warning */}
         {validUsername.length > 0 &&
-        <p className="warning">{validUsername}</p>}
+        <p className={classes.warning}>{validUsername}</p>}
         <label className={classes.label}htmlFor="__email">Email</label>
         <input  onChange={handleEmail} className={classes.input} type="email" id="__email" />
+          {/* validity warning */}
+          {validEmail.length > 0 &&
+        <p className={classes.warning}>{validEmail}</p>}
         <label className={classes.label} htmlFor="__password">Password</label>
         <input  onChange={handlePassword} className={classes.input} type="password" id="__password"/>
+        {/* validity warning */}
+        {validPassword.length > 0 &&
+        <p className={classes.warning}>{validPassword}</p>}
         <label className={classes.label} htmlFor="__password-b">Confirm password</label>
         <input  onChange={handleConfirmPassword} className={classes.input} type="password" id="__password-b"/>
         <button className={classes.btn} type="submit">Submit</button>
