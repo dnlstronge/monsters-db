@@ -24,7 +24,7 @@ const Login: React.FC = () => {
     
     /* Auth pending */
     const [authPending, setAuthPending] = useState(false)
-    const [logoutMessage, setLogoutMessage] = useState(false)
+    const [hasLoggedOut, setHasLoggedOut] = useState(false)
 
     /*userdata */
     const [userData, setUserData] = useState<userDataState>({
@@ -94,6 +94,8 @@ const Login: React.FC = () => {
            // setUser(useAuthLogin(email, password))
             const authResponse = sendLogin(email, password)
             console.log(authResponse) 
+            setEmail("")
+            setPassword("")
     }
     const handleEmail = (e: ChangeEvent<HTMLInputElement>) => {
        //if(e.currentTarget.value.length > 0 && e.currentTarget.value.includes("@"))
@@ -135,21 +137,15 @@ const Login: React.FC = () => {
     <div className={classes.container}>
         {invalidLogin &&
             <div style={{color: "red"}}>{userData.status}Invalid login details entered</div>}
-        {authPending && 
-            <div className={classes.loading} style={{color: "white"}}>{userData.status} signing in....</div>}
-        {!showFromRedux && logoutMessage &&
-            <div className={classes.welcome} style={{color: "white" , fontWeight: "bolder"}}>Successfully logged out</div>
-        }
-        {userData.data && 
-        <div className={classes.welcome} style={{color: "white" , fontWeight: "bolder"}}>Welcome back {welcomeUser}</div>}
+      
         
 
         {!showFromRedux && 
         <section className={classes.loginSection}>
         <label className={classes.label} htmlFor='_001emailLS'>email: </label>
-        <input onChange={handleEmail}id="_001emailLS" className={classes.input} type="text"/>
+        <input value={email} onChange={handleEmail}id="_001emailLS" className={classes.input} type="text"/>
         <label className={classes.label} htmlFor="_001passwordLS">Password: </label>
-        <input onChange={handlePassword } id="_001passwordLS" className={classes.input} type="password" ></input>
+        <input value={password} onChange={handlePassword } id="_001passwordLS" className={classes.input} type="password" ></input>
         <button className={classes.btn} onClick={handleSubmit}>Login</button>
         </section>}
         

@@ -36,6 +36,7 @@ const TopNav = () => {
     setPage({login: true, signup: false})
   }
   return (
+    <>
     <div className={classes.container}>
       <section className={classes.buttons}>
         {!showLoginandSignup && page.login && 
@@ -53,10 +54,14 @@ const TopNav = () => {
           </Link>
         }
       </section>
-      {logoutMessage &&
-        <div style={{ color: "white" }}>Successfully logged out</div>}
+    
 
     </div>
+    <section className={classes.feedbackSection} id="user-feedback">
+    {logoutMessage &&
+        <div style={{ color: "white" }}>Successfully logged out</div>}
+    </section>
+    </>
   )
 }
 
