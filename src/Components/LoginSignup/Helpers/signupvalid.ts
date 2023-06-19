@@ -28,9 +28,7 @@ export const signupvalid = async(username: string, email: string, password:strin
     if(email.trim().length === 0) {
         validationObject = {...validationObject, invalid: true, emailError: "Please enter a valid email address" }
     }
-    if(!numRegex.test(P1)) {
-        validationObject = {...validationObject, invalid: true, passwordError: "Password should contain a number"}
-    }
+   
     if(P1 !== P2) {
         validationObject = {...validationObject, invalid: true, passwordError: "Password does not match"}
     }
