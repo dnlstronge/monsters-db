@@ -28,7 +28,9 @@ export const signupvalid = async(username: string, email: string, password:strin
     if(email.trim().length === 0) {
         validationObject = {...validationObject, invalid: true, emailError: "Please enter a valid email address" }
     }
-   
+    if(P1.trim().length <= 6) {
+        validationObject = {...validationObject, invalid: true, passwordError: "Password be longer than 6 characters"}
+    }
     if(P1 !== P2) {
         validationObject = {...validationObject, invalid: true, passwordError: "Password does not match"}
     }
