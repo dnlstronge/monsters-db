@@ -3,12 +3,10 @@ import Home from './Components/Home/Home';
 import classes from "./App.module.css"
 import Navbar from './Components/Nav/Navbar';
 import TopNav from './Components/Nav/TopNav';
-
+import { Route, Routes } from 'react-router-dom';
 /* page imports */
 import CreaturesAZ from './Components/Pages/CreaturesAZ/CreaturesAZ';
 import Tools from './Components/Tools/Tools';
-import Search from './Components/Search/Search';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Places from './Components/Pages/PlacesAZ/Places';
 import Misc from './Components/Pages/MiscAZ/Misc';
 import AddCreature from './Components/Tools/AddCreature';
@@ -33,7 +31,6 @@ function App() {
       <title>Monsters DB </title>
       <TopNav />
       <Navbar creaturesAZ={handleShowCreatures} tools={handleShowTools} />
-     
       <div data-testid="panel" className={classes.panel}>
       <Routes>
           <Route path="/" element={<Home/>}></Route>

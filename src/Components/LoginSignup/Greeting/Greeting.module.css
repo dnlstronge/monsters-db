@@ -1,6 +1,19 @@
 .container {
     color: white;
+    background: black;
+    padding: 1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .welcome { 
     color: white;
+}
+.heading {
+    font-size: 18px;
+    margin: 1.5rem;
+    width: 10rem;
+}
+
+.para {
+
 }

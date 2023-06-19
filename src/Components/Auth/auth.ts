@@ -24,5 +24,5 @@ export const useAuthLogin = (email: string, password: string) => {
     const errorCode = error.code;
     const errorMessage = error.message;
   });
-  return auth
+  return auth;
 }

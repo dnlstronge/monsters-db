@@ -12,7 +12,7 @@ const Card: React.FC<cardProps> = (props) => {
         <img className={classes.image} src={props.image} alt={props.name} />
         <div className={classes.stats}>
           <StatBar hp={props.hp} attack={props.attack} defence={props.defence} magic={props.magic} />
-          <p>{props.desc}</p>
+          <p className={classes.para}>{props.desc}</p>
         </div>
       </section>
 
