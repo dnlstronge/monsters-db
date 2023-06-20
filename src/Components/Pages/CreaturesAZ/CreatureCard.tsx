@@ -7,10 +7,6 @@ const CreatureCard: React.FC<creatureCardProps> = (props) => {
 
     // gs://monsterdb-30be5.appspot.com/monsters/agromole.png
 
-   
-   
-  
-
   return (
     <>
     

@@ -1,12 +1,10 @@
 import React, { ChangeEvent, useState, useEffect } from 'react'
 import classes from "./Login.module.css"
-import { useAuthLogin } from '../Auth/auth'
 import { useDispatch, useSelector } from 'react-redux'
-import { setIsAuth, setLogout, setUID, setUsername } from '../../Redux/authContextSlice'
+import { setIsAuth, setUID, } from '../../Redux/authContextSlice'
 import { RootState } from '../../Redux/store'
 import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from 'firebase/auth'
-import { signOut, getAuth } from 'firebase/auth'
-import fetchUserName from './Helpers/fetchUsername'
+import { getAuth } from 'firebase/auth'
 import Greeting from './Greeting/Greeting'
 
 type userDataState = {
