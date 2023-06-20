@@ -9,7 +9,7 @@ type returnObjType = {
     user: null | any
 }
 
-export const useSignup = (email: string, password: string, username: string, valid: boolean) => {
+export const useSignup = async(email: string, password: string, username: string, valid: boolean) => {
     let returnObj: returnObjType = {
         status: "",
         message: "",
@@ -22,7 +22,7 @@ export const useSignup = (email: string, password: string, username: string, val
           .then((userCredential) => {
             const user = userCredential.user
             updateProfile(user, {displayName: username} )
-           returnObj = {
+            returnObj = {
             status: "success",
             message: "New user added",
             error: false,
@@ -35,13 +35,14 @@ export const useSignup = (email: string, password: string, username: string, val
             const errorMessage = error.message;
             returnObj = {
                 status: "failed",
-                message: ` ${error.code} - ${error.message}`,
+                message: ` ${errorCode} - ${errorMessage}`,
                 error: true,
                 user: null
             }
           });
           //return auth
     } 
-    return returnObj;
+    const newUser = await createUser()
+    return  newUser;
 }
 
