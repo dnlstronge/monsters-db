@@ -20,6 +20,14 @@ const Signup = () => {
    const [validUsername, setValidUsername] = useState("")
    const [validEmail, setValidEmail] = useState("")
    const [validPassword, setValidPassword] = useState("")
+   const [signedIn, setSignedIn] = useState({
+    status: "",
+    message: "",
+    error: false,
+    user: null
+
+   })
+   
 
   /* handlers */
   const HandleSubmit = async (e: React.FormEvent) => {
@@ -32,9 +40,15 @@ const Signup = () => {
       setValidPassword(isvalid.passwordError)
     } else {
       console.log("no validation error")
+      
     }
-    const signup = useSignup()
+    const valid = isvalid.invalid
+    const auth = useSignup(email, password, username, valid )
+    console.log(auth)
+
     //console.log(isvalid)
+   
+    
   }
 
   /* state handlers */
