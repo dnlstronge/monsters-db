@@ -14,7 +14,7 @@ export const useSignup = async(email: string, password: string, username: string
       
         const auth =  getAuth();
         const getUserObject = async() => {
-
+         
             try {
             const createUser = await createUserWithEmailAndPassword(auth, email, password)
             const addUsername = await updateProfile(createUser.user, {displayName: username})
@@ -34,9 +34,19 @@ export const useSignup = async(email: string, password: string, username: string
               } 
             }       
         }
-        
-         const userAuth = await getUserObject()
-         return userAuth;
+        if(!valid) {
+          console.log(valid)
+          const userAuth = await getUserObject()
+          return userAuth;
+        } else {
+          return {
+            status: "failed",
+            message:"invalid sign up details provided",
+            error: true,
+            user: null,
+          }
+        }
+         
           
     } 
 

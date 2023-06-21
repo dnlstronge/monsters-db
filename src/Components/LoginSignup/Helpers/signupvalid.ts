@@ -36,6 +36,7 @@ export const signupvalid = async(username: string, email: string, password:strin
 
     } catch (error) {
         console.log(error)
+        console.log("post failed check")
     }
     return validationObject;
     

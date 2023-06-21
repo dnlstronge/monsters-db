@@ -65,16 +65,12 @@ const Signup = () => {
   /* update global state via redux */
 useEffect(() => {
   //update state
-    console.log(authFromRedux)
-    console.log(usernameFromRedux)
-    console.log(uidFromRedux)
     if(signedIn?.user) {
       dispatch(setUID(signedIn?.user?.uid))
       dispatch(setUN(signedIn?.user?.displayName))
       dispatch(setIsAuth())
     }
    
-    console.log("redux fires")
 }, [signedIn, dispatch])
   /* state handlers */
 
@@ -97,12 +93,12 @@ useEffect(() => {
   return (
     <div className={classes.container}>
         {authFromRedux && 
-        <p style={{color: "white"}}>Is auth active</p>}
+        <p style={{color: "white"}}>Successfully created an account</p>}
         {uidFromRedux && 
-        <p style={{color: "white"}}>Have a valid user ID</p>}
+        <p style={{color: "white"}}>Have a valid user ID{uidFromRedux}</p>}
         {usernameFromRedux && 
-        <p style={{color: "white"}}>Have a username in place</p>}
-
+        <p style={{color: "white"}}>Hello {usernameFromRedux}, thanks for signing up</p>}
+      {!authFromRedux && 
       <form className={classes.form} onSubmit={HandleSubmit}>
         <label className={classes.label} htmlFor="__username">Username</label>
         <input onChange={handleUsername}type="text" className={classes.input} id="__username"/>
@@ -122,7 +118,7 @@ useEffect(() => {
         <label className={classes.label} htmlFor="__password-b">Confirm password</label>
         <input  onChange={handleConfirmPassword} className={classes.input} type="password" id="__password-b"/>
         <button className={classes.btn} type="submit">Submit</button>
-      </form>
+      </form>}
     </div>
   )
 }
