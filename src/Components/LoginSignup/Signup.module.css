@@ -5,6 +5,13 @@
     width: 50%;
     margin-left: 2rem;
 }
+
+.loading {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    margin-right: 3rem;
+}
 .label {
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;

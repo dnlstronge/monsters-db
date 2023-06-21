@@ -1,0 +1,9 @@
+.container {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 1rem;
+}
+.heading {
+    margin-bottom: 1rem;
+    border-bottom: 2px solid white;
+    text-align: center;
+}

@@ -6,7 +6,10 @@ import { User } from 'firebase/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { setIsAuth, setUID, setUN } from '../../Redux/authContextSlice'
 import { RootState } from '../../Redux/store'
+import Greeting from './Greeting/Greeting'
 import ErrorMessage from "./Errors/Error"
+import NewUserGreet from './Greeting/NewUserGreet'
+
 
 type validationObj = {
   invalid: boolean
@@ -27,11 +30,12 @@ const Signup = () => {
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
    const [confirmPassword, setConfirmPassword] = useState("")
-   const [validation, setValidation] = useState<validationObj | null>()
+   //const [validation, setValidation] = useState<validationObj | null>()
    const [validUsername, setValidUsername] = useState("")
    const [validEmail, setValidEmail] = useState("")
    const [validPassword, setValidPassword] = useState("")
    const [signedIn, setSignedIn] = useState<userProps>()
+   const [signingUserUp, setSigningUserUp] = useState(false)
    const dispatch = useDispatch()
 
 
@@ -44,6 +48,7 @@ const Signup = () => {
    /* handlers */
   const HandleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setSigningUserUp(true)
     const isvalid = await signupvalid(username, email, password, confirmPassword,)
     
     if(isvalid.invalid) {
@@ -57,6 +62,7 @@ const Signup = () => {
     const valid = isvalid.invalid
     const auth = await useSignup(email, password, username, valid )
     setSignedIn(auth)
+    setSigningUserUp(false)
 
     //console.log(isvalid)
    
@@ -93,13 +99,16 @@ useEffect(() => {
   }
   return (
     <div className={classes.container}>
+        
+      
+    
+        {signingUserUp &&  
+        <p className={classes.loading}>Signing user up...</p>}
         {authFromRedux && 
-        <p style={{color: "white"}}>Successfully created an account</p>}
-        {uidFromRedux && 
-        <p style={{color: "white"}}>Have a valid user ID{uidFromRedux}</p>}
-        {usernameFromRedux && 
-        <p style={{color: "white"}}>Hello {usernameFromRedux}, thanks for signing up</p>}
-        {signedIn?.message &&
+        <NewUserGreet username={usernameFromRedux} />}
+        {authFromRedux && 
+        <Greeting />}
+        {signedIn?.error &&
         <ErrorMessage message={signedIn?.message} />}
       {!authFromRedux && 
       <form className={classes.form} onSubmit={HandleSubmit}>
