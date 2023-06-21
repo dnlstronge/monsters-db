@@ -10,12 +10,11 @@ export const signupvalid = async(username: string, email: string, password:strin
     const P1 = password
     const P2 = confirmPassword
     const numRegex = /^[0-9]/g
-    console.log(confirmPassword)
-    console.log(password)
+   
     try {
        const checkUsername = await fetch(`https://monsterdb-30be5-default-rtdb.europe-west1.firebasedatabase.app/usernames/.json`)
        const data = await checkUsername.json()
-       console.log(data)
+       //console.log(data)
        arrayFromData = Object.keys(data)
        // create array from values
 

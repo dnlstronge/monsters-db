@@ -10,43 +10,36 @@ type returnObjType = {
 }
 
 export const useSignup = async(email: string, password: string, username: string, valid: boolean) => {
-    let returnObj: returnObjType = {
-        status: "",
-        message: "",
-        error: false,
-        user: null 
-    }
-    const createUser = async() => {
-        const auth = getAuth();
-        createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            
-            const user = userCredential.user
-            updateProfile(user, {displayName: username} )
-            returnObj = {
+   
+      
+        const auth =  getAuth();
+        const getUserObject = async() => {
+
+            try {
+            const createUser = await createUserWithEmailAndPassword(auth, email, password)
+            const addUsername = await updateProfile(createUser.user, {displayName: username})
+            return {
                 status: "success",
-                message: "New user added",
+                message: "user has been created",
                 error: false,
-                user: user
-               }
-               console.log(returnObj)
-            
-           
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            returnObj = {
-                status: "failed",
-                message: ` ${errorCode} - ${errorMessage}`,
-                error: true,
-                user: null
+                user: createUser.user
             }
-          });
-          return returnObj;
+            } catch (error) {
+                console.log(error)
+              return {
+                status: "failed",
+                message: error,
+                error: true,
+                user: null,
+              } 
+            }       
+        }
+        
+         const userAuth = await getUserObject()
+         return userAuth;
+          
     } 
-    const newUser = await createUser()
-    //console.log(newUser)
-    return  newUser;
-}
+
+    
+
 

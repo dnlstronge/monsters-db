@@ -2,12 +2,19 @@ import React, { useState, useEffect } from 'react'
 import classes from "./Signup.module.css"
 import { useSignup } from './Helpers/useSignup'
 import { signupvalid } from './Helpers/signupvalid'
+import { User } from 'firebase/auth'
 
 type validationObj = {
   invalid: boolean
   userNameError: string
   emailError: string
   passwordError: string
+}
+type userProps = {
+  status: string,
+  message: string | unknown
+  error: boolean,
+  user: null | User
 }
 
 const Signup = () => {
@@ -20,13 +27,7 @@ const Signup = () => {
    const [validUsername, setValidUsername] = useState("")
    const [validEmail, setValidEmail] = useState("")
    const [validPassword, setValidPassword] = useState("")
-   const [signedIn, setSignedIn] = useState({
-    status: "",
-    message: "",
-    error: false,
-    user: null
-
-   })
+   const [signedIn, setSignedIn] = useState<userProps>()
    
 
   /* handlers */
@@ -65,7 +66,6 @@ useEffect(() => {
   }
   const handlePassword = (e: React.FormEvent<HTMLInputElement>) => {
     setValidPassword('')
-    
     setPassword(e.currentTarget.value)
   }
   const handleConfirmPassword = (e: React.FormEvent<HTMLInputElement>) => {
