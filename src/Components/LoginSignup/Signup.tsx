@@ -3,6 +3,9 @@ import classes from "./Signup.module.css"
 import { useSignup } from './Helpers/useSignup'
 import { signupvalid } from './Helpers/signupvalid'
 import { User } from 'firebase/auth'
+import { useDispatch, useSelector } from 'react-redux'
+import { setIsAuth, setUID, setUN } from '../../Redux/authContextSlice'
+import { RootState } from '../../Redux/store'
 
 type validationObj = {
   invalid: boolean
@@ -28,9 +31,16 @@ const Signup = () => {
    const [validEmail, setValidEmail] = useState("")
    const [validPassword, setValidPassword] = useState("")
    const [signedIn, setSignedIn] = useState<userProps>()
-   
+   const dispatch = useDispatch()
 
-  /* handlers */
+
+   // state controllers
+   const authFromRedux = useSelector((state: RootState) => { return state.authentication.isAuth})
+   const usernameFromRedux = useSelector((state: RootState) => {return state.authentication.username })
+   const uidFromRedux = useSelector((state: RootState) => { return state.authentication.userId })
+  
+  
+   /* handlers */
   const HandleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const isvalid = await signupvalid(username, email, password, confirmPassword,)
@@ -51,9 +61,21 @@ const Signup = () => {
    
     
   }
+
+  /* update global state via redux */
 useEffect(() => {
-  console.log(signedIn)
-}, [signedIn])
+  //update state
+    console.log(authFromRedux)
+    console.log(usernameFromRedux)
+    console.log(uidFromRedux)
+    if(signedIn?.user) {
+      dispatch(setUID(signedIn?.user?.uid))
+      dispatch(setUN(signedIn?.user?.displayName))
+      dispatch(setIsAuth())
+    }
+   
+    console.log("redux fires")
+}, [signedIn, dispatch])
   /* state handlers */
 
   const handleUsername = (e: React.FormEvent<HTMLInputElement>) => {
@@ -74,6 +96,12 @@ useEffect(() => {
   }
   return (
     <div className={classes.container}>
+        {authFromRedux && 
+        <p style={{color: "white"}}>Is auth active</p>}
+        {uidFromRedux && 
+        <p style={{color: "white"}}>Have a valid user ID</p>}
+        {usernameFromRedux && 
+        <p style={{color: "white"}}>Have a username in place</p>}
 
       <form className={classes.form} onSubmit={HandleSubmit}>
         <label className={classes.label} htmlFor="__username">Username</label>
