@@ -6,6 +6,7 @@ import { User } from 'firebase/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { setIsAuth, setUID, setUN } from '../../Redux/authContextSlice'
 import { RootState } from '../../Redux/store'
+import ErrorMessage from "./Errors/Error"
 
 type validationObj = {
   invalid: boolean
@@ -15,7 +16,7 @@ type validationObj = {
 }
 type userProps = {
   status: string,
-  message: string | unknown
+  message: string | any
   error: boolean,
   user: null | User
 }
@@ -98,6 +99,8 @@ useEffect(() => {
         <p style={{color: "white"}}>Have a valid user ID{uidFromRedux}</p>}
         {usernameFromRedux && 
         <p style={{color: "white"}}>Hello {usernameFromRedux}, thanks for signing up</p>}
+        {signedIn?.message &&
+        <ErrorMessage message={signedIn?.message} />}
       {!authFromRedux && 
       <form className={classes.form} onSubmit={HandleSubmit}>
         <label className={classes.label} htmlFor="__username">Username</label>
