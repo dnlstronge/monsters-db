@@ -20,14 +20,17 @@ export const useSignup = async(email: string, password: string, username: string
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
+            
             const user = userCredential.user
             updateProfile(user, {displayName: username} )
             returnObj = {
-            status: "success",
-            message: "New user added",
-            error: false,
-            user: user
-           }
+                status: "success",
+                message: "New user added",
+                error: false,
+                user: user
+               }
+               console.log(returnObj)
+            
            
           })
           .catch((error) => {
@@ -40,9 +43,10 @@ export const useSignup = async(email: string, password: string, username: string
                 user: null
             }
           });
-          //return auth
+          return returnObj;
     } 
     const newUser = await createUser()
+    //console.log(newUser)
     return  newUser;
 }
 

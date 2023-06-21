@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import classes from "./Signup.module.css"
 import { useSignup } from './Helpers/useSignup'
 import { signupvalid } from './Helpers/signupvalid'
@@ -43,14 +43,16 @@ const Signup = () => {
       
     }
     const valid = isvalid.invalid
-    const auth = useSignup(email, password, username, valid )
-    console.log(auth)
+    const auth = await useSignup(email, password, username, valid )
+    setSignedIn(auth)
 
     //console.log(isvalid)
    
     
   }
-
+useEffect(() => {
+  console.log(signedIn)
+}, [signedIn])
   /* state handlers */
 
   const handleUsername = (e: React.FormEvent<HTMLInputElement>) => {
