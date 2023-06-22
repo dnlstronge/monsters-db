@@ -121,9 +121,13 @@ const Navbar: React.FC<navBarProps> = (props) => {
                 <Link style={{textDecoration: "none"}} to="/tools/addcreature">
                     <div onClick={handleShowAddCreature} className={addCreaturesStyle}>Add Creature </div> </Link>}
             {expandTools &&
-                <div onClick={handleShowAddPlaces} className={addPlacesStyle}>Add Places</div>}
+            <Link style={{textDecoration: "none"}} to="/placeholder">
+                <div onClick={handleShowAddPlaces} className={addPlacesStyle}>Add Places</div>
+                </Link>}
             {expandTools &&
-                <div onClick={handleShowAddMisc} className={addMiscStyle}>Add Misc</div>}
+             <Link style={{textDecoration: "none"}} to="/placeholder">
+                <div onClick={handleShowAddMisc} className={addMiscStyle}>Add Misc</div>
+                </Link>}
 
 
         </nav>

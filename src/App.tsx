@@ -13,6 +13,7 @@ import AddCreature from './Components/Tools/AddCreature';
 import SearchResults from './Components/Pages/SearchResults/SearchResults';
 import Login from './Components/LoginSignup/Login';
 import Signup from './Components/LoginSignup/Signup';
+import Placeholder from './Components/Pages/Placeholder/Placeholder';
 
 function App() {
   const [showCreaturesAZ, setShowCreaturesAZ] = useState(false)
@@ -42,6 +43,7 @@ function App() {
           <Route path="/tools" element ={<Tools/>}/>
           <Route path="tools/addcreature" element={<AddCreature />} />
           <Route path="/search" element={<SearchResults />}/>
+          <Route path="/placeholder" element={<Placeholder />}/>
         </Routes>
         {/* {showCreaturesAZ && 
         <CreaturesAZ />}
