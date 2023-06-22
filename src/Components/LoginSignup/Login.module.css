@@ -2,6 +2,8 @@
     background: rgb(57, 56, 56);
     width: 100%;
     padding: 1rem;
+    border: 2px solid white;
+    border-radius: 4px;
 }
 
 .error {

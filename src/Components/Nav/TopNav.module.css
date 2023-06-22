@@ -10,7 +10,7 @@
 }
 
 .buttons {
-    margin-left: 70%;
+    margin-left: 60%;
 }
 
 .btn {
@@ -20,9 +20,10 @@
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-left: 2rem;
-    height: 3rem;
-    width: 6rem;
+    height: 4rem;
+    width: 8rem;
     border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
    
 }
 
