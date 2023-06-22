@@ -1,6 +1,6 @@
 
 import postCreature from "./postCreature";
-import checkDup from "./checkdup";
+
 
 
 
@@ -14,7 +14,7 @@ const usePostCreature: (name: string, desc: string, hp: string, attack: string, 
             message: ""
         }
     
-    const alreadyExists = await checkDup(name)
+    const alreadyExists = false
     if(!alreadyExists) {
       //console.log("checks exists")
       //const postImage = await postCreatureImage(image, name)
