@@ -31,6 +31,7 @@
     height: 1.5rem;
 }
 .btn {
+    font-size: 14px;
     height: 2.4rem;
     width: 6rem;
     color: white;
@@ -38,4 +39,9 @@
     border-radius: 3px;
     margin-left: 2rem;
     border: 2px solid white
+}
+.btn:hover {
+    cursor: pointer;
+    background-color: bisque;
+    color: black;
 }
